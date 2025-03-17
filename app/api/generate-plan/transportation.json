@@ -1,0 +1,4644 @@
+[
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Luzern",
+        "2nd Class Price": 34.0,
+        "1st Class Price": 58.0,
+        "Duration": "01:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 34.0,
+        "1st Class Price": 58.0,
+        "Duration": "01:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 11.8,
+        "1st Class Price": 20.2,
+        "Duration": "00:36",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 11.8,
+        "1st Class Price": 20.2,
+        "Duration": "00:36",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Bern",
+        "2nd Class Price": 31.2,
+        "1st Class Price": 53.2,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 31.2,
+        "1st Class Price": 53.2,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "02:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "02:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "02:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "02:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 7.8,
+        "1st Class Price": 13.4,
+        "Duration": "00:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 7.8,
+        "1st Class Price": 13.4,
+        "Duration": "00:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Montreux",
+        "2nd Class Price": 56.0,
+        "1st Class Price": 96.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 56.0,
+        "1st Class Price": 96.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 86.0,
+        "1st Class Price": 147.0,
+        "Duration": "02:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 86.0,
+        "1st Class Price": 147.0,
+        "Duration": "02:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Visp",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "03:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "03:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 64.0,
+        "1st Class Price": 109.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 64.0,
+        "1st Class Price": 109.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Vevey",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "02:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "02:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Spiez",
+        "2nd Class Price": 10.4,
+        "1st Class Price": 17.8,
+        "Duration": "00:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 10.4,
+        "1st Class Price": 17.8,
+        "Duration": "00:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Lugano",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 134.0,
+        "1st Class Price": 228.0,
+        "Duration": "05:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 134.0,
+        "1st Class Price": 228.0,
+        "Duration": "05:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Landquart",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Chur",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "03:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "03:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 31.2,
+        "1st Class Price": 44.8,
+        "Duration": "01:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 31.2,
+        "1st Class Price": 44.8,
+        "Duration": "01:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Murren",
+        "2nd Class Price": 19.6,
+        "1st Class Price": 25.2,
+        "Duration": "00:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Grutschalp"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 19.6,
+        "1st Class Price": 25.2,
+        "Duration": "00:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Grutschalp",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Wengen",
+        "2nd Class Price": 15.0,
+        "1st Class Price": 20.6,
+        "Duration": "00:37",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 15.0,
+        "1st Class Price": 20.6,
+        "Duration": "00:37",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Interlaken Ost",
+        "Arrival": "Milano",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "04:06",
+        "Transfer Counts": 1,
+        "Via": [
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Interlaken Ost",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "04:06",
+        "Transfer Counts": 1,
+        "Via": [
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 45.8,
+        "1st Class Price": 78.2,
+        "Duration": "02:34",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Luzern",
+        "2nd Class Price": 45.8,
+        "1st Class Price": 78.2,
+        "Duration": "02:34",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Bern",
+        "2nd Class Price": 41.0,
+        "1st Class Price": 70.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Luzern",
+        "2nd Class Price": 41.0,
+        "1st Class Price": 70.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 27.0,
+        "1st Class Price": 46.0,
+        "Duration": "00:46",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Luzern",
+        "2nd Class Price": 27.0,
+        "1st Class Price": 46.0,
+        "Duration": "00:46",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 31.0,
+        "1st Class Price": 53.0,
+        "Duration": "01:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Luzern",
+        "2nd Class Price": 31.0,
+        "1st Class Price": 53.0,
+        "Duration": "01:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Luzern",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 41.8,
+        "1st Class Price": 71.4,
+        "Duration": "02:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Luzern",
+        "2nd Class Price": 41.8,
+        "1st Class Price": 71.4,
+        "Duration": "02:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Montreux",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Luzern",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 122.0,
+        "1st Class Price": 208.0,
+        "Duration": "03:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Luzern",
+        "2nd Class Price": 122.0,
+        "1st Class Price": 208.0,
+        "Duration": "03:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "03:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Luzern",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "03:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Luzern",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Vevey",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:26",
+        "Transfer Counts": 1,
+        "Via": [
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Luzern",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:26",
+        "Transfer Counts": 1,
+        "Via": [
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Spiez",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Luzern",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Lugano",
+        "2nd Class Price": 64.0,
+        "1st Class Price": 109.0,
+        "Duration": "01:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Luzern",
+        "2nd Class Price": 64.0,
+        "1st Class Price": 109.0,
+        "Duration": "01:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Luzern",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Chur",
+        "2nd Class Price": 61.0,
+        "1st Class Price": 104.0,
+        "Duration": "02:13",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Luzern",
+        "2nd Class Price": 61.0,
+        "1st Class Price": 104.0,
+        "Duration": "02:13",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 120.8,
+        "Duration": "03:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Luzern",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 120.8,
+        "Duration": "03:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Murren",
+        "2nd Class Price": 53.6,
+        "1st Class Price": 83.2,
+        "Duration": "02:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Luzern",
+        "2nd Class Price": 53.6,
+        "1st Class Price": 83.2,
+        "Duration": "02:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Wengen",
+        "2nd Class Price": 49.0,
+        "1st Class Price": 78.6,
+        "Duration": "02:35",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Luzern",
+        "2nd Class Price": 49.0,
+        "1st Class Price": 78.6,
+        "Duration": "02:35",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Luzern",
+        "Arrival": "Milano",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Luzern",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Bern",
+        "2nd Class Price": 41.8,
+        "1st Class Price": 71.2,
+        "Duration": "01:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 41.8,
+        "1st Class Price": 71.2,
+        "Duration": "01:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 84.8,
+        "1st Class Price": 145.2,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 84.8,
+        "1st Class Price": 145.2,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 151.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 151.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 9.4,
+        "1st Class Price": 16.0,
+        "Duration": "00:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zweilutschinen"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 9.4,
+        "1st Class Price": 16.0,
+        "Duration": "00:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zweilutschinen"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Montreux",
+        "2nd Class Price": 67.8,
+        "1st Class Price": 116.2,
+        "Duration": "04:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 67.8,
+        "1st Class Price": 116.2,
+        "Duration": "04:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 97.8,
+        "1st Class Price": 167.2,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 97.8,
+        "1st Class Price": 167.2,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Visp",
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 151.2,
+        "Duration": "03:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 151.2,
+        "Duration": "03:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 129.2,
+        "Duration": "02:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 129.2,
+        "Duration": "02:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Vevey",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "03:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Bern",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "03:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Palezieux",
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Spiez",
+        "2nd Class Price": 23.6,
+        "1st Class Price": 40.4,
+        "Duration": "01:06",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 23.6,
+        "1st Class Price": 40.4,
+        "Duration": "01:06",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Lugano",
+        "2nd Class Price": 99.8,
+        "1st Class Price": 170.2,
+        "Duration": "04:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 99.8,
+        "1st Class Price": 170.2,
+        "Duration": "04:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 145.8,
+        "1st Class Price": 248.2,
+        "Duration": "05:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 145.8,
+        "1st Class Price": 248.2,
+        "Duration": "05:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Chur",
+        "2nd Class Price": 112.8,
+        "1st Class Price": 192.8,
+        "Duration": "04:05",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Bern",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 112.8,
+        "1st Class Price": 192.8,
+        "Duration": "04:05",
+        "Transfer Counts": 3,
+        "Via": [
+            "Zurich HB",
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 43.0,
+        "1st Class Price": 65.0,
+        "Duration": "02:20",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 43.0,
+        "1st Class Price": 65.0,
+        "Duration": "02:20",
+        "Transfer Counts": 3,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Murren",
+        "2nd Class Price": 21.2,
+        "1st Class Price": 27.8,
+        "Duration": "01:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zweilutschinen",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 21.2,
+        "1st Class Price": 27.8,
+        "Duration": "01:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Zweilutschinen"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Wengen",
+        "2nd Class Price": 16.6,
+        "1st Class Price": 23.2,
+        "Duration": "00:55",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zweilutschinen",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 16.6,
+        "1st Class Price": 23.2,
+        "Duration": "00:55",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Zweilutschinen"
+        ]
+    },
+    {
+        "Departure": "Grindelwald",
+        "Arrival": "Milano",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "04:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Grindelwald",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 121.2,
+        "Duration": "04:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "00:56",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Bern",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "00:56",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:12",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Bern",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:12",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Bern",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 37.8,
+        "1st Class Price": 64.4,
+        "Duration": "01:22",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Bern",
+        "2nd Class Price": 37.8,
+        "1st Class Price": 64.4,
+        "Duration": "01:22",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Montreux",
+        "2nd Class Price": 44.0,
+        "1st Class Price": 75.0,
+        "Duration": "01:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Bern",
+        "2nd Class Price": 44.0,
+        "1st Class Price": 75.0,
+        "Duration": "01:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 94.0,
+        "1st Class Price": 161.0,
+        "Duration": "02:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Bern",
+        "2nd Class Price": 94.0,
+        "1st Class Price": 161.0,
+        "Duration": "02:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 97.0,
+        "Duration": "02:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Bern",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 97.0,
+        "Duration": "02:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 42.0,
+        "1st Class Price": 72.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Bern",
+        "2nd Class Price": 42.0,
+        "1st Class Price": 72.0,
+        "Duration": "01:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Vevey",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:22",
+        "Transfer Counts": 1,
+        "Via": [
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Bern",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "01:22",
+        "Transfer Counts": 1,
+        "Via": [
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Spiez",
+        "2nd Class Price": 23.6,
+        "1st Class Price": 40.2,
+        "Duration": "00:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Bern",
+        "2nd Class Price": 23.6,
+        "1st Class Price": 40.2,
+        "Duration": "00:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Lugano",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 157.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Bern",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 157.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Bern",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Landquart",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Chur",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Bern",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 39.8,
+        "1st Class Price": 59.8,
+        "Duration": "01:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Bern",
+        "2nd Class Price": 39.8,
+        "1st Class Price": 59.8,
+        "Duration": "01:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Murren",
+        "2nd Class Price": 49.6,
+        "1st Class Price": 76.2,
+        "Duration": "01:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Bern",
+        "2nd Class Price": 49.6,
+        "1st Class Price": 76.2,
+        "Duration": "01:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Wengen",
+        "2nd Class Price": 45.0,
+        "1st Class Price": 71.6,
+        "Duration": "01:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Bern",
+        "2nd Class Price": 45.0,
+        "1st Class Price": 71.6,
+        "Duration": "01:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Bern",
+        "Arrival": "Milano",
+        "2nd Class Price": 66.0,
+        "1st Class Price": 113.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Bern",
+        "2nd Class Price": 66.0,
+        "1st Class Price": 113.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 7.0,
+        "1st Class Price": 11.6,
+        "Duration": "00:09",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 7.0,
+        "1st Class Price": 11.6,
+        "Duration": "00:09",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 77.0,
+        "1st Class Price": 131.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 80.8,
+        "1st Class Price": 138.4,
+        "Duration": "02:25",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 80.8,
+        "1st Class Price": 138.4,
+        "Duration": "02:25",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Montreux",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 130.0,
+        "1st Class Price": 222.0,
+        "Duration": "03:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 130.0,
+        "1st Class Price": 222.0,
+        "Duration": "03:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "03:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "03:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "00:55",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 36.0,
+        "1st Class Price": 62.0,
+        "Duration": "00:55",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Vevey",
+        "2nd Class Price": 82.0,
+        "1st Class Price": 140.0,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 82.0,
+        "1st Class Price": 140.0,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Spiez",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "01:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "01:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Lugano",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "01:55",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "01:55",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Chur",
+        "2nd Class Price": 42.0,
+        "1st Class Price": 72.0,
+        "Duration": "01:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 42.0,
+        "1st Class Price": 72.0,
+        "Duration": "01:15",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 82.8,
+        "1st Class Price": 132.8,
+        "Duration": "02:36",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 82.8,
+        "1st Class Price": 132.8,
+        "Duration": "02:36",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Murren",
+        "2nd Class Price": 92.6,
+        "1st Class Price": 150.2,
+        "Duration": "02:55",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 92.6,
+        "1st Class Price": 150.2,
+        "Duration": "02:55",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Wengen",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 145.6,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 145.6,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich HB",
+        "Arrival": "Milano",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Zurich HB",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 82.0,
+        "1st Class Price": 140.0,
+        "Duration": "02:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 82.0,
+        "1st Class Price": 140.0,
+        "Duration": "02:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 84.8,
+        "1st Class Price": 144.4,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 84.8,
+        "1st Class Price": 144.4,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Montreux",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 134.0,
+        "1st Class Price": 229.0,
+        "Duration": "03:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 134.0,
+        "1st Class Price": 229.0,
+        "Duration": "03:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 41.0,
+        "1st Class Price": 70.0,
+        "Duration": "01:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 41.0,
+        "1st Class Price": 70.0,
+        "Duration": "01:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Vevey",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 88.0,
+        "1st Class Price": 150.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Spiez",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 121.0,
+        "Duration": "01:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 121.0,
+        "Duration": "01:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Lugano",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "03:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "03:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Landquart",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Chur",
+        "2nd Class Price": 47.0,
+        "1st Class Price": 80.0,
+        "Duration": "01:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 47.0,
+        "1st Class Price": 80.0,
+        "Duration": "01:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 86.8,
+        "1st Class Price": 139.8,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 86.8,
+        "1st Class Price": 139.8,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Murren",
+        "2nd Class Price": 96.6,
+        "1st Class Price": 156.2,
+        "Duration": "03:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 96.6,
+        "1st Class Price": 156.2,
+        "Duration": "03:10",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Wengen",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 151.6,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 151.6,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Zurich Flughafen",
+        "Arrival": "Milano",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "03:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Zurich Flughafen",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "03:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Montreux",
+        "2nd Class Price": 13.6,
+        "1st Class Price": 23.2,
+        "Duration": "00:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 13.6,
+        "1st Class Price": 23.2,
+        "Duration": "00:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 85.0,
+        "1st Class Price": 145.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 85.0,
+        "1st Class Price": 145.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 29.0,
+        "1st Class Price": 50.0,
+        "Duration": "00:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 29.0,
+        "1st Class Price": 50.0,
+        "Duration": "00:50",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Vevey",
+        "2nd Class Price": 11.6,
+        "1st Class Price": 19.8,
+        "Duration": "00:14",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 11.6,
+        "1st Class Price": 19.8,
+        "Duration": "00:14",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Spiez",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "01:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "01:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Lugano",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:20",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 138.0,
+        "1st Class Price": 235.0,
+        "Duration": "05:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Chur"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 138.0,
+        "1st Class Price": 235.0,
+        "Duration": "05:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Chur"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Chur",
+        "2nd Class Price": 105.0,
+        "1st Class Price": 179.0,
+        "Duration": "03:35",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 105.0,
+        "1st Class Price": 179.0,
+        "Duration": "03:35",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 112.8,
+        "Duration": "02:51",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 70.8,
+        "1st Class Price": 112.8,
+        "Duration": "02:51",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Murren",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "03:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Ber",
+            "Interlaken Ost",
+            "Murren"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "03:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Ber",
+            "Interlaken Ost",
+            "Murren"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Wengen",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "02:55",
+        "Transfer Counts": 3,
+        "Via": [
+            "Ber",
+            "Interlaken Ost",
+            "Murren"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "02:55",
+        "Transfer Counts": 3,
+        "Via": [
+            "Ber",
+            "Interlaken Ost",
+            "Murren"
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Milano",
+        "2nd Class Price": 61.0,
+        "1st Class Price": 104.0,
+        "Duration": "03:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 61.0,
+        "1st Class Price": 104.0,
+        "Duration": "03:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Montreux",
+        "2nd Class Price": 63.8,
+        "1st Class Price": 109.4,
+        "Duration": "03:56",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 63.8,
+        "1st Class Price": 109.4,
+        "Duration": "03:56",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 93.8,
+        "1st Class Price": 160.4,
+        "Duration": "02:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 93.8,
+        "1st Class Price": 160.4,
+        "Duration": "02:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Visp",
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 84.84,
+        "1st Class Price": 144.4,
+        "Duration": "03:35",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 84.84,
+        "1st Class Price": 144.4,
+        "Duration": "03:35",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 71.8,
+        "1st Class Price": 122.4,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 71.8,
+        "1st Class Price": 122.4,
+        "Duration": "02:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Vevey",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Bern",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Palezieux",
+            "Bern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Spiez",
+        "2nd Class Price": 19.6,
+        "1st Class Price": 33.6,
+        "Duration": "00:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 19.6,
+        "1st Class Price": 33.6,
+        "Duration": "00:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Lugano",
+        "2nd Class Price": 95.8,
+        "1st Class Price": 163.4,
+        "Duration": "04:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 95.8,
+        "1st Class Price": 163.4,
+        "Duration": "04:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Luzern",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 141.8,
+        "1st Class Price": 241.4,
+        "Duration": "05:36",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 141.8,
+        "1st Class Price": 241.4,
+        "Duration": "05:36",
+        "Transfer Counts": 3,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Chur",
+        "2nd Class Price": 108.8,
+        "1st Class Price": 185.4,
+        "Duration": "03:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 108.8,
+        "1st Class Price": 185.4,
+        "Duration": "03:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zuric HB",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 39.0,
+        "1st Class Price": 58.2,
+        "Duration": "02:10",
+        "Transfer Counts": 3,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 39.0,
+        "1st Class Price": 58.2,
+        "Duration": "02:10",
+        "Transfer Counts": 3,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Murren",
+        "2nd Class Price": 11.8,
+        "1st Class Price": 11.8,
+        "Duration": "00:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 11.8,
+        "1st Class Price": 11.8,
+        "Duration": "00:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Wengen",
+        "2nd Class Price": 7.2,
+        "1st Class Price": 7.2,
+        "Duration": "00:11",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 7.2,
+        "1st Class Price": 7.2,
+        "Duration": "00:11",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lauterbrunnen",
+        "Arrival": "Milano",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Lauterbrunnen",
+        "2nd Class Price": 66.8,
+        "1st Class Price": 114.4,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Spiez",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 76.0,
+        "1st Class Price": 130.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Montreux",
+        "2nd Class Price": 76.0,
+        "1st Class Price": 130.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 37.0,
+        "1st Class Price": 63.0,
+        "Duration": "01:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Montreux",
+        "2nd Class Price": 37.0,
+        "1st Class Price": 63.0,
+        "Duration": "01:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Montreux",
+        "2nd Class Price": 75.0,
+        "1st Class Price": 128.0,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Vevey",
+        "2nd Class Price": 3.9,
+        "1st Class Price": 6.8,
+        "Duration": "00:06",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Montreux",
+        "2nd Class Price": 3.9,
+        "1st Class Price": 6.8,
+        "Duration": "00:06",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Spiez",
+        "2nd Class Price": 51.0,
+        "1st Class Price": 87.0,
+        "Duration": "02:48",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Montreux",
+        "2nd Class Price": 51.0,
+        "1st Class Price": 87.0,
+        "Duration": "02:48",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Lugano",
+        "2nd Class Price": 70.0,
+        "1st Class Price": 119.0,
+        "Duration": "04:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Montreux",
+        "2nd Class Price": 70.0,
+        "1st Class Price": 119.0,
+        "Duration": "04:50",
+        "Transfer Counts": 2,
+        "Via": [
+            "Luzern",
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 142.0,
+        "1st Class Price": 242.0,
+        "Duration": "06:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lausanne",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Montreux",
+        "2nd Class Price": 142.0,
+        "1st Class Price": 242.0,
+        "Duration": "06:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Chur",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Montreux",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 77.8,
+        "1st Class Price": 124.8,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Brig",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Montreux",
+        "2nd Class Price": 77.8,
+        "1st Class Price": 124.8,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Brig"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Murren",
+        "2nd Class Price": 75.6,
+        "1st Class Price": 121.2,
+        "Duration": "04:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Montreux",
+        "2nd Class Price": 75.6,
+        "1st Class Price": 121.2,
+        "Duration": "04:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Wengen",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 116.8,
+        "Duration": "04:08",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Montreux",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 116.8,
+        "Duration": "04:08",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Montreux",
+        "Arrival": "Milano",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Montreux",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "03:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 106.0,
+        "1st Class Price": 181.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 106.0,
+        "1st Class Price": 181.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 126.0,
+        "1st Class Price": 215.0,
+        "Duration": "03:25",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 126.0,
+        "1st Class Price": 215.0,
+        "Duration": "03:25",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Vevey",
+        "2nd Class Price": 79.0,
+        "1st Class Price": 135.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 79.0,
+        "1st Class Price": 135.0,
+        "Duration": "02:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Spiez",
+        "2nd Class Price": 78.0,
+        "1st Class Price": 133.0,
+        "Duration": "01:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 78.0,
+        "1st Class Price": 133.0,
+        "Duration": "01:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Lugano",
+        "2nd Class Price": 111.0,
+        "1st Class Price": 190.0,
+        "Duration": "05:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Brig",
+            "Domodossola",
+            "Locarno"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 111.0,
+        "1st Class Price": 190.0,
+        "Duration": "05:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Locarno",
+            "Domodossola",
+            "Brig"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 159.0,
+        "1st Class Price": 272.0,
+        "Duration": "07:45",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 159.0,
+        "1st Class Price": 272.0,
+        "Duration": "07:45",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Chur",
+        "2nd Class Price": 124.0,
+        "1st Class Price": 212.0,
+        "Duration": "05:35",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 124.0,
+        "1st Class Price": 212.0,
+        "Duration": "05:35",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 96.8,
+        "1st Class Price": 156.8,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Visp",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 96.8,
+        "1st Class Price": 156.8,
+        "Duration": "03:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Murren",
+        "2nd Class Price": 105.6,
+        "1st Class Price": 172.2,
+        "Duration": "03:20",
+        "Transfer Counts": 4,
+        "Via": [
+            "Visp",
+            "Spiez",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 105.6,
+        "1st Class Price": 172.2,
+        "Duration": "03:20",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Wengen",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 167.6,
+        "Duration": "03:05",
+        "Transfer Counts": 4,
+        "Via": [
+            "Visp",
+            "Spiez",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 167.6,
+        "Duration": "03:05",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez",
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Zermatt",
+        "Arrival": "Milano",
+        "2nd Class Price": 58.4,
+        "1st Class Price": 99.8,
+        "Duration": "03:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Zermatt",
+        "2nd Class Price": 58.4,
+        "1st Class Price": 99.8,
+        "Duration": "03:45",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "03:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 84.0,
+        "1st Class Price": 143.0,
+        "Duration": "03:10",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Vevey",
+        "2nd Class Price": 34.0,
+        "1st Class Price": 58.0,
+        "Duration": "01:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 34.0,
+        "1st Class Price": 58.0,
+        "Duration": "01:10",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Spiez",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Lugano",
+        "2nd Class Price": 130.0,
+        "1st Class Price": 221.0,
+        "Duration": "05:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 130.0,
+        "1st Class Price": 221.0,
+        "Duration": "05:15",
+        "Transfer Counts": 1,
+        "Via": [
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 154.0,
+        "1st Class Price": 262.0,
+        "Duration": "06:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Chur"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 154.0,
+        "1st Class Price": 262.0,
+        "Duration": "06:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Chur"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Chur",
+        "2nd Class Price": 121.0,
+        "1st Class Price": 206.0,
+        "Duration": "04:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 121.0,
+        "1st Class Price": 206.0,
+        "Duration": "04:30",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 142.8,
+        "Duration": "03:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 88.8,
+        "1st Class Price": 142.8,
+        "Duration": "03:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Murren",
+        "2nd Class Price": 96.6,
+        "1st Class Price": 156.2,
+        "Duration": "04:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Bern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 96.6,
+        "1st Class Price": 156.2,
+        "Duration": "04:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Wengen",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 151.6,
+        "Duration": "03:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Bern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 151.6,
+        "Duration": "03:50",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Milano",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "04:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 80.0,
+        "1st Class Price": 136.0,
+        "Duration": "04:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Vevey",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Bern",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 68.0,
+        "1st Class Price": 116.0,
+        "Duration": "02:30",
+        "Transfer Counts": 2,
+        "Via": [
+            "Palezieux",
+            "Bern"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Spiez",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 59.0,
+        "1st Class Price": 101.0,
+        "Duration": "01:40",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Lugano",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 157.0,
+        "Duration": "03:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 92.0,
+        "1st Class Price": 157.0,
+        "Duration": "03:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 101.0,
+        "1st Class Price": 172.0,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Chur",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 121.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 71.0,
+        "1st Class Price": 121.0,
+        "Duration": "02:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 120.8,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 75.8,
+        "1st Class Price": 120.8,
+        "Duration": "02:40",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Murren",
+        "2nd Class Price": 83.6,
+        "1st Class Price": 134.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 83.6,
+        "1st Class Price": 134.2,
+        "Duration": "03:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Wengen",
+        "2nd Class Price": 79.0,
+        "1st Class Price": 129.6,
+        "Duration": "02:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 79.0,
+        "1st Class Price": 129.6,
+        "Duration": "02:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Milano",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "04:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "04:22",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Spiez",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Vevey",
+        "2nd Class Price": 73.0,
+        "1st Class Price": 125.0,
+        "Duration": "02:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Visp"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Lugano",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:25",
+        "Transfer Counts": 2,
+        "Via": [
+            "Palezieux",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Vevey",
+        "2nd Class Price": 113.0,
+        "1st Class Price": 193.0,
+        "Duration": "04:25",
+        "Transfer Counts": 2,
+        "Via": [
+            "Luzern",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 142.0,
+        "1st Class Price": 242.0,
+        "Duration": "06:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lausanne",
+            "Zurich HB",
+            "Chur"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Vevey",
+        "2nd Class Price": 142.0,
+        "1st Class Price": 242.0,
+        "Duration": "06:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Chur",
+            "Zurich HB",
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Chur",
+        "2nd Class Price": 109.0,
+        "1st Class Price": 186.0,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lausanne",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Vevey",
+        "2nd Class Price": 109.0,
+        "1st Class Price": 186.0,
+        "Duration": "04:00",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Lausanne"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 77.8,
+        "1st Class Price": 124.8,
+        "Duration": "03:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Brig",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Vevey",
+        "2nd Class Price": 77.8,
+        "1st Class Price": 124.8,
+        "Duration": "03:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Brig"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Murren",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "03:20",
+        "Transfer Counts": 4,
+        "Via": [
+            "Palezieux",
+            "Bern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Vevey",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "03:20",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Bern",
+            "Interlaken Ost",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Wengen",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "03:10",
+        "Transfer Counts": 4,
+        "Via": [
+            "Palezieux",
+            "Bern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Vevey",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "03:10",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Bern",
+            "Interlaken Ost",
+            "Palezieux"
+        ]
+    },
+    {
+        "Departure": "Vevey",
+        "Arrival": "Milano",
+        "2nd Class Price": 56.0,
+        "1st Class Price": 96.0,
+        "Duration": "03:34",
+        "Transfer Counts": 1,
+        "Via": [
+            "Montreux"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Vevey",
+        "2nd Class Price": 56.0,
+        "1st Class Price": 96.0,
+        "Duration": "03:34",
+        "Transfer Counts": 1,
+        "Via": [
+            "Montreux"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Lugano",
+        "2nd Class Price": 117.0,
+        "1st Class Price": 199.0,
+        "Duration": "03:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Spiez",
+        "2nd Class Price": 117.0,
+        "1st Class Price": 199.0,
+        "Duration": "03:35",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 126.0,
+        "1st Class Price": 215.0,
+        "Duration": "04:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Spiez",
+        "2nd Class Price": 126.0,
+        "1st Class Price": 215.0,
+        "Duration": "04:45",
+        "Transfer Counts": 2,
+        "Via": [
+            "Landquart",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Chur",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Spiez",
+        "2nd Class Price": 96.0,
+        "1st Class Price": 164.0,
+        "Duration": "03:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 21.2,
+        "1st Class Price": 27.8,
+        "Duration": "00:55",
+        "Transfer Counts": 1,
+        "Via": [
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Spiez",
+        "2nd Class Price": 21.2,
+        "1st Class Price": 27.8,
+        "Duration": "00:55",
+        "Transfer Counts": 1,
+        "Via": [
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Murren",
+        "2nd Class Price": 31.4,
+        "1st Class Price": 45.4,
+        "Duration": "01:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Spiez",
+        "2nd Class Price": 31.4,
+        "1st Class Price": 45.4,
+        "Duration": "01:20",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Wengen",
+        "2nd Class Price": 26.8,
+        "1st Class Price": 40.8,
+        "Duration": "01:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Spiez",
+        "2nd Class Price": 26.8,
+        "1st Class Price": 40.8,
+        "Duration": "01:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost"
+        ]
+    },
+    {
+        "Departure": "Spiez",
+        "Arrival": "Milano",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "02:45",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Spiez",
+        "2nd Class Price": 53.0,
+        "1st Class Price": 91.0,
+        "Duration": "02:45",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 98.0,
+        "Duration": "05:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Tirano"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Lugano",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 98.0,
+        "Duration": "05:50",
+        "Transfer Counts": 1,
+        "Via": [
+            "Tirano"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Chur",
+        "2nd Class Price": 69.6,
+        "1st Class Price": 79.2,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bellinzona"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Lugano",
+        "2nd Class Price": 69.6,
+        "1st Class Price": 79.2,
+        "Duration": "02:40",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bellinzona"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 132.8,
+        "1st Class Price": 217.8,
+        "Duration": "05:10",
+        "Transfer Counts": 3,
+        "Via": [
+            "Zurich HB",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Lugano",
+        "2nd Class Price": 132.8,
+        "1st Class Price": 217.8,
+        "Duration": "05:10",
+        "Transfer Counts": 3,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Murren",
+        "2nd Class Price": 140.6,
+        "1st Class Price": 231.2,
+        "Duration": "04:55",
+        "Transfer Counts": 3,
+        "Via": [
+            "Luzern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Lugano",
+        "2nd Class Price": 140.6,
+        "1st Class Price": 231.2,
+        "Duration": "04:55",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Wengen",
+        "2nd Class Price": 136.0,
+        "1st Class Price": 226.6,
+        "Duration": "04:45",
+        "Transfer Counts": 3,
+        "Via": [
+            "Luzern",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Lugano",
+        "2nd Class Price": 136.0,
+        "1st Class Price": 226.6,
+        "Duration": "04:45",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Luzern"
+        ]
+    },
+    {
+        "Departure": "Lugano",
+        "Arrival": "Milano",
+        "2nd Class Price": 10.4,
+        "1st Class Price": 17.8,
+        "Duration": "01:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Lugano",
+        "2nd Class Price": 10.4,
+        "1st Class Price": 17.8,
+        "Duration": "01:20",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Chur",
+        "2nd Class Price": 44.0,
+        "1st Class Price": 75.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 44.0,
+        "1st Class Price": 75.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": []
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 141.8,
+        "1st Class Price": 232.8,
+        "Duration": "05:45",
+        "Transfer Counts": 4,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 141.8,
+        "1st Class Price": 232.8,
+        "Duration": "05:45",
+        "Transfer Counts": 4,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Murren",
+        "2nd Class Price": 153.6,
+        "1st Class Price": 253.2,
+        "Duration": "06:00",
+        "Transfer Counts": 4,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 153.6,
+        "1st Class Price": 253.2,
+        "Duration": "06:00",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Wengen",
+        "2nd Class Price": 149.0,
+        "1st Class Price": 248.6,
+        "Duration": "05:50",
+        "Transfer Counts": 4,
+        "Via": [
+            "Landquart",
+            "Zurich HB",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 149.0,
+        "1st Class Price": 248.6,
+        "Duration": "05:50",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Zurich HB",
+            "Landquart"
+        ]
+    },
+    {
+        "Departure": "St. Moritz",
+        "Arrival": "Milano",
+        "2nd Class Price": 22.0,
+        "1st Class Price": 57.0,
+        "Duration": "04:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Tirano"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "St. Moritz",
+        "2nd Class Price": 22.0,
+        "1st Class Price": 57.0,
+        "Duration": "04:30",
+        "Transfer Counts": 1,
+        "Via": [
+            "Tirano"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 112.8,
+        "1st Class Price": 183.8,
+        "Duration": "04:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Zurich HB",
+            "Bern",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Chur",
+        "2nd Class Price": 112.8,
+        "1st Class Price": 183.8,
+        "Duration": "04:00",
+        "Transfer Counts": 3,
+        "Via": [
+            "Frutigen",
+            "Bern",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Murren",
+        "2nd Class Price": 120.6,
+        "1st Class Price": 197.2,
+        "Duration": "04:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Zurich HB",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Chur",
+        "2nd Class Price": 120.6,
+        "1st Class Price": 197.2,
+        "Duration": "04:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Wengen",
+        "2nd Class Price": 116.0,
+        "1st Class Price": 192.6,
+        "Duration": "04:05",
+        "Transfer Counts": 3,
+        "Via": [
+            "Zurich HB",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Chur",
+        "2nd Class Price": 116.0,
+        "1st Class Price": 192.6,
+        "Duration": "04:05",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Zurich HB"
+        ]
+    },
+    {
+        "Departure": "Chur",
+        "Arrival": "Milano",
+        "2nd Class Price": 78.0,
+        "1st Class Price": 93.4,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bellinzona"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Chur",
+        "2nd Class Price": 78.0,
+        "1st Class Price": 93.4,
+        "Duration": "04:00",
+        "Transfer Counts": 1,
+        "Via": [
+            "Bellinzona"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Murren",
+        "2nd Class Price": 50.8,
+        "1st Class Price": 70.0,
+        "Duration": "02:40",
+        "Transfer Counts": 4,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 50.8,
+        "1st Class Price": 70.0,
+        "Duration": "02:40",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Wengen",
+        "2nd Class Price": 46.2,
+        "1st Class Price": 65.4,
+        "Duration": "02:25",
+        "Transfer Counts": 4,
+        "Via": [
+            "Frutigen",
+            "Spiez",
+            "Interlaken Ost",
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 46.2,
+        "1st Class Price": 65.4,
+        "Duration": "02:25",
+        "Transfer Counts": 4,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez",
+            "Frutigen"
+        ]
+    },
+    {
+        "Departure": "Adelboden",
+        "Arrival": "Milano",
+        "2nd Class Price": 55.8,
+        "1st Class Price": 86.8,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Brig"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Adelboden",
+        "2nd Class Price": 55.8,
+        "1st Class Price": 86.8,
+        "Duration": "04:05",
+        "Transfer Counts": 2,
+        "Via": [
+            "Frutigen",
+            "Brig"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Wengen",
+        "2nd Class Price": 19.0,
+        "1st Class Price": 19.0,
+        "Duration": "00:43",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Murren",
+        "2nd Class Price": 19.0,
+        "1st Class Price": 19.0,
+        "Duration": "00:43",
+        "Transfer Counts": 1,
+        "Via": [
+            "Lauterbrunnen"
+        ]
+    },
+    {
+        "Departure": "Murren",
+        "Arrival": "Milano",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "04:30",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Murren",
+        "2nd Class Price": 78.6,
+        "1st Class Price": 126.2,
+        "Duration": "04:30",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Wengen",
+        "Arrival": "Milano",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "04:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Wengen",
+        "2nd Class Price": 74.0,
+        "1st Class Price": 121.6,
+        "Duration": "04:15",
+        "Transfer Counts": 3,
+        "Via": [
+            "Lauterbrunnen",
+            "Interlaken Ost",
+            "Spiez"
+        ]
+    }
+]

@@ -1,0 +1,33 @@
+/* 최대 너비가 966px인 컨테이너 */
+.custom-container {
+  max-width: 992px !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* 항상 3열 그리드 유지 */
+.custom-container .grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+/* 모바일 화면에서 카드 간격 조정 */
+@media (max-width: 768px) {
+  .custom-container .grid {
+    gap: 0.75rem !important;
+  }
+  
+  /* 모바일에서 글자 크기와 패딩 조정 */
+  .custom-container h2 {
+    font-size: 0.9rem !important;
+  }
+  
+  .custom-container .p-5 {
+    padding: 0.75rem !important;
+  }
+  
+  /* 이미지 컨테이너 높이 조정 */
+  .custom-container .relative.h-48 {
+    height: 8rem !important;
+  }
+}

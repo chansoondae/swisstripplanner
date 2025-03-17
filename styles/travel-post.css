@@ -1,0 +1,463 @@
+/* 여행 포스트 스타일 */
+.travel-post-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #262027;
+    line-height: 1.6;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    background-color: #fff;
+  }
+  
+  .travel-post-header {
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .travel-post-header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #0066cc, #ff6b00);
+    margin: 1.5rem auto 0;
+    border-radius: 3px;
+  }
+  
+  .travel-post-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #0066cc, #ff6b00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .travel-post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    background-color: #f8f9fa;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    display: inline-flex;
+    margin: 0 auto;
+  }
+  
+  .travel-post-meta-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .travel-post-meta-item svg {
+    margin-right: 0.3rem;
+    color: #0066cc;
+  }
+  
+  .travel-post-separator {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+  
+  .travel-post-cover {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .travel-post-cover:hover {
+    transform: scale(1.01);
+  }
+  
+  .travel-post-content {
+    font-size: 1.1rem;
+  }
+  
+  .travel-post-content h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 3rem 0 1.5rem;
+    line-height: 1.4;
+    color: #0066cc;
+    border-bottom: 2px solid #e6f0ff;
+    padding-bottom: 0.5rem;
+    position: relative;
+    
+  }
+
+  .travel-post-content h2::before {
+    content: "■";
+    margin-right: 0.5rem;
+    color: #0066cc;
+    font-size: 0.8em;
+  }
+  
+  .travel-post-content h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, #0066cc, #4d94ff);
+  }
+  
+  .travel-post-content h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    line-height: 1.4;
+    color: #ff6b00;
+    display: flex;
+    align-items: center;
+  }
+  
+  .travel-post-content h3::before {
+    content: "▶";
+    font-size: 0.8em;
+    margin-right: 0.5rem;
+    color: #ff6b00;
+    opacity: 0.8;
+  }
+  
+  .travel-post-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  
+  .travel-post-content ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+  }
+  
+  .travel-post-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+  
+  .travel-post-content ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ff6b00;
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+  
+  .travel-post-content ol {
+    counter-reset: item;
+    list-style: none;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+  }
+  
+  .travel-post-content ol li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.8rem;
+    counter-increment: item;
+    line-height: 1.6;
+  }
+  
+  .travel-post-content ol li::before {
+    content: counter(item) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: #0066cc;
+  }
+  
+  /* 중첩된 리스트에 대한 스타일 */
+  .travel-post-content ul ul,
+  .travel-post-content ol ol,
+  .travel-post-content ul ol,
+  .travel-post-content ol ul {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+  }
+  
+  .travel-post-content ul ul li::before {
+    content: "◦";
+    font-size: 1rem;
+  }
+  
+  .travel-post-content ol ol {
+    counter-reset: subitem;
+  }
+  
+  .travel-post-content ol ol li {
+    counter-increment: subitem;
+  }
+  
+  .travel-post-content ol ol li::before {
+    content: counter(subitem, lower-alpha) ".";
+  }
+  
+  .travel-post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    margin: 1.5rem 0 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .travel-post-content img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  .travel-post-content u {
+    text-decoration: none;  /* 기본 밑줄 제거 */
+    background: linear-gradient(to bottom, transparent 70%, rgba(255, 0, 16, 0.25) 70%, rgba(255, 0, 16, 0.25) 90%, transparent 90%);
+    padding: 0 2px;
+    border-radius: 2px;
+    font-weight: 500;
+    color: inherit;
+    position: relative;
+  }
+  
+  /* 다크 모드에서는 색상 조정 */
+  @media (prefers-color-scheme: dark) {
+    .travel-post-content u {
+      background: linear-gradient(to bottom, transparent 70%, rgba(255, 40, 56, 0.3) 70%, rgba(255, 40, 56, 0.3) 90%, transparent 90%);
+    }
+  }
+  
+  .travel-post-content strong {
+    color: #ff0010;
+    font-weight: 700;
+    background-color: rgba(255, 0, 16, 0.08);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+  }
+  
+  .travel-post-content a {
+    color: #0066cc;
+    text-decoration: none;
+    border-bottom: 1px solid #0066cc;
+    transition: all 0.2s ease;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  
+  .travel-post-content a:hover {
+    color: #004080;
+    border-color: transparent;
+    background-color: rgba(0, 102, 204, 0.08);
+  }
+  
+  .travel-post-section {
+    margin-bottom: 3rem;
+  }
+  
+  .travel-post-highlight {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid #ff00c9;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  }
+  
+  .travel-post-callout {
+    background-color: #fff8f9;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid #ff008c;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  }
+  
+  .travel-post-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .travel-post-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .travel-post-gallery img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .travel-post-caption {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+  
+  /* 아이콘 색상 */
+  .icon-pink {
+    color: #ff00c9;
+  }
+  
+  .icon-red {
+    color: #ff0010;
+  }
+  
+  /* 반응형 */
+  @media (max-width: 768px) {
+    .travel-post-container {
+      padding: 1.5rem 1rem;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    
+    .travel-post-title {
+      font-size: 2rem;
+    }
+    
+    .travel-post-meta {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 0.4rem 0.8rem;
+    }
+    
+    .travel-post-content h2 {
+      font-size: 1.6rem;
+    }
+    
+    .travel-post-content h3 {
+      font-size: 1.3rem;
+    }
+    
+    .travel-post-content {
+      font-size: 1rem;
+    }
+    
+    .travel-post-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* 다크 모드 */
+  @media (prefers-color-scheme: dark) {
+    .travel-post-container {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .travel-post-title {
+      background: linear-gradient(45deg, #3399ff, #ff9b5c);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    
+    .travel-post-meta {
+      background-color: #2a2a2a;
+      color: #bbb;
+    }
+    
+    .travel-post-content h2 {
+      color: #3399ff;
+      border-bottom-color: #2d4562;
+    }
+    
+    .travel-post-content h2::after {
+      background: linear-gradient(90deg, #3399ff, #1a6cc9);
+    }
+    
+    .travel-post-content h3 {
+      color: #ff9b5c;
+    }
+    
+    .travel-post-content h3::before {
+      color: #ff9b5c;
+    }
+    
+    .travel-post-content ul li::before {
+      color: #ff9b5c;
+    }
+    
+    .travel-post-content ol li::before {
+      color: #3399ff;
+    }
+    
+    .travel-post-highlight {
+      background-color: #2a2a2a;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .travel-post-callout {
+      background-color: #2a2028;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .travel-post-content strong {
+      background-color: rgba(255, 0, 16, 0.15);
+    }
+    
+    .travel-post-content a {
+      color: #66b3ff;
+      border-color: #66b3ff;
+    }
+    
+    .travel-post-content a:hover {
+      color: #99ccff;
+      border-color: transparent;
+      background-color: rgba(102, 179, 255, 0.1);
+    }
+    
+    .travel-post-content img,
+    .travel-post-gallery img {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .travel-post-caption {
+      color: #999;
+    }
+  }
+  
+  /* 인쇄 스타일 */
+  @media print {
+    .travel-post-container {
+      max-width: 100%;
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    .travel-post-content img {
+      max-width: 80%;
+      margin: 1rem auto;
+      display: block;
+    }
+    
+    .travel-post-meta,
+    .travel-post-gallery {
+      page-break-inside: avoid;
+    }
+  }
