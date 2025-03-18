@@ -77,7 +77,7 @@ export default function PlannerPage() {
       }));
       
       // Log retrieved data for debugging
-      console.log("Retrieved travel plans data:", itinerariesData);
+      // console.log("Retrieved travel plans data:", itinerariesData);
       
       // 마지막 문서 저장
       const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -346,19 +346,6 @@ export default function PlannerPage() {
                 const duration = itinerary.totalDuration || itinerary.duration || options.duration || '-';
                 const travelStyle = itinerary.travelStyle || options.travelStyle || '-';
                 const groupType = itinerary.groupType || options.groupType || '-';
-                
-                // Log individual itinerary data for debugging
-                console.log(`Itinerary ${index} data:`, {
-                  id: itinerary.id,
-                  title: itinerary.title,
-                  startingCity,
-                  endingCity,
-                  duration,
-                  travelStyle,
-                  groupType,
-                  options: itinerary.options,
-                  rawData: itinerary
-                });
                 
                 // 마지막 요소에 ref 추가
                 const isLastItem = index === itineraries.length - 1;

@@ -105,14 +105,14 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
     
     if (matchedAttractions.length === 0) return null;
 
-    console.log('1. Name_Eng값과 Eng 같은 것 필터링: ', matchedAttractions);
+    // console.log('1. Name_Eng값과 Eng 같은 것 필터링: ', matchedAttractions);
     
     // 2. Base값이 시작 위치와 같은 것 찾기
     const startLocationMatch = matchedAttractions.find(attr => 
       attr.Base === baseLocation
     );
 
-    console.log('2. Base값이 시작 위치와 같은 것 찾기: ', startLocationMatch);
+    // console.log('2. Base값이 시작 위치와 같은 것 찾기: ', startLocationMatch);
     
     if (startLocationMatch) return startLocationMatch;
     
@@ -121,7 +121,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
       attr.Base === endLocation
     );
 
-    console.log('3. Base값이 종료 위치와 같은 것 찾기: ', endLocationMatch);
+    // console.log('3. Base값이 종료 위치와 같은 것 찾기: ', endLocationMatch);
     
     if (endLocationMatch) return endLocationMatch;
     

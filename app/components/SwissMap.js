@@ -261,7 +261,7 @@ const SwissMap = ({ locations = [] }) => {
     <LoadScriptNext 
       googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
       onLoad={() => {
-        console.log('Google Maps script loaded successfully');
+        // console.log('Google Maps script loaded successfully');
         setScriptLoaded(true);
       }}
       onError={(error) => console.error('Google Maps script loading error:', error)}

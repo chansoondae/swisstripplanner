@@ -8,7 +8,7 @@ import TransportationCost from './TransportationCost';
 import ActivityModal from './ActivityModal'; // 새로 만든 모달 컴포넌트 import
 import { cityToStation } from '../../utils/cityToStation';
 import locationData from './../../utils/locationData';
-import './../../styles/TravelItinerary.css';
+import './../../styles/travelItinerary.css';
 import swissAttractions from './../../data/swiss_attraction.json';
 
 // 교통 수단에 따른 아이콘 선택 (TravelItinerary에도 추가)
@@ -127,7 +127,7 @@ const addAttractionPrices = (travelPlan) => {
           if (activity.location) {
             // location과 일치하는 명소 찾기
             const matchedAttraction = attractionMap[activity.location];
-            console.log("matchedAttraction: ",matchedAttraction);
+            // console.log("matchedAttraction: ",matchedAttraction);
             
             // 일치하는 명소가 있고 2nd Class Price가 있으면 price 속성 추가
             if (matchedAttraction && matchedAttraction['2nd Class Price']) {

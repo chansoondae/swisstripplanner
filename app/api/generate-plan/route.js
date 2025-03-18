@@ -4,86 +4,13 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from './../../../lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import OpenAI from 'openai';
-import transportationData from './transportation.json'; // 교통 요금 데이터 임포트
-import { cityToStation } from '../../../utils/cityToStation';
+import { calculateTotalTravelCost } from './../../../utils/calculateCost';
 
 
 // Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
-
-// 총 여행 비용 계산 함수
-function calculateTotalTravelCost(days) {
-  let totalCost = 0;
-  let segments = 0;
-  const fareDetails = [];
-  const missingRoutes = [];
-
-  if (!days || days.length === 0) {
-    return { totalCost: 0, segments: 0, fareDetails: [], missingRoutes: [] };
-  }
-
-  // 각 날짜별로 In/Out이 다른 경우에만 요금 계산
-  days.forEach(day => {
-    if (day.In && day.Out && day.In !== day.Out) {
-      // 도시를 역 이름으로 변환
-      const fromStation = cityToStation(day.In);
-      const toStation = cityToStation(day.Out);
-      
-      // 요금 정보 찾기
-      const fareInfo = findTransportationFare(fromStation, toStation);
-      
-      if (fareInfo) {
-        // 요금이 있는 경우 합산
-        totalCost += fareInfo.secondClassPrice;
-        segments++;
-        
-        // 개별 요금 정보 추가
-        fareDetails.push({
-          day: day.day,
-          from: fromStation,
-          to: toStation,
-          price: fareInfo.secondClassPrice,
-          duration: fareInfo.duration
-        });
-      } else {
-        // 요금 정보가 없는 경우 기록
-        missingRoutes.push({
-          day: day.day,
-          from: fromStation,
-          to: toStation
-        });
-      }
-    }
-  });
-
-  return {
-    totalCost: totalCost.toFixed(2),
-    segments,
-    fareDetails,
-    missingRoutes
-  };
-}
-
-// 교통 요금 검색 함수
-function findTransportationFare(from, to) {
-  const route = transportationData.find(r => 
-    r.Departure === from && r.Arrival === to
-  );
-  
-  if (route) {
-    return {
-      firstClassPrice: route['1st Class Price'],
-      secondClassPrice: route['2nd Class Price'],
-      duration: route.Duration,
-      transferCounts: route['Transfer Counts'] || 0,
-      via: route.Via || []
-    };
-  }
-  
-  return null;
-}
 
 
 export async function POST(request) {
@@ -294,7 +221,7 @@ async function generateTravelPlan(planId, prompt) {
 
  
     
-    console.log('Generated Travel Plan:', JSON.stringify(travelPlan, null, 2));
+    // console.log('Generated Travel Plan:', JSON.stringify(travelPlan, null, 2));
     
     // Update the document in Firestore with the complete travel plan
     await setDoc(doc(db, 'travelPlans', planId), {

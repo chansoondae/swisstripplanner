@@ -4,21 +4,26 @@
  * @returns {string} - 변환된 기차역 이름 또는 원래 도시 이름
  */
 export function cityToStation(city) {
+
+    if (!city) return '';
+    if (city.includes('Rigi')) return 'Rigi';
+    if (city.includes('Interlaken')) return 'Interlaken Ost';
+    if (city.includes('Basel')) return 'Basel SBB';
+    
+    
     switch(city) {
       case 'Zurich':
         return 'Zurich Flughafen';
       case 'Zürich':
         return 'Zurich Flughafen';
-      case 'Interlaken':
-        return 'Interlaken Ost';
       case 'Geneva':
         return 'Geneva Aeroport';
       case 'Frankfurt':
         return 'Basel SBB';
-      case 'Basel':
-        return 'Basel SBB';
       case 'Paris':
         return 'Basel SBB';
+      case 'Lucerne':
+        return 'Luzern';
       default:
         return city; // 변환 규칙이 없는 경우 원래 이름 사용
     }
