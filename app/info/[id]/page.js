@@ -22,7 +22,7 @@ marked.setOptions({
   });
 
 // 마크다운 파일 경로
-const postsDirectory = path.join(process.cwd(), 'data');
+const postsDirectory = path.join(process.cwd(), 'blogdata');
 
 // 마크다운 파일 목록 불러오기
 export async function generateStaticParams() {
@@ -51,11 +51,6 @@ export async function generateMetadata({ params }) {
   const id = resolvedParams.id;
   
   const filePath = path.join(postsDirectory, `${id}.md`);
-
-    // 디버깅 로그 추가
-    console.log('Generating metadata for ID:', id);
-    console.log('Metadata file path:', filePath);
-    console.log('File exists:', fs.existsSync(filePath));
   
   // 파일이 존재하지 않으면 404
   if (!fs.existsSync(filePath)) {
@@ -64,10 +59,10 @@ export async function generateMetadata({ params }) {
   }
   
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  console.log('File contents loaded successfully');
+  // console.log('File contents loaded successfully');
 
   const { data } = matter(fileContents);
-  console.log('Metadata parsed:', data);
+  // console.log('Metadata parsed:', data);
   
   return {
     title: data.title,
@@ -109,7 +104,9 @@ const components = {
 
 export default async function Post({ params }) {
     try {
-      const id = params.id;
+      // params가 Promise인 경우 await 처리
+      const resolvedParams = await params;
+      const id = resolvedParams.id;
       const filePath = path.join(postsDirectory, `${id}.md`);
       
       if (!fs.existsSync(filePath)) {

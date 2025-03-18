@@ -1,0 +1,54 @@
+/* 여행 정보 배지 공통 스타일 */
+.trip-info-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* 기간 배지 */
+.duration {
+  background-color: #F3E8FF;
+  color: #6B21A8;
+}
+
+/* 출발 도시 배지 */
+.starting-city {
+  background-color: #E0F2FE;
+  color: #0369A1;
+}
+
+/* 도착 도시 배지 */
+.ending-city {
+  background-color: #DCFCE7;
+  color: #15803D;
+}
+
+/* 여행 스타일 배지 */
+.travel-style {
+  background-color: #FFE4E6;
+  color: #BE123C;
+}
+
+/* 그룹 타입 배지 */
+.group-type {
+  background-color: #FEF3C7;
+  color: #B45309;
+}
+
+/* 액티비티 번호 원형 스타일 */
+.activity-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #EFF6FF;
+  color: #1E40AF;
+  font-weight: bold;
+  margin-right: 12px;
+}

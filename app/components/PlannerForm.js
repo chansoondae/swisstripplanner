@@ -28,14 +28,14 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
     { id: 'local', label: 'Local Experiences' }
   ];
   
-  // City options for both starting and ending cities
+  // City options with emoji for display, but plain city name for value
   const cityOptions = [
-    '🇨🇭 Zurich',
-    '🇨🇭 Geneva',
-    '🇨🇭 Basel',
-    '🇫🇷 Paris',
-    '🇮🇹 Milano',
-    '🇩🇪 Frankfurt'
+    { display: '🇨🇭 Zurich', value: 'Zurich' },
+    { display: '🇨🇭 Geneva', value: 'Geneva' },
+    { display: '🇨🇭 Basel', value: 'Basel' },
+    { display: '🇫🇷 Paris', value: 'Paris' },
+    { display: '🇮🇹 Milano', value: 'Milano' },
+    { display: '🇩🇪 Frankfurt', value: 'Frankfurt' }
   ];
   
   // Handle input changes
@@ -129,9 +129,9 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
               value={formData.travelStyle}
               onChange={handleChange}
             >
-              <option value="nature">자연 경관 집중</option>
-              <option value="activity">액티비티 러버</option>
-              <option value="balanced">자연+도시 콤비</option>
+              <option value="nature">🏔️ Nature Lover</option>
+              <option value="activity">🥾 Hiking Mania</option>
+              <option value="balanced">🏡 Nature + City</option>
             </select>
           </div>
           
@@ -148,7 +148,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
               onChange={handleChange}
             >
               {cityOptions.map((city) => (
-                <option key={`start-${city}`} value={city}>{city}</option>
+                <option key={`start-${city.value}`} value={city.value}>{city.display}</option>
               ))}
             </select>
           </div>
@@ -166,7 +166,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
               onChange={handleChange}
             >
               {cityOptions.map((city) => (
-                <option key={`end-${city}`} value={city}>{city}</option>
+                <option key={`end-${city.value}`} value={city.value}>{city.display}</option>
               ))}
             </select>
           </div>

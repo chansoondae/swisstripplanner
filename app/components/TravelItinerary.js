@@ -1,448 +1,431 @@
-// app/components/TravelItinerary.js
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FiClock, FiMapPin, FiExternalLink, FiInfo, FiChevronDown, 
-         FiChevronUp, FiCoffee, FiStar, FiShare2, FiCalendar, 
-         FiDollarSign, FiHome, FiBriefcase } from 'react-icons/fi';
-import { GiKnifeFork, GiMountainRoad } from "react-icons/gi";
-import { FaTrain } from "react-icons/fa";
+import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus } from 'react-icons/fi';
+import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
+import SwissMap from './SwissMap';
+import TransportationCost from './TransportationCost';
+import ActivityModal from './ActivityModal'; // 새로 만든 모달 컴포넌트 import
+import { cityToStation } from '../../utils/cityToStation';
+import locationData from './../../utils/locationData';
+import './../../styles/TravelItinerary.css';
+import swissAttractions from './../../data/swiss_attraction.json';
 
-const TravelItinerary = ({ travelPlan = {} }) => {
-  const [expandedDays, setExpandedDays] = useState({});
-  const [expandedActivities, setExpandedActivities] = useState({});
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+// 교통 수단에 따른 아이콘 선택 (TravelItinerary에도 추가)
+const TransportIcon = ({ type }) => {
+  switch (type) {
+    case 'Train':
+      return <FaTrain className="mr-1 text-blue-600" />;
+    case 'CableCar':
+      return <FaTram className="mr-1 text-blue-600" />;
+    case 'Funicular':
+      return <FaMountain className="mr-1 text-blue-600" />;
+    case 'Ferry':
+      return <FaShip className="mr-1 text-blue-600" />;
+    default:
+      return null;
+  }
+};
+
+// 여행 스타일 한글 매핑
+const travelStyleMap = {
+  'nature': '자연 경관 위주',
+  'activity': '하이킹과 액티비티',
+  'balanced': '자연+도시 조화'
+};
+
+// 그룹 타입 한글 매핑
+const groupTypeMap = {
+  'solo': '나홀로',
+  'couple': '커플',
+  'family': '가족',
+  'friends': '친구',
+  'seniors': '시니어'
+};
+
+// 활동 위치를 기반으로 위도,경도 정보를 생성하는 함수
+const generateLocationsFromActivities = (days) => {
+  if (!days || !Array.isArray(days)) return [];
   
-  // Mobile detection
+  let locationId = 1;
+  const locations = [];
+  
+  days.forEach((day, dayIndex) => {
+    // 숙박 정보가 있으면 추가
+    if (day.accommodation) {
+      const coords = locationData[day.accommodation];
+      if (coords) {
+        locations.push({
+          id: `accommodation-${dayIndex}`,
+          name: `${day.accommodation} (숙박)`,
+          description: `Day ${day.day} 숙박`,
+          type: 'hotel',
+          lat: coords.lat,
+          lng: coords.lng
+        });
+      }
+    }
+    
+    // 활동 정보 추가
+    if (day.activities && Array.isArray(day.activities)) {
+      day.activities.forEach((activity, actIndex) => {
+
+        // if(activity.location === )
+        // 활동에 직접 lat, lng 값이 있는지 확인
+        if (activity.lat && activity.lng) {
+          locations.push({
+            id: `activity-${locationId++}`,
+            name: `${actIndex + 1}. ${activity.title}`,
+            description: activity.description,
+            type: 'attraction',
+            duration: activity.duration,
+            lat: activity.lat,
+            lng: activity.lng
+          });
+        }
+        // 직접적인 좌표가 없지만 location 이름이 있는 경우
+        else if (activity.location) {
+          // 도시 좌표 데이터에서 찾기
+          const coords = locationData[activity.location];
+          
+          if (coords) {
+            locations.push({
+              id: `activity-${locationId++}`,
+              name: `${actIndex + 1}. ${activity.title}`,
+              description: activity.description,
+              type: 'attraction',
+              duration: activity.duration,
+              // 여러 활동이 같은 장소에 있을 경우 살짝 위치를 분산
+              lat: coords.lat + (Math.random() * 0.01 - 0.005),
+              lng: coords.lng + (Math.random() * 0.01 - 0.005)
+            });
+          }
+        }
+      });
+    }
+  });
+  
+  return locations;
+};
+
+// Swiss attraction 가격 정보를 활동에 추가하는 함수
+const addAttractionPrices = (travelPlan) => {
+  try {
+    // 명소 이름으로 빠르게 검색하기 위한 맵 생성
+    const attractionMap = {};
+    swissAttractions.forEach(attraction => {
+      attractionMap[attraction.Name_Eng] = attraction;
+    });
+    
+    // 여행 계획 복사본 생성
+    const updatedPlan = { ...travelPlan };
+    
+    // 각 일자의 활동 순회
+    updatedPlan.days.forEach(day => {
+      if (day.activities && Array.isArray(day.activities)) {
+        day.activities.forEach(activity => {
+          if (activity.location) {
+            // location과 일치하는 명소 찾기
+            const matchedAttraction = attractionMap[activity.location];
+            console.log("matchedAttraction: ",matchedAttraction);
+            
+            // 일치하는 명소가 있고 2nd Class Price가 있으면 price 속성 추가
+            if (matchedAttraction && matchedAttraction['2nd Class Price']) {
+              activity.price = matchedAttraction['2nd Class Price'];
+            }
+            // 일치하는 명소가 있고 교통수단 Transportation이 있으면 Transportation이 속성 추가
+            if (matchedAttraction && matchedAttraction.Transportation) {
+              activity.transportation = matchedAttraction.Transportation;
+            }
+          }
+        });
+      }
+    });
+    
+    return updatedPlan;
+  } catch (error) {
+    console.error('스위스 명소 가격 추가 중 오류 발생:', error);
+    return travelPlan; // 오류 발생 시 원본 여행 계획 반환
+  }
+};
+
+export default function TravelItinerary({ travelPlan, onUpdatePlan }) {
+  const [activeDay, setActiveDay] = useState(1);
+  const [showDetails, setShowDetails] = useState(false);
+  const [mapLocations, setMapLocations] = useState([]);
+
+    // 액티비티 모달 상태 추가
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    // 여행 계획 데이터 상태 추가 (업데이트 가능하도록)
+    const [planData, setPlanData] = useState(travelPlan);
+
+  // 초기 데이터 로드와 가격 정보 업데이트
   useEffect(() => {
-    const checkIfMobile = () => {
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      const isMobileDevice = /iphone|ipad|ipod|android/.test(userAgent);
-      const isSmallScreen = window.innerWidth < 768;
-      setIsMobile(isMobileDevice || isSmallScreen);
-    };
-    
-    checkIfMobile();
-    window.addEventListener('resize', checkIfMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkIfMobile);
-    };
-  }, []);
-  
-  // Default data in case travelPlan is not provided
+    if (travelPlan) {
+      // 가격 정보가 추가된 업데이트된 여행 계획 받기
+      const updatedPlan = addAttractionPrices(travelPlan);
+      // 상태 업데이트
+      setPlanData(updatedPlan);
+      
+      // 부모 컴포넌트에 변경 사항 전달 (필요한 경우)
+      if (onUpdatePlan) {
+        onUpdatePlan(updatedPlan);
+      }
+    }
+  }, [travelPlan, onUpdatePlan]);
+
+  if (!travelPlan) return null;
+
   const {
-    title = 'Swiss Adventure',
-    description = 'Discover the beautiful landscapes and culture of Switzerland.',
-    totalDuration = '7',
-    startingCity = 'Zurich',
-    travelStyle = 'balanced',
-    budget = 'medium',
-    days = [],
-    locations = [],
-    recommendations = '',
-    budgetBreakdown = {},
-    transportationDetails = {},
+    title,
+    description,
+    travelStyle,
+    days,
+    recommendations,
+    groupType,
+    options,
+    budgetBreakdown,
+    transportationDetails
   } = travelPlan;
   
-  // Toggle expanded state for days
-  const toggleDayExpanded = (dayIndex) => {
-    setExpandedDays(prev => ({
-      ...prev,
-      [dayIndex]: !prev[dayIndex]
-    }));
-  };
+  // 현재 일자의 데이터
+  const currentDay = days.find(day => day.day === activeDay) || days[0];
   
-  // Toggle expanded state for activities
-  const toggleActivityExpanded = (dayIndex, activityIndex) => {
-    const key = `${dayIndex}-${activityIndex}`;
-    setExpandedActivities(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+  // 지도에 표시할 위치 데이터 업데이트
+  useEffect(() => {
+    if (days) {
+      const filteredDays = days.filter(day => day.day === activeDay);
+      const locations = generateLocationsFromActivities(filteredDays);
+      setMapLocations(locations);
+    }
+  }, [activeDay, days]);
+
+  // 새 일정 추가 핸들러
+  const handleAddActivity = () => {
+    setIsModalOpen(true);
   };
-  
-  // Expand all days
-  const expandAllDays = () => {
-    const allExpanded = {};
-    days.forEach((_, index) => {
-      allExpanded[index] = true;
-    });
-    setExpandedDays(allExpanded);
-  };
-  
-  // Collapse all days
-  const collapseAllDays = () => {
-    setExpandedDays({});
-  };
-  
-  // Handle share button click
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: title,
-        text: `${title} - ${description}`,
-        url: window.location.href,
-      })
-      .catch((error) => console.log('Error sharing:', error));
-    } else {
-      // Fallback for browsers that don't support navigator.share
-      setShowShareModal(true);
+
+  // 새 액티비티를 여행 계획에 추가하는 함수
+  const addActivityToDay = (newActivity) => {
+    // 현재 데이터의 복사본 만들기
+    const updatedPlanData = { ...planData };
+    
+    // 활동을 추가할 날짜 찾기
+    const dayIndex = updatedPlanData.days.findIndex(day => day.day === activeDay);
+    
+    if (dayIndex !== -1) {
+      // 해당 날짜의 활동 목록에 새 활동 추가
+      updatedPlanData.days[dayIndex].activities.push(newActivity);
+      
+      // 상태 업데이트
+      setPlanData(updatedPlanData);
+      
+      // 부모 컴포넌트에 변경 사항 전달 (필요한 경우)
+      if (onUpdatePlan) {
+        onUpdatePlan(updatedPlanData);
+      }
+      
+      // 지도 데이터 다시 생성을 위해 현재 날짜 데이터 갱신
+      const updatedDay = updatedPlanData.days.filter(day => day.day === activeDay);
+      const locations = generateLocationsFromActivities(updatedDay);
+      setMapLocations(locations);
     }
   };
-  
-  // Get icon for meal type
-  const getMealIcon = (type) => {
-    switch (type.toLowerCase()) {
-      case 'breakfast':
-        return <FiCoffee className="text-orange-500" />;
-      case 'lunch':
-      case 'dinner':
-        return <GiKnifeFork className="text-red-500" />;
-      default:
-        return <GiKnifeFork className="text-gray-500" />;
-    }
+
+  // 현재 위치와 기준점 찾기 (모달에 전달하기 위함)
+  const getCurrentLocations = () => {
+    // Day 객체에서 직접 in/out 값 가져오기
+    const baseLocation = cityToStation(currentDay.In) || "";
+    const endLocation = cityToStation(currentDay.Out) || "";
+    
+    return { baseLocation, endLocation };
   };
-  
-  // Get icon for transportation type
-  const getTransportIcon = (type) => {
-    switch (type.toLowerCase()) {
-      case 'train':
-        return <FaTrain className="text-red-600" />;
-      case 'bus':
-        return <FiBriefcase className="text-blue-600" />;
-      case 'cable car':
-        return <GiMountainRoad className="text-orange-600" />;
-      default:
-        return <FiMapPin className="text-gray-600" />;
-    }
-  };
-  
+
+  const { baseLocation, endLocation } = getCurrentLocations();
+
   return (
-    <div className={`bg-white rounded-lg shadow-lg ${isMobile ? 'p-3' : 'p-6'}`}>
-      {/* Itinerary Header */}
+    <div className="p-4 md:p-6">
+      {/* 여행 제목 및 요약 */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <div className="flex flex-wrap gap-2 mt-2">
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
-            <FiMapPin className="mr-1" /> {startingCity}
-          </span>
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
-            <FiCalendar className="mr-1" /> {totalDuration} days
-          </span>
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
-            <FiClock className="mr-1" /> {travelStyle}
-          </span>
-          <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
-            <FiDollarSign className="mr-1" /> {budget} budget
-          </span>
-        </div>
+        <h1 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">{title}</h1>
+        <p className="text-gray-600 mb-4">{description}</p>
         
-        <div className="mt-4 text-gray-600">{description}</div>
+        <div className="flex flex-wrap gap-2 text-sm">
+          
+          {options && options.startingCity && (
+            <span className="trip-info-badge starting-city">
+              <FiMapPin className="mr-1" /> In: {options.startingCity}
+            </span>
+          )}
+          {options && options.endingCity && (
+            <span className="trip-info-badge ending-city">
+              <FiMapPin className="mr-1" /> Out: {options.endingCity}
+            </span>
+          )}
+          {options && options.duration && (
+            <span className="trip-info-badge duration">
+              <FiClock className="mr-1" /> {options.duration}일
+            </span>
+          )}
+          {options && options.travelStyle && (
+            <span className="trip-info-badge travel-style">
+              <FiSun className="mr-1" /> {travelStyleMap[options.travelStyle] || options.travelStyle}
+            </span>
+          )}
+          {options && options.groupType && (
+            <span className="trip-info-badge group-type">
+              <FiUsers className="mr-1" /> {groupTypeMap[options.groupType] || options.groupType}
+            </span>
+          )}
+        </div>
       </div>
-      
-      {/* Day-by-Day Itinerary */}
+
+      {/* 지도 섹션 */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="text-xl font-semibold">Day-by-Day Itinerary</h3>
-          <div className="flex gap-2">
-            <button 
-              onClick={expandAllDays} 
-              className={`${isMobile ? 'text-xs' : 'text-sm'} text-blue-600 hover:underline`}
-            >
-              Expand All
-            </button>
-            <span style={{ color: '#D1D5DB' }}>|</span>
-            <button 
-              onClick={collapseAllDays} 
-              className={`${isMobile ? 'text-xs' : 'text-sm'} text-blue-600 hover:underline`}
-            >
-              Collapse All
-            </button>
-          </div>
+        <div className="bg-white rounded-lg shadow-lg p-4">
+          <h2 className="text-xl font-semibold text-blue-800 mb-4">Day {activeDay} 일정 지도</h2>
+          <SwissMap locations={mapLocations} />
         </div>
-        
-        <div className="space-y-4">
-          {days.map((day, dayIndex) => {
-            const isDayExpanded = expandedDays[dayIndex] || false;
-            
-            return (
-              <div 
-                key={dayIndex} 
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
-                {/* Day header - always visible */}
-                <div 
-                  className="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50"
-                  onClick={() => toggleDayExpanded(dayIndex)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full font-bold">
-                      {day.day}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold">{day.title}</h4>
-                      {day.accommodation && (
-                        <div className="text-sm text-gray-600 flex items-center">
-                          <FiHome className="mr-1" /> 
-                          Stay: {day.accommodation}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    {isDayExpanded ? <FiChevronUp /> : <FiChevronDown />}
-                  </div>
-                </div>
-                
-                {/* Day details - visible when expanded */}
-                {isDayExpanded && (
-                  <div className="p-4 border-t border-gray-200 bg-gray-50">
-                    <p className="text-sm mb-4">{day.description}</p>
-                    
-                    {/* Activities */}
-                    {day.activities && day.activities.length > 0 && (
-                      <div className="mb-4">
-                        <h5 className="font-medium mb-2 text-gray-700">Activities</h5>
-                        <div className="space-y-3">
-                          {day.activities.map((activity, activityIndex) => {
-                            const activityKey = `${dayIndex}-${activityIndex}`;
-                            const isActivityExpanded = expandedActivities[activityKey] || false;
-                            
-                            return (
-                              <div 
-                                key={activityIndex} 
-                                className="bg-white p-3 rounded border border-gray-200"
-                              >
-                                <div 
-                                  className="flex justify-between items-start cursor-pointer"
-                                  onClick={() => toggleActivityExpanded(dayIndex, activityIndex)}
-                                >
-                                  <div>
-                                    <div className="font-medium">{activity.time} - {activity.title}</div>
-                                    <div className="text-sm text-gray-600 mt-1">
-                                      Duration: {activity.duration} min
-                                    </div>
-                                  </div>
-                                  <div>
-                                    {isActivityExpanded ? <FiChevronUp /> : <FiChevronDown />}
-                                  </div>
-                                </div>
-                                
-                                {isActivityExpanded && (
-                                  <div className="mt-2 pt-2 border-t border-gray-100">
-                                    <p className="text-sm text-gray-600">{activity.description}</p>
-                                    {activity.location && (
-                                      <div className="text-sm text-gray-600 mt-2 flex items-center">
-                                        <FiMapPin className="mr-1" /> {activity.location}
-                                      </div>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* Meals */}
-                    {day.meals && day.meals.length > 0 && (
-                      <div className="mb-4">
-                        <h5 className="font-medium mb-2 text-gray-700">Meals</h5>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                          {day.meals.map((meal, mealIndex) => (
-                            <div 
-                              key={mealIndex} 
-                              className="bg-white p-3 rounded border border-gray-200"
-                            >
-                              <div className="flex items-center font-medium mb-1">
-                                {getMealIcon(meal.type)}
-                                <span className="ml-1 capitalize">{meal.type}</span>
-                              </div>
-                              <p className="text-sm text-gray-600">{meal.suggestion}</p>
-                              {meal.location && (
-                                <div className="text-sm text-gray-600 mt-1 flex items-center">
-                                  <FiMapPin className="mr-1" /> {meal.location}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* Transportation */}
-                    {day.transportation && day.transportation.length > 0 && (
-                      <div>
-                        <h5 className="font-medium mb-2 text-gray-700">Transportation</h5>
-                        <div className="space-y-2">
-                          {day.transportation.map((transport, transportIndex) => (
-                            <div 
-                              key={transportIndex} 
-                              className="bg-white p-3 rounded border border-gray-200 flex items-start"
-                            >
-                              <div className="mr-2 mt-1">
-                                {getTransportIcon(transport.type)}
-                              </div>
-                              <div>
-                                <div className="font-medium capitalize">
-                                  {transport.type}: {transport.from} → {transport.to}
-                                </div>
-                                <div className="text-sm text-gray-600 mt-1">
-                                  Duration: {transport.duration} min
-                                </div>
-                                {transport.details && (
-                                  <div className="text-sm text-gray-600 mt-1">
-                                    {transport.details}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+      </div>
+
+      {/* 일일 여행 계획 탭 */}
+      <div className="mb-4 overflow-x-auto">
+        <div className="flex space-x-1 min-w-max">
+          {days.map((day) => (
+            <button
+              key={day.day}
+              onClick={() => setActiveDay(day.day)}
+              className={`px-3 py-2 text-sm md:text-base rounded-t-lg transition-colors ${
+                activeDay === day.day
+                  ? 'bg-blue-600 text-white font-medium'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Day {day.day}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 선택된 일자의 여행 계획 */}
+      {days.map((day) => {
+        if (day.day !== activeDay) return null;
+
+        return (
+          <div key={day.day} >
+            <div className="border rounded-lg overflow-hidden mb-6">
+              {/* 일자 제목 */}
+              <div className="bg-blue-50 p-4 border-b">
+                <h2 className="text-xl font-semibold text-blue-800">{day.title}</h2>
+                <p className="text-gray-600 mt-1">{day.description}</p>
               </div>
-            );
-          })}
-        </div>
-      </div>
-      
-      {/* Budget Breakdown */}
-      {budgetBreakdown && Object.keys(budgetBreakdown).length > 0 && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-3">Budget Breakdown</h3>
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {budgetBreakdown.accommodation && (
-                <div className="flex items-start">
-                  <FiHome className="text-blue-500 mr-2 mt-1" />
-                  <div>
-                    <div className="font-medium">Accommodation</div>
-                    <div className="text-gray-600">{budgetBreakdown.accommodation}</div>
-                  </div>
-                </div>
-              )}
-              
-              {budgetBreakdown.transportation && (
-                <div>
-                <div className="flex items-start">
-                  <FaTrain className="text-blue-500 mr-2 mt-1" />
-                  <div>
-                    <div className="font-medium">Transportation</div>
-                    <div className="text-gray-600">{budgetBreakdown.transportation}</div>
-                  </div>
-                </div>
 
-                </div>
-              )}
+              {/* 활동 목록 */}
+              <div className="divide-y">
+                {day.activities.map((activity, index) => (
+                  <div key={index} className="p-4 bg-white">
+                    <div className="flex justify-between items-start">
+                      <div className="flex items-start">
+                        <div className="activity-number" >
+                          {index + 1}
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-gray-900">{activity.title}</h3>
+                          {activity.location && (
+                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                              <FiMapPin className="mr-1" size={12} /> {activity.location}
+                            </div>
+                          )}
+                          {/* 가격 정보 표시 - 별도 라인으로 분리 */}
+                          {activity.price && (
+                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                              <FiDollarSign className="mr-2 text-gray-600" />
+                              <span>CHF {activity.price}</span>
+                            </div>
+                          )}
+                          {/* 교통 수단 정보 표시 (새로 추가) */}
+                          {activity.transportation && (
+                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                              <TransportIcon type={activity.transportation} />
+                              {activity.transportation} 
+                              {/* {activity.price && `(${activity.price})`} */}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-gray-500 text-sm whitespace-nowrap">
+                        {activity.duration}
+                      </div>
+                    </div>
 
-              
-              
-              {budgetBreakdown.food && (
-                <div className="flex items-start">
-                  <GiKnifeFork className="text-blue-500 mr-2 mt-1" />
-                  <div>
-                    <div className="font-medium">Food</div>
-                    <div className="text-gray-600">{budgetBreakdown.food}</div>
+                    <div className="mt-2 text-gray-600 text-sm pl-20">
+                      {activity.description}
+                    </div>
                   </div>
+                ))}
+                
+                {/* 일정 추가 버튼 */}
+                <div className="p-4 bg-white">
+                  <button 
+                    onClick={handleAddActivity}
+                    className="w-full py-3 flex items-center justify-center text-blue-600 border border-dashed border-blue-300 rounded-lg hover:bg-blue-50 transition-colors"
+                  >
+                    <FiPlus className="mr-2" />
+                    일정 추가하기
+                  </button>
                 </div>
-              )}
+              </div>
               
-              {budgetBreakdown.activities && (
-                <div className="flex items-start">
-                  <FiStar className="text-blue-500 mr-2 mt-1" />
-                  <div>
-                    <div className="font-medium">Activities</div>
-                    <div className="text-gray-600">{budgetBreakdown.activities}</div>
-                  </div>
+              {/* 숙박 정보 - 일정 아래로 이동 */}
+              {day.accommodation && (
+                <div className="bg-blue-50 p-4 border-t flex items-center">
+                  <FiHome className="mr-2 text-blue-700" />
+                  <span className="font-medium text-blue-800">숙박:</span>
+                  <span className="ml-2 text-blue-700">{day.accommodation}</span>
                 </div>
               )}
             </div>
             
-            {budgetBreakdown.total && (
-              <div className="mt-4 pt-4 border-t border-gray-200 flex items-start">
-                <FiDollarSign className="text-green-600 mr-2 mt-1" />
-                <div>
-                  <div className="font-medium">Total Estimated Budget</div>
-                  <div className="text-gray-600">{budgetBreakdown.total}</div>
+            {/* 해당 일자의 여행 팁 - 완전히 분리된 별도 컨테이너로 구현 */}
+            {day.recommendations && (
+              <div className="mt-4 mb-6">
+                <div className="rounded-lg overflow-hidden border border-amber-200">
+                  <div className="w-full flex items-center bg-amber-50 p-4 text-amber-800 font-medium border-b border-amber-200">
+                    <FiInfo className="mr-2" />
+                    여행 팁 및 추천
+                  </div>
+                  
+                  <div className="p-4 bg-amber-50 text-gray-700">
+                    {day.recommendations.split('\n').map((paragraph, index) => (
+                      <p key={index} className="mb-2">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
           </div>
-        </div>
-      )}
-      
-      {/* Recommendations section */}
-      {recommendations && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-3">Travel Tips & Recommendations</h3>
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <div className="flex items-start">
-              <FiStar className="text-yellow-500 mr-2 mt-1" />
-              <p className="text-gray-600">{recommendations}</p>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* Action buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 mt-6">
-        <a href="/" className="btn btn-outline text-center py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-50">
-            Plan a New Trip
-        </a>
-        <button
-            onClick={() => window.print()}
-            className="btn btn-secondary text-center py-2 px-4 bg-gray-200 border border-gray-300 rounded-md hover:bg-gray-300"
-        >
-            Print Itinerary
-        </button>
-        <button
-            onClick={handleShare}
-            className="btn btn-primary text-center flex items-center justify-center py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-            <FiShare2 className="mr-2" /> Share
-        </button>
-      </div>
+        );
+      })}
 
-      {/* Share modal (fallback for browsers without navigator.share) */}
-      {showShareModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg max-w-md w-full">
-            <h3 className="text-xl font-bold mb-4">Share Your Travel Plan</h3>
-            <p className="mb-4">Copy the link below to share your itinerary:</p>
-            <div className="flex">
-              <input
-                type="text"
-                readOnly
-                value={window.location.href}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
-              />
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  alert('Link copied to clipboard!');
-                }}
-                className="px-4 py-2 bg-blue-600 text-white rounded-r"
-              >
-                Copy
-              </button>
-            </div>
-            <button
-              onClick={() => setShowShareModal(false)}
-              className="w-full mt-4 py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-50"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+      {/* 액티비티 추가 모달 */}
+      <ActivityModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddActivity={addActivityToDay}
+        currentDay={activeDay}
+        baseLocation={baseLocation}
+        endLocation={endLocation}
+      />
+
+      {/* 교통 비용 정보 컴포넌트 추가 */}
+      {transportationDetails && budgetBreakdown && (
+        <TransportationCost 
+          transportationDetails={transportationDetails} 
+          budgetBreakdown={budgetBreakdown} 
+        />
       )}
     </div>
   );
-};
-
-export default TravelItinerary;
+}

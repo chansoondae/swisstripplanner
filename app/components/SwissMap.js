@@ -29,8 +29,8 @@ const mapOptions = {
 const iconColors = {
   city: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
   attraction: 'http://maps.google.com/mapfiles/ms/icons/red.png',
-  restaurant: 'http://maps.google.com/mapfiles/ms/icons/yellow.png',
-  hotel: 'http://maps.google.com/mapfiles/ms/icons/green.png',
+  hotel: 'http://maps.google.com/mapfiles/ms/icons/yellow.png',
+  restaurant: 'http://maps.google.com/mapfiles/ms/icons/green.png',
   transport: 'http://maps.google.com/mapfiles/ms/icons/purple.png',
 };
 
@@ -166,7 +166,7 @@ const SwissMap = ({ locations = [] }) => {
                   onClick={() => setSelectedPlace(location)}
                   icon={{
                     url: getLocationIcon(location.type),
-                    labelOrigin: new window.google.maps.Point(15, 10),
+                    labelOrigin: new window.google.maps.Point(17, 10),
                     scaledSize: new window.google.maps.Size(36, 36),
                   }}
                   label={{
@@ -237,11 +237,11 @@ const SwissMap = ({ locations = [] }) => {
           </div>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-yellow-500 mr-1"></div>
-            <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>Restaurants</span>
+            <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>Hotels</span>
           </div>
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-green-500 mr-1"></div>
-            <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>Hotels</span>
+            <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>Restaurants</span>
           </div>
           <div className="flex items-center">
             <div className="w-8 h-1 bg-indigo-500 mr-1"></div>

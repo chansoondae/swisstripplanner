@@ -8,7 +8,7 @@ import Image from 'next/image';
 import '../../styles/travel-post.css';
 
 // 마크다운 파일 경로
-const postsDirectory = path.join(process.cwd(), 'data');
+const postsDirectory = path.join(process.cwd(), 'blogdata');
 
 export const metadata = {
   title: '스위스 여행 정보',
@@ -18,7 +18,7 @@ export const metadata = {
 export default function AboutPage() {
   // 마크다운 파일 목록 불러오기
   const fileNames = fs.readdirSync(postsDirectory);
-  console.log('Metadata List file path:', postsDirectory);
+  // console.log('Metadata List file path:', postsDirectory);
   
   // 각 파일의 메타데이터 추출
   const posts = fileNames.map((fileName) => {
@@ -26,7 +26,7 @@ export default function AboutPage() {
     const filePath = path.join(postsDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data } = matter(fileContents);
-    console.log('file path file path:', filePath);
+    // console.log('file path file path:', filePath);
     return {
       id,
       ...data,
