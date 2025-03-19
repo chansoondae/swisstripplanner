@@ -146,26 +146,25 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
   const handleAddActivity = () => {
     if (!selectedActivity) return;
     
-    // Price 형식 변환 (2nd Class Price 값을 "CHF XX" 형식으로)
-    const priceFormatted = selectedActivity["2nd Class Price"] 
-      ? `${selectedActivity["2nd Class Price"]}` 
-      : selectedActivity.Price || "CHF 100~150";
+    const priceFormatted = `${selectedActivity["2nd Class Price"] ?? (selectedActivity.Price || "0")}`;
+
     
-    // 새 액티비티 객체 생성
+    // Create new activity object
     const newActivity = {
       title: `${selectedActivity.Name_Kor} (${selectedActivity.Name_Eng})`,
-      location: selectedActivity.Base || baseLocation,
-      duration: formatDuration(selectedActivity.Duration), // 시간 형식 변환
+      location: selectedActivity.Name_Eng,
+      base: selectedActivity.Base || baseLocation,
+      duration: formatDuration(selectedActivity.Duration),
       description: selectedActivity.Comment || "스위스의 아름다운 명소",
       transportation: selectedActivity.Transportation,
       price: priceFormatted,
-      isOneWay: false, // 기본값: 왕복
-      // 좌표 정보가 있으면 추가
+      isOneWay: false, // Default: round trip
+      // Add coordinates if available
       lat: selectedActivity.lat,
       lng: selectedActivity.lng
     };
     
-    // 부모 컴포넌트에 전달
+    // Pass to parent component
     onAddActivity(newActivity);
     onClose();
   };
@@ -246,7 +245,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
                 </div>
                 <div className="flex items-center">
                   <FiDollarSign className="mr-2 text-gray-600" />
-                  <span>CHF {selectedActivity["2nd Class Price"] || "-"}</span>
+                  <span>CHF {selectedActivity["2nd Class Price"]}</span>
                 </div>
                 <div className="flex items-center">
                   <TransportIcon type={selectedActivity.Transportation} />

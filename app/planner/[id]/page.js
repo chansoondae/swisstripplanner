@@ -305,7 +305,14 @@ export default function TravelPlanPage() {
       {/* Itinerary section */}
       <section className={isMobile ? "mb-4" : "mb-8"}>
         <div className={isMobile ? "" : "bg-white rounded-lg shadow-lg"}>
-          <TravelItinerary travelPlan={plan} />
+            <TravelItinerary 
+              travelPlan={plan} 
+              travelPlanId={planId} 
+              onUpdatePlan={(updatedPlan) => {
+                // 업데이트된 계획 상태 관리
+                setPlan(updatedPlan);
+              }}
+            />
         </div>
       </section>
       

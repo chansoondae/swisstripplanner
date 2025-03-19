@@ -4,7 +4,7 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from './../../../lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import OpenAI from 'openai';
-import { calculateTotalTravelCost } from './../../../utils/calculateCost';
+import { calculateTravelPlan } from '../../../utils/calculateTravelPlan';
 
 
 // Initialize OpenAI client
@@ -87,7 +87,7 @@ function createPrompt(data) {
       travelStyleText = travelStyle;
   }
   
-  return `Create a detailed Swiss travel itinerary for a ${duration}-day trip from ${startingCity} to ${endingCity}.
+  return `Create a detailed Swiss travel itinerary for a ${duration} day trip from ${startingCity} to ${endingCity}.
 
 User's request: "${prompt}"
 
@@ -142,6 +142,7 @@ Format the response as a JSON object with the following structure:
           "title": "Activity title in Korean",
           "description": "Activity description in Korean",
           "location": "Name of the location in English",
+          "base": "City Name in English", // For cities: 'Grindelwald', 'Interlaken Ost', 'Luzern', 'Zermatt', 'Zurich HB', 'Bern', 'Basel SBB', 'Lausanne', 'Lauterbrunnen', 'Wengen', 'Murren', 'St. Moritz', 'Geneva', 'Paris', 'Milano', 'Frankfurt' 
           "lat": 47.3769,
           "lng": 8.5417
         }
@@ -178,54 +179,12 @@ async function generateTravelPlan(planId, prompt) {
     const responseContent = completion.choices[0].message.content;
     const travelPlan = JSON.parse(responseContent);
 
-    // In/Out 정보 추가
-    if (travelPlan.days && travelPlan.days.length > 0) {
-      // 첫째 날: In은 Starting City, Out은 첫날 숙소
-      travelPlan.days[0].In = travelPlan.startingCity;
-      travelPlan.days[0].Out = travelPlan.days[0].accommodation;
-      
-      // 중간 날짜들: In은 전날 숙소, Out은 당일 숙소
-      for (let i = 1; i < travelPlan.days.length - 1; i++) {
-        travelPlan.days[i].In = travelPlan.days[i-1].accommodation;
-        travelPlan.days[i].Out = travelPlan.days[i].accommodation;
-      }
-      
-      // 마지막 날: In은 전날 숙소, Out은 Ending City
-      const lastIndex = travelPlan.days.length - 1;
-      if (lastIndex > 0) {
-        travelPlan.days[lastIndex].In = travelPlan.days[lastIndex-1].accommodation;
-        travelPlan.days[lastIndex].Out = travelPlan.endingCity;
-      }
-    }
-
     // 기존 요금 계산 로직 대신 새로운 함수 사용
-    const travelCostInfo = calculateTotalTravelCost(travelPlan.days);
-    
-    // 예산 정보가 없으면 새로 생성
-    if (!travelPlan.budgetBreakdown) {
-      travelPlan.budgetBreakdown = {};
-    }
-    
-    // 교통 예산 정보 추가
-    travelPlan.budgetBreakdown.transportation = 
-      `약 CHF ${travelCostInfo.totalCost} (2등석 기준, ${travelCostInfo.segments}개 구간)`;
-    
-    // 전체 예산 계산 및 추가
-    if (travelPlan.budgetBreakdown.accommodation && travelPlan.budgetBreakdown.food && travelPlan.budgetBreakdown.activities) {
-      travelPlan.budgetBreakdown.total = "상세 항목의 합계를 참고하세요";
-    }
-    
-    // 개별 교통 요금 정보 추가
-    travelPlan.transportationDetails = travelCostInfo;
-    
-
- 
-    
-    // console.log('Generated Travel Plan:', JSON.stringify(travelPlan, null, 2));
+    const updatedTravelPlan = calculateTravelPlan(travelPlan);
     
     // Update the document in Firestore with the complete travel plan
     await setDoc(doc(db, 'travelPlans', planId), {
-      ...travelPlan,
+      ...updatedTravelPlan,
       status: 'completed',
       updatedAt: serverTimestamp(),
     }, { merge: true });

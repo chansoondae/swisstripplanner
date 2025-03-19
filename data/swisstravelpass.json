@@ -1,0 +1,199 @@
+[
+    {
+      "type": "consecutive",
+      "name_kr": "연속 패스",
+      "name_en": "Consecutive Pass",
+      "description": "연속된 날짜 동안 사용 가능한 패스",
+      "prices": [
+        {
+          "duration": 3,
+          "duration_unit": "days",
+          "class": "1st",
+          "adult": 389,
+          "youth": 274
+        },
+        {
+          "duration": 3,
+          "duration_unit": "days",
+          "class": "2nd",
+          "adult": 244,
+          "youth": 172
+        },
+        {
+          "duration": 4,
+          "duration_unit": "days",
+          "class": "1st",
+          "adult": 469,
+          "youth": 330
+        },
+        {
+          "duration": 4,
+          "duration_unit": "days",
+          "class": "2nd",
+          "adult": 295,
+          "youth": 209
+        },
+        {
+          "duration": 6,
+          "duration_unit": "days",
+          "class": "1st",
+          "adult": 602,
+          "youth": 424
+        },
+        {
+          "duration": 6,
+          "duration_unit": "days",
+          "class": "2nd",
+          "adult": 379,
+          "youth": 268
+        },
+        {
+          "duration": 8,
+          "duration_unit": "days",
+          "class": "1st",
+          "adult": 665,
+          "youth": 469
+        },
+        {
+          "duration": 8,
+          "duration_unit": "days",
+          "class": "2nd",
+          "adult": 419,
+          "youth": 297
+        },
+        {
+          "duration": 15,
+          "duration_unit": "days",
+          "class": "1st",
+          "adult": 723,
+          "youth": 512
+        },
+        {
+          "duration": 15,
+          "duration_unit": "days",
+          "class": "2nd",
+          "adult": 459,
+          "youth": 328
+        }
+      ]
+    },
+    {
+      "type": "flex",
+      "name_kr": "비연속 패스",
+      "name_en": "Flex Pass",
+      "description": "지정한 일수 내에서 선택한 날짜만 사용 가능한 패스",
+      "prices": [
+        {
+          "duration": 3,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "1st",
+          "adult": 445,
+          "youth": 314
+        },
+        {
+          "duration": 3,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "2nd",
+          "adult": 279,
+          "youth": 197
+        },
+        {
+          "duration": 4,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "1st",
+          "adult": 539,
+          "youth": 379
+        },
+        {
+          "duration": 4,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "2nd",
+          "adult": 339,
+          "youth": 240
+        },
+        {
+          "duration": 6,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "1st",
+          "adult": 644,
+          "youth": 454
+        },
+        {
+          "duration": 6,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "2nd",
+          "adult": 405,
+          "youth": 287
+        },
+        {
+          "duration": 8,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "1st",
+          "adult": 697,
+          "youth": 492
+        },
+        {
+          "duration": 8,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "2nd",
+          "adult": 439,
+          "youth": 311
+        },
+        {
+          "duration": 15,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "1st",
+          "adult": 755,
+          "youth": 535
+        },
+        {
+          "duration": 15,
+          "duration_unit": "days",
+          "validity": 30,
+          "validity_unit": "days",
+          "class": "2nd",
+          "adult": 479,
+          "youth": 342
+        }
+      ]
+    },
+    {
+      "type": "metadata",
+      "currency": "CHF",
+      "year": 2025,
+      "notes": "유스 요금은 만 16-25세에 적용됩니다. 만 16세 미만은 스위스 패밀리 카드로 무료 이용 가능합니다. 가격은 변동될 수 있으니 구매 전 공식 웹사이트에서 확인하세요.",
+      "last_updated": "2025-03-20",
+      "features": [
+        "스위스 전역 대중교통 무제한 이용",
+        "대부분의 산악 열차 및 케이블카 50% 할인",
+        "대부분의 박물관 무료 입장",
+        "주요 관광 도시의 대중교통 무료 이용",
+        "일부 호텔 및 활동에 추가 할인"
+      ],
+      "excluded_routes": [
+        "Jungfraujoch 구간 (25% 할인)",
+        "Schilthorn 구간 (50% 할인)",
+        "Glacier Express 예약석 (좌석 예약 비용 추가)",
+        "Bernina Express 예약석 (좌석 예약 비용 추가)",
+        "Gotthard Panorama Express 예약석 (좌석 예약 비용 추가)"
+      ]
+    }
+  ]
