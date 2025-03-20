@@ -35,6 +35,23 @@ const nextConfig = {
     ],
   },
   
+  // Add experimental features for optimizing performance
+  experimental: {
+    // Enable CSS optimization for better handling of preloaded CSS
+    optimizeCss: true,
+    
+    // Improve page loading performance
+    scrollRestoration: true,
+  },
+  
+  // Reduce the impact of unused CSS by only including what's needed
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
+  // Improve performance by enabling React strict mode
+  reactStrictMode: true,
+  
   // Add rewrites or redirects if needed
   // async redirects() {
   //   return [

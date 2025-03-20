@@ -51,7 +51,7 @@ const ProcessingState = ({ plan, isMobile, router, formatRelativeTime }) => (
       <h2 className="text-xl font-bold text-gray-800 mb-2">여행 계획 생성 중...</h2>
       <p className="text-gray-600 text-center mb-6">
         AI가 맞춤형 스위스 여행 일정을 작성하고 있습니다.<br />
-        최대 1분 정도 소요될 수 있습니다.
+        최대 2분 정도 소요될 수 있습니다.
       </p>
       
       {/* Plan request preview */}

@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { GoogleMap, LoadScriptNext, Marker, InfoWindow, Polyline } from '@react-google-maps/api';
+import { GoogleMap, LoadScriptNext, InfoWindow, Polyline } from '@react-google-maps/api';
 import { FiMapPin, FiClock, FiExternalLink, FiInfo } from 'react-icons/fi';
 
 // Responsive map container styles
@@ -23,15 +23,16 @@ const mapOptions = {
   mapTypeControl: true,
   streetViewControl: true,
   fullscreenControl: true,
+  mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_ID || '', // Map ID 추가
 };
 
 // Icons for different place types
 const iconColors = {
-  city: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
-  attraction: 'http://maps.google.com/mapfiles/ms/icons/red.png',
-  hotel: 'http://maps.google.com/mapfiles/ms/icons/yellow.png',
-  restaurant: 'http://maps.google.com/mapfiles/ms/icons/green.png',
-  transport: 'http://maps.google.com/mapfiles/ms/icons/purple.png',
+  city: '#4285F4', // blue
+  attraction: '#EA4335', // red
+  hotel: '#FBBC04', // yellow
+  restaurant: '#34A853', // green
+  transport: '#9C27B0', // purple
 };
 
 // Path styles for the route
@@ -47,6 +48,7 @@ const SwissMap = ({ locations = [] }) => {
   const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [advancedMarkers, setAdvancedMarkers] = useState([]);
   
   // Calculate center based on first location or default to center of Switzerland
   const center = locations.length > 0
@@ -83,6 +85,57 @@ const SwissMap = ({ locations = [] }) => {
       setGoogleMapsLoaded(true);
     }
   }, []);
+  
+  // Create advanced markers when map is loaded
+  useEffect(() => {
+    if (map && googleMapsLoaded && locations.length > 0) {
+      // Clear any existing markers
+      advancedMarkers.forEach(marker => marker.map = null);
+      
+      // Create new advanced markers
+      const newMarkers = locations.map((location, index) => {
+        // Create marker element
+        const markerElement = document.createElement('div');
+        markerElement.className = 'advanced-marker';
+        markerElement.style.cursor = 'pointer';
+        
+        // Create marker content with number and background color
+        const color = iconColors[location.type] || iconColors.attraction;
+        markerElement.innerHTML = `
+          <div style="
+            background-color: ${color};
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+          ">
+            ${index + 1}
+          </div>
+        `;
+        
+        // Create the advanced marker
+        const advancedMarker = new google.maps.marker.AdvancedMarkerElement({
+          position: { lat: location.lat, lng: location.lng },
+          map: map,
+          content: markerElement
+        });
+        
+        // Add click event to the marker
+        markerElement.addEventListener('click', () => {
+          setSelectedPlace(location);
+        });
+        
+        return advancedMarker;
+      });
+      
+      setAdvancedMarkers(newMarkers);
+    }
+  }, [map, locations, googleMapsLoaded]);
   
   // Fit bounds to contain all markers when map loads or locations change
   const fitBounds = useCallback(() => {
@@ -128,11 +181,6 @@ const SwissMap = ({ locations = [] }) => {
     );
   }
   
-  // Function to get location icon
-  const getLocationIcon = (type) => {
-    return iconColors[type] || iconColors.attraction;
-  };
-  
   // Render map content
   const renderMap = () => {
     // Select map style based on device
@@ -151,31 +199,12 @@ const SwissMap = ({ locations = [] }) => {
           {googleMapsLoaded && (
             <>
               {/* Draw the route line */}
-              {locations.length > 1 && (
+              {/* {locations.length > 1 && (
                 <Polyline
                   path={pathCoordinates}
                   options={polylineOptions}
                 />
-              )}
-              
-              {/* Add markers for each location */}
-              {locations.map((location, index) => (
-                <Marker
-                  key={index}
-                  position={{ lat: location.lat, lng: location.lng }}
-                  onClick={() => setSelectedPlace(location)}
-                  icon={{
-                    url: getLocationIcon(location.type),
-                    labelOrigin: new window.google.maps.Point(17, 10),
-                    scaledSize: new window.google.maps.Size(36, 36),
-                  }}
-                  label={{
-                    text: `${index + 1}`,
-                    color: 'white',
-                    fontWeight: 'bold',
-                  }}
-                />
-              ))}
+              )} */}
               
               {/* Info window for selected place */}
               {selectedPlace && (
@@ -260,6 +289,7 @@ const SwissMap = ({ locations = [] }) => {
   return (
     <LoadScriptNext 
       googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+      libraries={['marker']} // Add marker library for AdvancedMarkerElement
       onLoad={() => {
         // console.log('Google Maps script loaded successfully');
         setScriptLoaded(true);

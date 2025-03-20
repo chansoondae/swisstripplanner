@@ -144,7 +144,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
         </div>
         <div className="flex items-center">
           <span className="text-indigo-700 font-medium mr-3">
-            추천 교통권 : {bestTransportOption.recommendation}
+            {bestTransportOption.recommendation}
             {bestTransportOption.type === 'swisspass' && bestTransportOption.savings > 0 && (
               <span className="text-green-600 ml-2">(CHF {parseFloat(bestTransportOption.savings).toFixed(2)} 절약)</span>
             )}
@@ -190,7 +190,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                 <p className="text-sm font-medium text-green-800 mb-1">
                   <span className="flex items-center">
                     <FaIdCard className="mr-2 text-green-700" />
-                    Swiss Travel Pass 추천: {swissTravelPassRecommendations.bestOption.option}
+                    Swiss Travel Pass 계산: {swissTravelPassRecommendations.bestOption.option}
                   </span>
                 </p>
                 <p className="text-xs text-green-700 mb-1">
@@ -217,7 +217,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     <div className="text-gray-700">Swiss Travel Pass 비용:</div>
                     <div className="text-gray-800 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.passCost)}</div>
                     
-                    <div className="text-gray-700 col-span-2 mt-1 font-medium">교통 비용 (패스 적용):</div>
+                    <div className="text-gray-700 col-span-2 mt-1 font-medium">교통 비용 (패스 적용시):</div>
                     
                     {/* 교통 항목별 비용 */}
                     {categorizeExpenses(fareDetails, swissTravelPassRecommendations.bestOption).transportation.map((item, idx) => (
@@ -235,7 +235,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     ))}
                     
                     {/* 액티비티 헤더 */}
-                    <div className="text-gray-700 col-span-2 mt-1 font-medium">액티비티 비용 (패스 적용):</div>
+                    <div className="text-gray-700 col-span-2 mt-1 font-medium">액티비티 비용 (패스 적용시):</div>
                     
                     {/* 액티비티 항목별 비용 */}
                     {categorizeExpenses(fareDetails, swissTravelPassRecommendations.bestOption).activities.map((item, idx) => (

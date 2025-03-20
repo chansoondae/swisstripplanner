@@ -319,7 +319,7 @@ const addActivityToDay = async (newActivity) => {
       {/* 지도 섹션 */}
       <div className="mb-6">
         <div className="bg-white rounded-lg shadow-lg p-4">
-          <h2 className="text-xl font-semibold text-blue-800 mb-4">Day {activeDay} 일정 지도</h2>
+          <h2 className="text-xl font-semibold text-blue-800 mb-4">Day {activeDay} Map</h2>
           <SwissMap locations={mapLocations} />
         </div>
       </div>
