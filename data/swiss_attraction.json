@@ -808,5 +808,41 @@
         "Via": [],
         "Comment": "독일, 프랑스, 스위스의 국경이 만나는 도시 바젤에서 미술을 즐겨보세요.",
         "id": "BaseBase"
+    },
+    {
+        "Name_Eng": "Zermatt",
+        "Name_Kor": "체르마트",
+        "Base": "Zermatt",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "SwissTravelPass": 0.0,
+        "SaverDayPass": 0.0,
+        "JungfrauVIP": null,
+        "lat": 46.0243,
+        "lng": 7.7465,
+        "Duration": "1:00",
+        "Transportation": "Train",
+        "Transfer Counts": 0,
+        "Via": [],
+        "Comment": "스위스에서 가장 인기 많은 마테호른 보러 체르마트 가야죠",
+        "id": "ZermZerm"
+    },
+    {
+        "Name_Eng": "Geneva",
+        "Name_Kor": "제네바",
+        "Base": "Geneva Aero",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "SwissTravelPass": 0.0,
+        "SaverDayPass": 0.0,
+        "JungfrauVIP": null,
+        "lat": 46.2106,
+        "lng": 6.1425,
+        "Duration": "1:00",
+        "Transportation": "Train",
+        "Transfer Counts": 0,
+        "Via": [],
+        "Comment": "UN기구도 있고, 제또 분수도 볼 수 있어요.",
+        "id": "GeneGene"
     }
 ]
