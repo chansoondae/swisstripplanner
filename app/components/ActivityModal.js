@@ -148,7 +148,6 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
     
     const priceFormatted = `${selectedActivity["2nd Class Price"] ?? (selectedActivity.Price || "0")}`;
 
-    
     // Create new activity object
     const newActivity = {
       title: `${selectedActivity.Name_Kor} (${selectedActivity.Name_Eng})`,
@@ -158,6 +157,8 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
       description: selectedActivity.Comment || "스위스의 아름다운 명소",
       transportation: selectedActivity.Transportation,
       price: priceFormatted,
+      price_swisstravel: selectedActivity.SwissTravelPass || "0", // Add Swiss Travel Pass price
+      price_saverday: selectedActivity.SaverDayPass || "0",       // Add Saver Day Pass price
       isOneWay: false, // Default: round trip
       // Add coordinates if available
       lat: selectedActivity.lat,

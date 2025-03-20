@@ -144,7 +144,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
         </div>
         <div className="flex items-center">
           <span className="text-indigo-700 font-medium mr-3">
-            {bestTransportOption.recommendation}
+            추천 교통권 : {bestTransportOption.recommendation}
             {bestTransportOption.type === 'swisspass' && bestTransportOption.savings > 0 && (
               <span className="text-green-600 ml-2">(CHF {parseFloat(bestTransportOption.savings).toFixed(2)} 절약)</span>
             )}

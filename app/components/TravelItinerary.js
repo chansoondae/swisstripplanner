@@ -1,21 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle  } from 'react-icons/fi';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle } from 'react-icons/fi';
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import SwissMap from './SwissMap';
 import TransportationCost from './TransportationCost';
-import ActivityModal from './ActivityModal'; // 새로 만든 모달 컴포넌트 import
+import ActivityModal from './ActivityModal';
 import { cityToStation } from '../../utils/cityToStation';
-import locationData from './../../utils/locationData';
+import locationData from '../../utils/locationData';
 import './../../styles/travelItinerary.css';
 import { calculateTravelPlan } from './../../utils/calculateTravelPlan';
 
-// Firebase 관련 import 추가 (파일 상단에)
+// Firebase related imports
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../lib/firebase'; // Firebase 설정 파일 경로에 맞게 조정
+import { db } from '../../lib/firebase';
 
-// 교통 수단에 따른 아이콘 선택 (TravelItinerary에도 추가)
+// Transportation icon component
 const TransportIcon = ({ type }) => {
   switch (type) {
     case 'Train':
@@ -31,14 +31,14 @@ const TransportIcon = ({ type }) => {
   }
 };
 
-// 여행 스타일 한글 매핑
+// Travel style mapping
 const travelStyleMap = {
   'nature': '자연 경관 위주',
   'activity': '하이킹과 액티비티',
   'balanced': '자연+도시 조화'
 };
 
-// 그룹 타입 한글 매핑
+// Group type mapping
 const groupTypeMap = {
   'solo': '나홀로',
   'couple': '커플',
@@ -47,15 +47,14 @@ const groupTypeMap = {
   'seniors': '시니어'
 };
 
-// 활동 위치를 기반으로 위도,경도 정보를 생성하는 함수
+// Generate locations from activities
 const generateLocationsFromActivities = (days) => {
   if (!days || !Array.isArray(days)) return [];
   
-  let locationId = 1;
   const locations = [];
   
   days.forEach((day, dayIndex) => {
-    // 숙박 정보가 있으면 추가
+    // Add accommodation info if available
     if (day.accommodation) {
       const coords = locationData[day.accommodation];
       if (coords) {
@@ -70,15 +69,13 @@ const generateLocationsFromActivities = (days) => {
       }
     }
     
-    // 활동 정보 추가
+    // Add activity info
     if (day.activities && Array.isArray(day.activities)) {
       day.activities.forEach((activity, actIndex) => {
-
-        // if(activity.location === )
-        // 활동에 직접 lat, lng 값이 있는지 확인
+        // Check if activity has direct lat, lng values
         if (activity.lat && activity.lng) {
           locations.push({
-            id: `activity-${locationId++}`,
+            id: `activity-${dayIndex}-${actIndex}`,
             name: `${actIndex + 1}. ${activity.title}`,
             description: activity.description,
             type: 'attraction',
@@ -87,19 +84,19 @@ const generateLocationsFromActivities = (days) => {
             lng: activity.lng
           });
         }
-        // 직접적인 좌표가 없지만 location 이름이 있는 경우
+        // If no direct coordinates but location name exists
         else if (activity.location) {
-          // 도시 좌표 데이터에서 찾기
+          // Look up coordinates from city data
           const coords = locationData[activity.location];
           
           if (coords) {
             locations.push({
-              id: `activity-${locationId++}`,
+              id: `activity-${dayIndex}-${actIndex}`,
               name: `${actIndex + 1}. ${activity.title}`,
               description: activity.description,
               type: 'attraction',
               duration: activity.duration,
-              // 여러 활동이 같은 장소에 있을 경우 살짝 위치를 분산
+              // Slightly randomize position for activities in the same location
               lat: coords.lat + (Math.random() * 0.01 - 0.005),
               lng: coords.lng + (Math.random() * 0.01 - 0.005)
             });
@@ -116,98 +113,31 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
   const [activeDay, setActiveDay] = useState(1);
   const [mapLocations, setMapLocations] = useState([]);
 
-  // 액티비티 모달 상태 추가
+  // Activity modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // 여행 계획 데이터 상태 추가 (업데이트 가능하도록)
-  const [planData, setPlanData] = useState(travelPlan);
-
-  // 활동 삭제 확인 모달 상태 추가
+  
+  // Delete confirmation modal state
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
   const [activityToDelete, setActivityToDelete] = useState(null);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-    // 삭제 아이콘 클릭 핸들러
-    const handleDeleteClick = (dayIndex, activityIndex) => {
-      setActivityToDelete({ dayIndex, activityIndex });
-      setDeleteConfirmOpen(true);
-    };
-  
-    // 삭제 취소 핸들러
-    const handleCancelDelete = () => {
-      setDeleteConfirmOpen(false);
-      setActivityToDelete(null);
-    };
-  
-    // 삭제 확인 핸들러
-    const handleConfirmDelete = async () => {
-      if (!activityToDelete) return;
-
-      // 삭제 시작 시 로딩 상태 활성화
-      setIsDeleting(true);
-  
-      try {
-        // 현재 데이터의 복사본 만들기
-        const updatedPlanData = { ...planData };
-        const { dayIndex, activityIndex } = activityToDelete;
-  
-        // 해당 활동 삭제
-        updatedPlanData.days[dayIndex].activities.splice(activityIndex, 1);
-
-        // Recalculate the entire travel plan to update transportation details
-        const recalculatedPlan = calculateTravelPlan(updatedPlanData);
-    
-  
-        // 상태 업데이트
-        setPlanData(recalculatedPlan);
-  
-        // Firebase 업데이트
-        if (travelPlanId) {
-          const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
-          await updateDoc(travelPlanRef, {
-            days: recalculatedPlan.days,
-            transportationDetails: recalculatedPlan.transportationDetails,
-            budgetBreakdown: recalculatedPlan.budgetBreakdown
-          });
-          console.log('활동 삭제 및 Firebase 업데이트 성공');
-        }
-
-        // 부모 컴포넌트에 변경 사항 전달
-        if (onUpdatePlan) {
-          onUpdatePlan(recalculatedPlan);
-        }
-  
-        // 지도 데이터 다시 생성
-        const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
-        const locations = generateLocationsFromActivities(updatedDay);
-        setMapLocations(locations);
-  
-      } catch (error) {
-        console.error('활동 삭제 중 오류 발생:', error);
-      } finally {
-        // 모달 닫기 및 상태 초기화
-        setDeleteConfirmOpen(false);
-        setActivityToDelete(null);
-        // 삭제 작업 완료 후 로딩 상태 비활성화
-        setIsDeleting(false);
-      }
-    };
+  const [isDeleting, setIsDeleting] = useState(false); 
 
   const {
     title,
     description,
-    travelStyle,
     days,
     recommendations,
-    groupType,
     options,
     budgetBreakdown,
     transportationDetails
   } = travelPlan;
   
-  // 현재 일자의 데이터
-  const currentDay = days.find(day => day.day === activeDay) || days[0];
+  // Current day data (memoized to avoid recalculation)
+  const currentDay = useMemo(() => 
+    days.find(day => day.day === activeDay) || days[0], 
+    [days, activeDay]
+  );
   
-  // 지도에 표시할 위치 데이터 업데이트
+  // Update map locations when active day changes
   useEffect(() => {
     if (days) {
       const filteredDays = days.filter(day => day.day === activeDay);
@@ -216,78 +146,131 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     }
   }, [activeDay, days]);
 
-  // 새 일정 추가 핸들러
+  // Handle adding new activity
   const handleAddActivity = () => {
     setIsModalOpen(true);
   };
-
-// 새 액티비티를 여행 계획에 추가하는 함수
-const addActivityToDay = async (newActivity) => {
-  try {
-    // 현재 데이터의 복사본 만들기
-    const updatedPlanData = { ...planData };
-    
-    // 활동을 추가할 날짜 찾기
-    const dayIndex = updatedPlanData.days.findIndex(day => day.day === activeDay);
-    
-    if (dayIndex !== -1) {
-      // 해당 날짜의 활동 목록에 새 활동 추가
-      updatedPlanData.days[dayIndex].activities.push(newActivity);
-
-      // Recalculate the entire travel plan to update transportation details
-      const recalculatedPlan = calculateTravelPlan(updatedPlanData);
-      
-      // 상태 업데이트
-      setPlanData(recalculatedPlan);
-      
-      // Firebase 업데이트 (props로 받은 ID 사용)
-      if (travelPlanId) {
-        const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
-        await updateDoc(travelPlanRef, {
-          days: recalculatedPlan.days,
-          transportationDetails: recalculatedPlan.transportationDetails
-        });
-        console.log('Firebase 업데이트 성공');
-      } else {
-        console.warn('여행 계획 ID가 없어 Firebase 업데이트를 건너뜁니다.');
-      }
-      
-      // 부모 컴포넌트에 변경 사항 전달
-      if (onUpdatePlan) {
-        onUpdatePlan(recalculatedPlan);
-      }
-      
-      // 지도 데이터 다시 생성을 위해 현재 날짜 데이터 갱신
-      const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
-      const locations = generateLocationsFromActivities(updatedDay);
-      setMapLocations(locations);
-    }
-  } catch (error) {
-    console.error('활동 추가 중 오류 발생:', error);
-    // 오류 처리 - 사용자에게 알림 표시 등
-  }
-};
-
-  // 현재 위치와 기준점 찾기 (모달에 전달하기 위함)
-  const getCurrentLocations = () => {
-    // Day 객체에서 직접 in/out 값 가져오기
+  
+  // Get current locations for modal (memoized)
+  const getCurrentLocations = useCallback(() => {
     const baseLocation = cityToStation(currentDay.In) || "";
     const endLocation = cityToStation(currentDay.Out) || "";
     
     return { baseLocation, endLocation };
-  };
+  }, [currentDay]);
+
+  // Delete icon click handler
+  const handleDeleteClick = useCallback((dayIndex, activityIndex) => {
+    setActivityToDelete({ dayIndex, activityIndex });
+    setDeleteConfirmOpen(true);
+  }, []);
+
+  // Delete cancel handler
+  const handleCancelDelete = useCallback(() => {
+    setDeleteConfirmOpen(false);
+    setActivityToDelete(null);
+  }, []);
+
+  // Add new activity to the travel plan
+  const addActivityToDay = useCallback(async (newActivity) => {
+    try {
+      // Create a copy of current data
+      const updatedPlan = { ...travelPlan };
+      
+      // Find the day to add activity to
+      const dayIndex = updatedPlan.days.findIndex(day => day.day === activeDay);
+      
+      if (dayIndex !== -1) {
+        // Add new activity to the list
+        updatedPlan.days[dayIndex].activities.push(newActivity);
+
+        // Recalculate the entire travel plan to update transportation details
+        const recalculatedPlan = calculateTravelPlan(updatedPlan);
+        
+        // Update Firebase
+        if (travelPlanId) {
+          const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
+          await updateDoc(travelPlanRef, {
+            days: recalculatedPlan.days,
+            transportationDetails: recalculatedPlan.transportationDetails
+          });
+          console.log('Firebase update successful');
+        }
+        
+        // Update parent component
+        if (onUpdatePlan) {
+          onUpdatePlan(recalculatedPlan);
+        }
+        
+        // Update map data
+        const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
+        const locations = generateLocationsFromActivities(updatedDay);
+        setMapLocations(locations);
+      }
+    } catch (error) {
+      console.error('Error adding activity:', error);
+    }
+  }, [travelPlan, activeDay, travelPlanId, onUpdatePlan]);
+
+  // Delete confirmation handler
+  const handleConfirmDelete = useCallback(async () => {
+    if (!activityToDelete) return;
+
+    // Set loading state
+    setIsDeleting(true);
+
+    try {
+      // Create a copy of current data
+      const updatedPlan = { ...travelPlan };
+      const { dayIndex, activityIndex } = activityToDelete;
+
+      // Delete the activity
+      updatedPlan.days[dayIndex].activities.splice(activityIndex, 1);
+
+      // Recalculate the entire travel plan to update transportation details
+      const recalculatedPlan = calculateTravelPlan(updatedPlan);
+
+      // Update Firebase
+      if (travelPlanId) {
+        const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
+        await updateDoc(travelPlanRef, {
+          days: recalculatedPlan.days,
+          transportationDetails: recalculatedPlan.transportationDetails,
+          budgetBreakdown: recalculatedPlan.budgetBreakdown
+        });
+        console.log('Activity deleted and Firebase updated successfully');
+      }
+
+      // Update parent component
+      if (onUpdatePlan) {
+        onUpdatePlan(recalculatedPlan);
+      }
+
+      // Update map data
+      const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
+      const locations = generateLocationsFromActivities(updatedDay);
+      setMapLocations(locations);
+
+    } catch (error) {
+      console.error('Error deleting activity:', error);
+    } finally {
+      // Close modal and reset state
+      setDeleteConfirmOpen(false);
+      setActivityToDelete(null);
+      setIsDeleting(false);
+    }
+  }, [activityToDelete, travelPlan, travelPlanId, activeDay, onUpdatePlan]);
 
   const { baseLocation, endLocation } = getCurrentLocations();
 
   return (
     <div className="p-4 md:p-6">
-      {/* 여행 제목 및 요약 */}
+      {/* Trip title and summary */}
       <div className="mb-6">
         <h1 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">{title}</h1>
         <p className="text-gray-600 mb-4">{description}</p>
         
         <div className="flex flex-wrap gap-2 text-sm">
-          
           {options && options.startingCity && (
             <span className="trip-info-badge starting-city">
               <FiMapPin className="mr-1" /> In: {options.startingCity}
@@ -316,7 +299,7 @@ const addActivityToDay = async (newActivity) => {
         </div>
       </div>
 
-      {/* 지도 섹션 */}
+      {/* Map section */}
       <div className="mb-6">
         <div className="bg-white rounded-lg shadow-lg p-4">
           <h2 className="text-xl font-semibold text-blue-800 mb-4">Day {activeDay} Map</h2>
@@ -324,7 +307,7 @@ const addActivityToDay = async (newActivity) => {
         </div>
       </div>
 
-      {/* 일일 여행 계획 탭 */}
+      {/* Daily trip plan tabs */}
       <div className="mb-4 overflow-x-auto">
         <div className="flex space-x-1 min-w-max">
           {days.map((day) => (
@@ -343,58 +326,56 @@ const addActivityToDay = async (newActivity) => {
         </div>
       </div>
 
-      {/* 선택된 일자의 여행 계획 */}
+      {/* Selected day's trip plan */}
       {days.map((day) => {
         if (day.day !== activeDay) return null;
 
         return (
           <div key={day.day} >
             <div className="border rounded-lg overflow-hidden mb-6">
-              {/* 일자 제목 */}
+              {/* Day title */}
               <div className="bg-blue-50 p-4 border-b">
                 <h2 className="text-xl font-semibold text-blue-800">{day.title}</h2>
                 <p className="text-gray-600 mt-1">{day.description}</p>
               </div>
 
-              {/* 활동 목록 */}
+              {/* Activity list */}
               <div className="divide-y">
                 {day.activities.map((activity, index) => (
                   <div key={index} className="p-4 bg-white">
                     <div className="flex justify-between items-start">
                       <div className="flex items-start">
-                        <div className="activity-number" >
+                        <div className="activity-number">
                           {index + 1}
                         </div>
                         <div>
                           <h3 className="font-medium text-gray-900">{activity.title}</h3>
                           {activity.location && (
-                          <div className="text-sm text-gray-600 flex items-center mt-1">
-                            <FiMapPin className="mr-1" size={12} />
-                            {activity.base && activity.base !== activity.location ? (
-                              <>
-                                {activity.base}
-                                <FiRefreshCw className="mx-1" size={12} />
-                                {activity.location}
-                              </>
-                            ) : (
-                              // Base가 없거나 Base와 location이 같을 때는 location만 표시
-                              activity.location
-                            )}
-                          </div>
-                        )}
-                          {/* 가격 정보 표시 - 별도 라인으로 분리 */}
+                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                              <FiMapPin className="mr-1" size={12} />
+                              {activity.base && activity.base !== activity.location ? (
+                                <>
+                                  {activity.base}
+                                  <FiRefreshCw className="mx-1" size={12} />
+                                  {activity.location}
+                                </>
+                              ) : (
+                                activity.location
+                              )}
+                            </div>
+                          )}
+                          {/* Price information */}
                           {activity.price && (
                             <div className="text-sm text-gray-600 flex items-center mt-1">
                               <FiDollarSign className="mr-2 text-gray-600" />
                               <span>CHF {activity.price}</span>
                             </div>
                           )}
-                          {/* 교통 수단 정보 표시 (새로 추가) */}
+                          {/* Transportation information */}
                           {activity.transportation && (
                             <div className="text-sm text-gray-600 flex items-center mt-1">
                               <TransportIcon type={activity.transportation} />
-                              {activity.transportation} 
-                              {/* {activity.price && `(${activity.price})`} */}
+                              {activity.transportation}
                             </div>
                           )}
                         </div>
@@ -403,11 +384,11 @@ const addActivityToDay = async (newActivity) => {
                         <div className="text-gray-500 text-sm whitespace-nowrap mr-3">
                           {activity.duration}
                         </div>
-                        {/* 삭제 버튼 */}
+                        {/* Delete button */}
                         <button 
                           onClick={() => handleDeleteClick(days.findIndex(d => d.day === activeDay), index)}
                           className="text-red-500 hover:text-red-700 transition-colors"
-                          title="활동 삭제"
+                          title="Delete activity"
                         >
                           <FiTrash2 size={16} />
                         </button>
@@ -420,7 +401,7 @@ const addActivityToDay = async (newActivity) => {
                   </div>
                 ))}
                 
-                {/* 일정 추가 버튼 */}
+                {/* Add activity button */}
                 <div className="p-4 bg-white">
                   <button 
                     onClick={handleAddActivity}
@@ -432,17 +413,19 @@ const addActivityToDay = async (newActivity) => {
                 </div>
               </div>
               
-              {/* 숙박 정보 - 일정 아래로 이동 */}
+              {/* Accommodation information */}
               {day.accommodation && (
-                <div className="bg-blue-50 p-4 border-t flex items-center">
+                <div className="bg-blue-50 p-4 border-t flex items-center relative">
                   <FiHome className="mr-2 text-blue-700" />
                   <span className="font-medium text-blue-800">숙박:</span>
-                  <span className="ml-2 text-blue-700">{day.accommodation}</span>
+                  <span className="ml-2 text-blue-700 flex items-center accommodation-edit-btn">
+                    {day.accommodation}
+                  </span>
                 </div>
               )}
             </div>
             
-            {/* 해당 일자의 여행 팁 - 완전히 분리된 별도 컨테이너로 구현 */}
+            {/* Travel tips for the day */}
             {day.recommendations && (
               <div className="mt-4 mb-6">
                 <div className="rounded-lg overflow-hidden border border-amber-200">
@@ -465,7 +448,7 @@ const addActivityToDay = async (newActivity) => {
         );
       })}
 
-      {/* 액티비티 추가 모달 */}
+      {/* Activity add modal */}
       <ActivityModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -475,7 +458,7 @@ const addActivityToDay = async (newActivity) => {
         endLocation={endLocation}
       />
 
-      {/* 삭제 확인 대화상자 */}
+      {/* Delete confirmation dialog */}
       {deleteConfirmOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-xl p-6 max-w-md mx-auto">
@@ -508,7 +491,7 @@ const addActivityToDay = async (newActivity) => {
         </div>
       )}
 
-      {/* 교통 비용 정보 컴포넌트 추가 */}
+      {/* Transportation cost information component */}
       {transportationDetails && budgetBreakdown && (
         <TransportationCost 
           transportationDetails={transportationDetails} 
