@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle } from 'react-icons/fi';
+import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle, FiSave } from 'react-icons/fi';
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import SwissMap from './SwissMap';
 import TransportationCost from './TransportationCost';
@@ -10,6 +10,7 @@ import { cityToStation } from '../../utils/cityToStation';
 import locationData from '../../utils/locationData';
 import './../../styles/travelItinerary.css';
 import { calculateTravelPlan } from './../../utils/calculateTravelPlan';
+import AccommodationEdit from './AccommodationEdit';
 
 // Firebase related imports
 import { doc, updateDoc } from 'firebase/firestore';
@@ -87,7 +88,7 @@ const generateLocationsFromActivities = (days) => {
         // If no direct coordinates but location name exists
         else if (activity.location) {
           // Look up coordinates from city data
-          const coords = locationData[activity.location];
+          const coords = locationData.cityCoordinates[activity.location];
           
           if (coords) {
             locations.push({
@@ -112,6 +113,15 @@ const generateLocationsFromActivities = (days) => {
 export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId }) {
   const [activeDay, setActiveDay] = useState(1);
   const [mapLocations, setMapLocations] = useState([]);
+  
+  // 로컬 상태로 여행 계획 관리
+  const [localTravelPlan, setLocalTravelPlan] = useState(travelPlan);
+  
+  // 변경 사항 추적
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  
+  // 저장 중 상태
+  const [isSaving, setIsSaving] = useState(false);
 
   // Activity modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -121,30 +131,25 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
   const [activityToDelete, setActivityToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false); 
 
-  const {
-    title,
-    description,
-    days,
-    recommendations,
-    options,
-    budgetBreakdown,
-    transportationDetails
-  } = travelPlan;
+  // Props에서 travelPlan이 변경되면 localTravelPlan 업데이트
+  useEffect(() => {
+    setLocalTravelPlan(travelPlan);
+  }, [travelPlan]);
   
   // Current day data (memoized to avoid recalculation)
   const currentDay = useMemo(() => 
-    days.find(day => day.day === activeDay) || days[0], 
-    [days, activeDay]
+    localTravelPlan.days.find(day => day.day === activeDay) || localTravelPlan.days[0], 
+    [localTravelPlan.days, activeDay]
   );
   
   // Update map locations when active day changes
   useEffect(() => {
-    if (days) {
-      const filteredDays = days.filter(day => day.day === activeDay);
+    if (localTravelPlan.days) {
+      const filteredDays = localTravelPlan.days.filter(day => day.day === activeDay);
       const locations = generateLocationsFromActivities(filteredDays);
       setMapLocations(locations);
     }
-  }, [activeDay, days]);
+  }, [activeDay, localTravelPlan.days]);
 
   // Handle adding new activity
   const handleAddActivity = () => {
@@ -171,49 +176,34 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     setActivityToDelete(null);
   }, []);
 
-  // Add new activity to the travel plan
-  const addActivityToDay = useCallback(async (newActivity) => {
-    try {
-      // Create a copy of current data
-      const updatedPlan = { ...travelPlan };
-      
-      // Find the day to add activity to
-      const dayIndex = updatedPlan.days.findIndex(day => day.day === activeDay);
-      
-      if (dayIndex !== -1) {
-        // Add new activity to the list
-        updatedPlan.days[dayIndex].activities.push(newActivity);
+  // Add new activity to the travel plan (로컬 상태만 업데이트)
+  const addActivityToDay = useCallback((newActivity) => {
+    // Create a copy of current data
+    const updatedPlan = { ...localTravelPlan };
+    
+    // Find the day to add activity to
+    const dayIndex = updatedPlan.days.findIndex(day => day.day === activeDay);
+    
+    if (dayIndex !== -1) {
+      // Add new activity to the list
+      updatedPlan.days[dayIndex].activities.push(newActivity);
 
-        // Recalculate the entire travel plan to update transportation details
-        const recalculatedPlan = calculateTravelPlan(updatedPlan);
-        
-        // Update Firebase
-        if (travelPlanId) {
-          const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
-          await updateDoc(travelPlanRef, {
-            days: recalculatedPlan.days,
-            transportationDetails: recalculatedPlan.transportationDetails
-          });
-          // console.log('Firebase update successful');
-        }
-        
-        // Update parent component
-        if (onUpdatePlan) {
-          onUpdatePlan(recalculatedPlan);
-        }
-        
-        // Update map data
-        const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
-        const locations = generateLocationsFromActivities(updatedDay);
-        setMapLocations(locations);
-      }
-    } catch (error) {
-      console.error('Error adding activity:', error);
+      // Recalculate the entire travel plan to update transportation details
+      const recalculatedPlan = calculateTravelPlan(updatedPlan);
+      
+      // 로컬 상태 업데이트
+      setLocalTravelPlan(recalculatedPlan);
+      setHasUnsavedChanges(true);
+      
+      // Update map data
+      const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
+      const locations = generateLocationsFromActivities(updatedDay);
+      setMapLocations(locations);
     }
-  }, [travelPlan, activeDay, travelPlanId, onUpdatePlan]);
+  }, [localTravelPlan, activeDay]);
 
-  // Delete confirmation handler
-  const handleConfirmDelete = useCallback(async () => {
+  // Delete confirmation handler (로컬 상태만 업데이트)
+  const handleConfirmDelete = useCallback(() => {
     if (!activityToDelete) return;
 
     // Set loading state
@@ -221,7 +211,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
     try {
       // Create a copy of current data
-      const updatedPlan = { ...travelPlan };
+      const updatedPlan = { ...localTravelPlan };
       const { dayIndex, activityIndex } = activityToDelete;
 
       // Delete the activity
@@ -230,21 +220,9 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       // Recalculate the entire travel plan to update transportation details
       const recalculatedPlan = calculateTravelPlan(updatedPlan);
 
-      // Update Firebase
-      if (travelPlanId) {
-        const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
-        await updateDoc(travelPlanRef, {
-          days: recalculatedPlan.days,
-          transportationDetails: recalculatedPlan.transportationDetails,
-          budgetBreakdown: recalculatedPlan.budgetBreakdown
-        });
-        // console.log('Activity deleted and Firebase updated successfully');
-      }
-
-      // Update parent component
-      if (onUpdatePlan) {
-        onUpdatePlan(recalculatedPlan);
-      }
+      // 로컬 상태 업데이트
+      setLocalTravelPlan(recalculatedPlan);
+      setHasUnsavedChanges(true);
 
       // Update map data
       const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
@@ -259,7 +237,50 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       setActivityToDelete(null);
       setIsDeleting(false);
     }
-  }, [activityToDelete, travelPlan, travelPlanId, activeDay, onUpdatePlan]);
+  }, [activityToDelete, localTravelPlan, activeDay]);
+
+  // 변경 사항 저장 핸들러
+  const handleSaveChanges = async () => {
+    if (!hasUnsavedChanges) return;
+    
+    setIsSaving(true);
+    
+    try {
+      // Firebase 업데이트
+      if (travelPlanId) {
+        const travelPlanRef = doc(db, 'travelPlans', travelPlanId);
+        await updateDoc(travelPlanRef, {
+          days: localTravelPlan.days,
+          transportationDetails: localTravelPlan.transportationDetails,
+          budgetBreakdown: localTravelPlan.budgetBreakdown
+        });
+      }
+      
+      // 부모 컴포넌트 업데이트
+      if (onUpdatePlan) {
+        onUpdatePlan(localTravelPlan);
+      }
+      
+      // 저장 완료 후 상태 초기화
+      setHasUnsavedChanges(false);
+    } catch (error) {
+      console.error('Error saving changes:', error);
+      // 에러 처리 (필요시 알림 표시)
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  // 숙소 정보 업데이트 핸들러 (로컬 상태만 업데이트)
+  const updateAccommodation = useCallback((updatedPlan) => {
+    setLocalTravelPlan(updatedPlan);
+    setHasUnsavedChanges(true);
+    
+    // Update map data
+    const updatedDay = updatedPlan.days.filter(day => day.day === activeDay);
+    const locations = generateLocationsFromActivities(updatedDay);
+    setMapLocations(locations);
+  }, [activeDay]);
 
   const { baseLocation, endLocation } = getCurrentLocations();
 
@@ -267,35 +288,52 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     <div className="p-4 md:p-6">
       {/* Trip title and summary */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">{title}</h1>
-        <p className="text-gray-600 mb-4">{description}</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">{localTravelPlan.title}</h1>
+        <p className="text-gray-600 mb-4">{localTravelPlan.description}</p>
         
-        <div className="flex flex-wrap gap-2 text-sm">
-          {options && options.startingCity && (
+        <div className="flex flex-wrap gap-2 text-sm mb-2">
+          {localTravelPlan.options && localTravelPlan.options.startingCity && (
             <span className="trip-info-badge starting-city">
-              <FiMapPin className="mr-1" /> In: {options.startingCity}
+              <FiMapPin className="mr-1" /> In: {localTravelPlan.options.startingCity}
             </span>
           )}
-          {options && options.endingCity && (
+          {localTravelPlan.options && localTravelPlan.options.endingCity && (
             <span className="trip-info-badge ending-city">
-              <FiMapPin className="mr-1" /> Out: {options.endingCity}
+              <FiMapPin className="mr-1" /> Out: {localTravelPlan.options.endingCity}
             </span>
           )}
-          {options && options.duration && (
+          {localTravelPlan.options && localTravelPlan.options.duration && (
             <span className="trip-info-badge duration">
-              <FiClock className="mr-1" /> {options.duration}일
+              <FiClock className="mr-1" /> {localTravelPlan.options.duration}일
             </span>
           )}
-          {options && options.travelStyle && (
+          {localTravelPlan.options && localTravelPlan.options.travelStyle && (
             <span className="trip-info-badge travel-style">
-              <FiSun className="mr-1" /> {travelStyleMap[options.travelStyle] || options.travelStyle}
+              <FiSun className="mr-1" /> {travelStyleMap[localTravelPlan.options.travelStyle] || localTravelPlan.options.travelStyle}
             </span>
           )}
-          {options && options.groupType && (
+          {localTravelPlan.options && localTravelPlan.options.groupType && (
             <span className="trip-info-badge group-type">
-              <FiUsers className="mr-1" /> {groupTypeMap[options.groupType] || options.groupType}
+              <FiUsers className="mr-1" /> {groupTypeMap[localTravelPlan.options.groupType] || localTravelPlan.options.groupType}
             </span>
           )}
+        </div>
+        
+        {/* 저장하기 버튼 */}
+        <div className="mt-2">
+          <button
+            onClick={handleSaveChanges}
+            disabled={!hasUnsavedChanges || isSaving}
+            className={`px-4 py-2 rounded-md flex items-center text-sm ${
+              hasUnsavedChanges 
+              ? 'bg-green-600 text-white hover:bg-green-700' 
+              : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+            } transition-colors`}
+          >
+            <FiSave className="mr-2" />
+            {isSaving ? '저장 중...' : '변경사항 저장하기'}
+            {hasUnsavedChanges && <span className="ml-1 px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">!</span>}
+          </button>
         </div>
       </div>
 
@@ -310,7 +348,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       {/* Daily trip plan tabs */}
       <div className="mb-4 overflow-x-auto">
         <div className="flex space-x-1 min-w-max">
-          {days.map((day) => (
+          {localTravelPlan.days.map((day) => (
             <button
               key={day.day}
               onClick={() => setActiveDay(day.day)}
@@ -327,7 +365,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       </div>
 
       {/* Selected day's trip plan */}
-      {days.map((day) => {
+      {localTravelPlan.days.map((day) => {
         if (day.day !== activeDay) return null;
 
         return (
@@ -386,7 +424,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
                         </div>
                         {/* Delete button */}
                         <button 
-                          onClick={() => handleDeleteClick(days.findIndex(d => d.day === activeDay), index)}
+                          onClick={() => handleDeleteClick(localTravelPlan.days.findIndex(d => d.day === activeDay), index)}
                           className="text-red-500 hover:text-red-700 transition-colors"
                           title="Delete activity"
                         >
@@ -415,13 +453,16 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
               
               {/* Accommodation information */}
               {day.accommodation && (
-                <div className="bg-blue-50 p-4 border-t flex items-center relative">
-                  <FiHome className="mr-2 text-blue-700" />
-                  <span className="font-medium text-blue-800">숙박:</span>
-                  <span className="ml-2 text-blue-700 flex items-center accommodation-edit-btn">
-                    {day.accommodation}
-                  </span>
-                </div>
+                <AccommodationEdit 
+                  day={day}
+                  activeDay={activeDay}
+                  travelPlan={localTravelPlan}
+                  onUpdatePlan={updateAccommodation}
+                  travelPlanId={null} // Firebase 업데이트 중지
+                  locationData={locationData}
+                  setMapLocations={setMapLocations}
+                  generateLocationsFromActivities={generateLocationsFromActivities}
+                />
               )}
             </div>
             
@@ -492,10 +533,10 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       )}
 
       {/* Transportation cost information component */}
-      {transportationDetails && budgetBreakdown && (
+      {localTravelPlan.transportationDetails && localTravelPlan.budgetBreakdown && (
         <TransportationCost 
-          transportationDetails={transportationDetails} 
-          budgetBreakdown={budgetBreakdown} 
+          transportationDetails={localTravelPlan.transportationDetails} 
+          budgetBreakdown={localTravelPlan.budgetBreakdown} 
         />
       )}
     </div>
