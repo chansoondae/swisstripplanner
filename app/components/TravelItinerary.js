@@ -56,7 +56,7 @@ const generateLocationsFromActivities = (days) => {
   days.forEach((day, dayIndex) => {
     // Add accommodation info if available
     if (day.accommodation) {
-      const coords = locationData[day.accommodation];
+      const coords = locationData.cityCoordinates[day.accommodation];
       if (coords) {
         locations.push({
           id: `accommodation-${dayIndex}`,
@@ -194,7 +194,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
             days: recalculatedPlan.days,
             transportationDetails: recalculatedPlan.transportationDetails
           });
-          console.log('Firebase update successful');
+          // console.log('Firebase update successful');
         }
         
         // Update parent component
@@ -238,7 +238,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
           transportationDetails: recalculatedPlan.transportationDetails,
           budgetBreakdown: recalculatedPlan.budgetBreakdown
         });
-        console.log('Activity deleted and Firebase updated successfully');
+        // console.log('Activity deleted and Firebase updated successfully');
       }
 
       // Update parent component

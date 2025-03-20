@@ -323,7 +323,7 @@ export function compareSaverDayPass(travelPlan) {
       dayGroups[day].sum_price_saverday += parseFloat(fare.price_saverday);
     } else if (fare.isActivity) {
       // 활동인 경우 일반 요금을 세이버데이패스 요금에도 합산 (세이버데이패스로 할인이 없는 경우)
-      dayGroups[day].sum_price_saverday += parseFloat(fare.price || 0);
+      dayGroups[day].sum_price_saverday += parseFloat(fare.price_saverday || 0);
     }
     
     // 운임 상세 정보 저장
@@ -400,7 +400,6 @@ export function addAttractionPrices(travelPlan) {
           
           // 여러 매칭이 있는 경우, 최적의 명소 선택
           let bestAttraction;
-          console.log('matchedGroup ',matchedGroup);
           if (matchedGroup.length === 1) {
             // 하나만 있으면 그것을 사용
             bestAttraction = matchedGroup[0];
@@ -412,7 +411,6 @@ export function addAttractionPrices(travelPlan) {
               bestAttraction = matchedGroup.find(attr => 
                 attr.base === activity.base || attr.Base === activity.base
               );
-              console.log('1. activity.base: ',bestAttraction);
             }
             
             // 2. 1번이 없으면, day.In(출발지)과 일치하는 Base 값을 가진 명소
@@ -420,7 +418,6 @@ export function addAttractionPrices(travelPlan) {
               bestAttraction = matchedGroup.find(attr => 
                 attr.base === day.In || attr.Base === day.In
               );
-              console.log('2. 1번이 없으면, day.In(출발지): ',bestAttraction);
             }
             
             // 3. 2번도 없으면, day.Out(도착지)과 일치하는 Base 값을 가진 명소
@@ -428,7 +425,6 @@ export function addAttractionPrices(travelPlan) {
               bestAttraction = matchedGroup.find(attr => 
                 attr.base === day.Out || attr.Base === day.Out
               );
-              console.log('3. 2번도 없으면, day.Out(도착지)과 일치: ',bestAttraction);
             }
             
             // 4. 3번도 없으면, 가장 짧은 소요시간(Duration)을 가진 명소
@@ -442,14 +438,11 @@ export function addAttractionPrices(travelPlan) {
                     ? parseFloat(parts[0]) + parseFloat(parts[1])/60 
                     : parseFloat(parts[0]);
                 };
-                
-                console.log('4. 3번도 없으면, 가장 짧은 소요시간(Duration)을 ',bestAttraction);
                 return getHours(a.Duration) - getHours(b.Duration);
               })[0];
             }
           }
           
-          console.log('calculate: ',bestAttraction);
           // 최적의 명소를 찾았으면 정보 추가
           if (bestAttraction) {
               // 가격 정보 추가 - 패스 가격이 없는 경우에만 추가
@@ -462,10 +455,7 @@ export function addAttractionPrices(travelPlan) {
               // 패스 가격 설정 (기존 패스 가격이 없는 경우에도 항상 추가)
               activity.price_swisstravel = activity.price_swisstravel || bestAttraction['SwissTravelPass'] || 0;
               activity.price_saverday = activity.price_saverday || bestAttraction['SaverDayPass'] || 0;
-         
-              console.log('Activity price after:', activity.price);
-              console.log('SwissTravelPass after:', activity.price_swisstravel);
-              console.log('SaverDayPass after:', activity.price_saverday);
+
             }
             
             // 교통수단 정보 추가
