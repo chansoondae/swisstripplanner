@@ -293,6 +293,10 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       const updatedPlan = { ...localTravelPlan };
       const { dayIndex, activityIndex } = activityToDelete;
 
+      // Get reference to the activity being deleted before removing it
+      const activityBeingDeleted = updatedPlan.days[dayIndex].activities[activityIndex];
+
+
       // Delete the activity
       updatedPlan.days[dayIndex].activities.splice(activityIndex, 1);
 
@@ -706,7 +710,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       )}
       
       {/* Save changes button (only show if unsaved changes exist) */}
-      {hasUnsavedChanges && (
+      {/* {hasUnsavedChanges && (
         <div className="fixed bottom-4 right-4 z-10">
           <button
             onClick={handleSaveChanges}
@@ -719,7 +723,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
             {isSaving ? '저장 중...' : '변경사항 저장'}
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
