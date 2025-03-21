@@ -4,10 +4,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import TravelItinerary from './../../components/TravelItinerary';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, addDoc, collection, updateDoc } from 'firebase/firestore';
 import { db } from './../../../lib/firebase';
-import { FiLoader, FiArrowLeft, FiClock, FiMapPin, FiUsers, FiCalendar, FiDollarSign } from 'react-icons/fi';
+import { FiLoader, FiArrowLeft, FiClock, FiMapPin, FiUsers, FiCalendar, FiDollarSign, FiCopy, FiSave, FiEdit } from 'react-icons/fi';
 import ChatButtonPortal from './../../components/ChatButtonPortal';
+import { useAuth } from '../../../context/AuthContext';
 
 // Loading component
 const LoadingState = ({ message }) => (
@@ -162,11 +163,17 @@ export default function TravelPlanPage() {
   const params = useParams();
   const router = useRouter();
   const planId = params.id;
+  const { user } = useAuth();
   
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [localTravelPlan, setLocalTravelPlan] = useState(null);
   
   // Mobile detection
   useEffect(() => {
@@ -208,6 +215,45 @@ export default function TravelPlanPage() {
     return 'completed';
   };
   
+  // 변경 사항 저장 핸들러 (통합된 저장 기능)
+  const handleSaveChanges = async () => {
+    if (!isOwner) {
+      alert("이 여행 계획의 소유자만 수정할 수 있습니다. '내 여행으로 저장' 기능을 이용해주세요.");
+      return;
+    }
+    
+    if (!hasUnsavedChanges || !localTravelPlan) return;
+    
+    setIsSaving(true);
+    
+    try {
+      // Firebase 업데이트
+      const travelPlanRef = doc(db, 'travelPlans', planId);
+      await updateDoc(travelPlanRef, {
+        days: localTravelPlan.days,
+        transportationDetails: localTravelPlan.transportationDetails,
+        budgetBreakdown: localTravelPlan.budgetBreakdown,
+        updatedAt: new Date()
+      });
+      
+      // 저장 완료 표시
+      setSaveSuccess(true);
+      
+      // 저장 완료 후 상태 초기화
+      setHasUnsavedChanges(false);
+      
+      // 성공 메시지 3초 후 사라짐
+      setTimeout(() => {
+        setSaveSuccess(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Error saving changes:', error);
+      alert("변경사항 저장 중 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+  
   // Fetch travel plan data
   const fetchTravelPlan = async (isRefreshing = false) => {
     if (!planId) {
@@ -228,6 +274,10 @@ export default function TravelPlanPage() {
       if (planDoc.exists()) {
         const planData = planDoc.data();
         setPlan(planData);
+        setLocalTravelPlan(planData);
+        
+        // 계획의 소유자 확인
+        setIsOwner(user && planData.userId === user.uid);
         
         // If plan is processing, check again in 5 seconds
         const status = checkPlanStatus(planData);
@@ -249,10 +299,55 @@ export default function TravelPlanPage() {
     }
   };
   
-  // Fetch data when component mounts or planId changes
+  // 내 여행으로 저장하기 기능
+  const saveAsMine = async () => {
+    if (!user) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+    
+    if (!plan) return;
+    
+    setIsSaving(true);
+    try {
+      // 기존 계획 복사하여 새 문서 생성
+      const newPlanData = {
+        ...plan,
+        userId: user.uid,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        copiedFrom: planId // 원본 계획 ID도 저장
+      };
+      
+      // 새 문서 추가
+      const docRef = await addDoc(collection(db, 'travelPlans'), newPlanData);
+      
+      // 저장 성공 표시
+      setSaveSuccess(true);
+      
+      // 3초 후 새 계획 페이지로 이동
+      setTimeout(() => {
+        router.push(`/planner/${docRef.id}`);
+      }, 1500);
+      
+    } catch (error) {
+      console.error("저장 중 오류 발생:", error);
+      alert("저장 중 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+  
+  // TravelItinerary에서 변경사항 있을 때 호출되는 함수
+  const handleTravelPlanUpdate = (updatedPlan, hasChanges) => {
+    setLocalTravelPlan(updatedPlan);
+    setHasUnsavedChanges(hasChanges);
+  };
+  
+  // Fetch data when component mounts or planId or user changes
   useEffect(() => {
     fetchTravelPlan();
-  }, [planId]);
+  }, [planId, user]);
   
   // Check plan status
   const planStatus = plan ? checkPlanStatus(plan) : 'loading';
@@ -302,17 +397,86 @@ export default function TravelPlanPage() {
   // Completed plan display
   return (
     <div className={`max-w-5xl mx-auto ${isMobile ? 'p-0' : 'px-4 py-2'}`}>
+      {/* 소유권 정보 및 저장 버튼 */}
+      <div className="bg-white p-4 mb-4 rounded-lg shadow-md flex justify-between items-center">
+        <div>
+          <h1 className="text-xl font-bold text-gray-800">{plan.title || '여행 계획'}</h1>
+          <p className="text-sm text-gray-500">
+            {plan.createdAt && `작성일: ${formatRelativeTime(plan.createdAt)}`}
+          </p>
+        </div>
+        
+        <div className="flex items-center space-x-3">
+          {/* 변경사항 알림 표시 */}
+          {hasUnsavedChanges && (
+            <div className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm flex items-center">
+              <FiEdit className="mr-1" /> 변경사항 있음
+            </div>
+          )}
+          
+          {/* 버튼 영역 */}
+          {saveSuccess ? (
+            <div className="text-green-600 font-medium flex items-center">
+              <FiSave className="mr-2" />
+              {isOwner ? '저장되었습니다!' : '내 여행으로 저장되었습니다!'}
+            </div>
+          ) : (
+            isOwner ? (
+              // 내 여행인 경우: 변경사항 저장 버튼 표시
+              <button
+                className={`px-4 py-2 rounded-md flex items-center ${
+                  hasUnsavedChanges 
+                    ? 'bg-green-600 text-white hover:bg-green-700' 
+                    : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                } transition-colors`}
+                onClick={handleSaveChanges}
+                disabled={!hasUnsavedChanges || isSaving}
+              >
+                {isSaving ? (
+                  <>
+                    <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                    저장 중...
+                  </>
+                ) : (
+                  <>
+                    <FiSave className="mr-2" />
+                    변경사항 저장하기
+                  </>
+                )}
+              </button>
+            ) : (
+              // 다른 사람의 여행인 경우: 내 여행으로 저장 버튼 표시
+              <button
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center"
+                onClick={saveAsMine}
+                disabled={isSaving || !user}
+              >
+                {isSaving ? (
+                  <>
+                    <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                    저장 중...
+                  </>
+                ) : (
+                  <>
+                    <FiCopy className="mr-2" />
+                    {user ? '내 여행으로 저장' : '로그인 필요'}
+                  </>
+                )}
+              </button>
+            )
+          )}
+        </div>
+      </div>
+
       {/* Itinerary section */}
       <section className={isMobile ? "mb-4" : "mb-8"}>
         <div className={isMobile ? "" : "bg-white rounded-lg shadow-lg"}>
-            <TravelItinerary 
-              travelPlan={plan} 
-              travelPlanId={planId} 
-              onUpdatePlan={(updatedPlan) => {
-                // 업데이트된 계획 상태 관리
-                setPlan(updatedPlan);
-              }}
-            />
+          <TravelItinerary 
+            travelPlan={plan} 
+            travelPlanId={planId} 
+            isOwner={isOwner} // 소유자 여부 전달
+            onUpdatePlan={handleTravelPlanUpdate} // 변경된 콜백 함수
+          />
         </div>
       </section>
       

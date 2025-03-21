@@ -16,6 +16,8 @@ import AccommodationEdit from './AccommodationEdit';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 
+
+
 // Transportation icon component
 const TransportIcon = ({ type }) => {
   switch (type) {
@@ -178,6 +180,10 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
   // Add new activity to the travel plan (로컬 상태만 업데이트)
   const addActivityToDay = useCallback((newActivity) => {
+
+    // 소유자가 아니면 활동 추가 불가 - 이미 handleAddActivity에서 체크하므로 중복 체크는 생략
+    
+
     // Create a copy of current data
     const updatedPlan = { ...localTravelPlan };
     
@@ -199,8 +205,14 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       const updatedDay = recalculatedPlan.days.filter(day => day.day === activeDay);
       const locations = generateLocationsFromActivities(updatedDay);
       setMapLocations(locations);
+
+      // 상위 컴포넌트에 변경 사항 알림
+      if (onUpdatePlan) {
+        onUpdatePlan(recalculatedPlan, true);
+      }
+
     }
-  }, [localTravelPlan, activeDay]);
+  }, [localTravelPlan, activeDay, onUpdatePlan]);
 
   // Delete confirmation handler (로컬 상태만 업데이트)
   const handleConfirmDelete = useCallback(() => {
@@ -229,6 +241,11 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       const locations = generateLocationsFromActivities(updatedDay);
       setMapLocations(locations);
 
+      // 상위 컴포넌트에 변경 사항 알림
+      if (onUpdatePlan) {
+        onUpdatePlan(recalculatedPlan, true);
+      }
+
     } catch (error) {
       console.error('Error deleting activity:', error);
     } finally {
@@ -237,10 +254,11 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       setActivityToDelete(null);
       setIsDeleting(false);
     }
-  }, [activityToDelete, localTravelPlan, activeDay]);
+  }, [activityToDelete, localTravelPlan, activeDay, onUpdatePlan]);
 
   // 변경 사항 저장 핸들러
   const handleSaveChanges = async () => {
+
     if (!hasUnsavedChanges) return;
     
     setIsSaving(true);
@@ -252,7 +270,8 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
         await updateDoc(travelPlanRef, {
           days: localTravelPlan.days,
           transportationDetails: localTravelPlan.transportationDetails,
-          budgetBreakdown: localTravelPlan.budgetBreakdown
+          budgetBreakdown: localTravelPlan.budgetBreakdown,
+          updatedAt: new Date()
         });
       }
       
@@ -273,6 +292,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
   // 숙소 정보 업데이트 핸들러 (로컬 상태만 업데이트)
   const updateAccommodation = useCallback((updatedPlan) => {
+
     setLocalTravelPlan(updatedPlan);
     setHasUnsavedChanges(true);
     
@@ -280,7 +300,13 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     const updatedDay = updatedPlan.days.filter(day => day.day === activeDay);
     const locations = generateLocationsFromActivities(updatedDay);
     setMapLocations(locations);
-  }, [activeDay]);
+
+    // 상위 컴포넌트에 변경 사항 알림
+    if (onUpdatePlan) {
+      onUpdatePlan(updatedPlan, true);
+    }
+
+  }, [activeDay, onUpdatePlan]);
 
   const { baseLocation, endLocation } = getCurrentLocations();
 
@@ -317,23 +343,6 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
               <FiUsers className="mr-1" /> {groupTypeMap[localTravelPlan.options.groupType] || localTravelPlan.options.groupType}
             </span>
           )}
-        </div>
-        
-        {/* 저장하기 버튼 */}
-        <div className="mt-2">
-          <button
-            onClick={handleSaveChanges}
-            disabled={!hasUnsavedChanges || isSaving}
-            className={`px-4 py-2 rounded-md flex items-center text-sm ${
-              hasUnsavedChanges 
-              ? 'bg-green-600 text-white hover:bg-green-700' 
-              : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-            } transition-colors`}
-          >
-            <FiSave className="mr-2" />
-            {isSaving ? '저장 중...' : '변경사항 저장하기'}
-            {hasUnsavedChanges && <span className="ml-1 px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">!</span>}
-          </button>
         </div>
       </div>
 
