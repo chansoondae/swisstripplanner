@@ -274,7 +274,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
             ) : (
               <>
                 <FiSend className="mr-2" />
-                스위스 여행 계획 생성
+                AI Planning
               </>
             )}
           </button>

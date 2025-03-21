@@ -11,28 +11,28 @@ export default function BottomNav() {
         className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
       >
         <FiHome className="h-6 w-6 mb-1" />
-        <span className="text-xs">홈</span>
+        <span className="text-xs">Home</span>
       </Link>
       <Link 
         href="/info" 
         className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
       >
         <FiInfo className="h-6 w-6 mb-1" />
-        <span className="text-xs">정보</span>
+        <span className="text-xs">Info</span>
       </Link>
       <Link 
         href="/planner" 
         className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
       >
         <FiMap className="h-6 w-6 mb-1" />
-        <span className="text-xs">일정</span>
+        <span className="text-xs">Plan</span>
       </Link>
       <Link 
         href="/webcam" 
         className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
       >
         <FiVideo className="h-6 w-6 mb-1" />
-        <span className="text-xs">웹캠</span>
+        <span className="text-xs">Webcam</span>
       </Link>
     </div>
   );

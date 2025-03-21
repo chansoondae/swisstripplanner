@@ -95,7 +95,7 @@ export default function AuthButton() {
         style={{ position: 'relative', zIndex: 20 }}
       >
         <FiLogIn className="mr-2" />
-        <span>{loginInProgress ? '로그인 중...' : '로그인'}</span>
+        <span>{loginInProgress ? 'Logging in...' : 'Login'}</span>
       </button>
     );
   }
