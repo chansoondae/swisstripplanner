@@ -278,7 +278,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
         <div>
           <button
             type="submit"
-            className="w-full bg-blue-600 dark:bg-yellow-400 hover:bg-blue-700 text-white dark:text-gray-900 font-medium py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center"
+            className="w-full bg-blue-600 dark:bg-yellow-400 hover:bg-blue-700 dark:hover:bg-yellow-700 text-white dark:text-gray-900 font-medium py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
