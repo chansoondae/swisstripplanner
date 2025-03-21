@@ -1,40 +1,19 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+// app/info/page.js
 import Link from 'next/link';
 import Image from 'next/image';
+import { getAllBlogPostsAdmin } from '../../lib/firebase-blog-admin';
 
 // 스타일 불러오기
 import '../../styles/travel-post.css';
-
-// 마크다운 파일 경로
-const postsDirectory = path.join(process.cwd(), 'blogdata');
 
 export const metadata = {
   title: '스위스 여행 정보',
   description: '스위스 여행에 관한 다양한 정보와 팁을 제공합니다.',
 };
 
-export default function AboutPage() {
-  // 마크다운 파일 목록 불러오기
-  const fileNames = fs.readdirSync(postsDirectory);
-  // console.log('Metadata List file path:', postsDirectory);
-  
-  // 각 파일의 메타데이터 추출
-  const posts = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, '');
-    const filePath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContents);
-    // console.log('file path file path:', filePath);
-    return {
-      id,
-      ...data,
-    };
-  });
-  
-  // 날짜 기준으로 정렬
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+export default async function AboutPage() {
+  // Admin SDK를 사용하여 서버에서 직접 블로그 포스트 목록 가져오기
+  const posts = await getAllBlogPostsAdmin();
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -43,7 +22,7 @@ export default function AboutPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
           <Link 
-            href={`/info/${post.id}`} 
+            href={`/info/${post.slug}`} 
             key={post.id}
             className="block group"
           >
@@ -65,7 +44,7 @@ export default function AboutPage() {
                 </h2>
                 
                 <div className="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
-                  <span>{new Date(post.date).toLocaleDateString('ko-KR')}</span>
+                  <span>{post.date instanceof Date ? post.date.toLocaleDateString('ko-KR') : new Date(post.date).toLocaleDateString('ko-KR')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.readingTime}</span>
                 </div>

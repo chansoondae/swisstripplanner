@@ -57,25 +57,25 @@ export default function RootLayout({ children }) {
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <Link 
                       href="/" 
-                      className="border-transparent text-gray-500 hover:border-blue-500 hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      className="border-transparent text-gray-500 hover:text-blue-500 dark:hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                     >
                       홈
                     </Link>
                     <Link 
                       href="/info" 
-                      className="border-transparent text-gray-500 hover:border-blue-500 hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      className="border-transparent text-gray-500 hover:text-blue-500 dark:hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                     >
                       스위스 정보
                     </Link>
                     <Link 
                       href="/planner" 
-                      className="border-transparent text-gray-500 hover:border-blue-500 hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      className="border-transparent text-gray-500 hover:text-blue-500 dark:hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                     >
                       여행 일정
                     </Link>
                     <Link 
                       href="/webcam" 
-                      className="border-transparent text-gray-500 hover:border-blue-500 hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                      className="border-transparent text-gray-500 hover:text-blue-500 dark:hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                     >
                       라이브 웹캠
                     </Link>
