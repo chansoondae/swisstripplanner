@@ -22,13 +22,13 @@ import { db } from '../../lib/firebase';
 const TransportIcon = ({ type }) => {
   switch (type) {
     case 'Train':
-      return <FaTrain className="mr-1 text-blue-600" />;
+      return <FaTrain className="mr-1 text-blue-600 dark:text-yellow-400" />;
     case 'CableCar':
-      return <FaTram className="mr-1 text-blue-600" />;
+      return <FaTram className="mr-1 text-blue-600 dark:text-yellow-400" />;
     case 'Funicular':
-      return <FaMountain className="mr-1 text-blue-600" />;
+      return <FaMountain className="mr-1 text-blue-600 dark:text-yellow-400" />;
     case 'Ferry':
-      return <FaShip className="mr-1 text-blue-600" />;
+      return <FaShip className="mr-1 text-blue-600 dark:text-yellow-400" />;
     default:
       return null;
   }
@@ -314,7 +314,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     <div className="p-4 md:p-6">
       {/* Trip title and summary */}
       <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-blue-800 mb-2">{localTravelPlan.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-blue-800 dark:text-yellow-300 mb-2">{localTravelPlan.title}</h1>
         <p className="text-gray-600 mb-4">{localTravelPlan.description}</p>
         
         <div className="flex flex-wrap gap-2 text-sm mb-2">
@@ -348,8 +348,8 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
       {/* Map section */}
       <div className="mb-6">
-        <div className="bg-white rounded-lg shadow-lg p-4">
-          <h2 className="text-xl font-semibold text-blue-800 mb-4">Day {activeDay} Map</h2>
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4">
+          <h2 className="text-xl font-semibold text-blue-800 dark:text-yellow-400 mb-4">Day {activeDay} Map</h2>
           <SwissMap locations={mapLocations} />
         </div>
       </div>
@@ -363,8 +363,8 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
               onClick={() => setActiveDay(day.day)}
               className={`px-3 py-2 text-sm md:text-base rounded-t-lg transition-colors ${
                 activeDay === day.day
-                  ? 'bg-blue-600 text-white font-medium'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-blue-600 dark:bg-yellow-600 text-white dark:text-gray-900 font-medium'
+                  : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
               }`}
             >
               Day {day.day}
@@ -381,24 +381,24 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
           <div key={day.day} >
             <div className="border rounded-lg overflow-hidden mb-6">
               {/* Day title */}
-              <div className="bg-blue-50 p-4 border-b">
-                <h2 className="text-xl font-semibold text-blue-800">{day.title}</h2>
-                <p className="text-gray-600 mt-1">{day.description}</p>
+              <div className="bg-blue-50 dark:bg-amber-800 p-4 border-b">
+                <h2 className="text-xl font-semibold text-blue-800 dark:text-amber-200">{day.title}</h2>
+                <p className="text-gray-600 dark:text-gray-300 mt-1">{day.description}</p>
               </div>
 
               {/* Activity list */}
               <div className="divide-y">
                 {day.activities.map((activity, index) => (
-                  <div key={index} className="p-4 bg-white">
+                  <div key={index} className="p-4 bg-white dark:bg-gray-700">
                     <div className="flex justify-between items-start">
                       <div className="flex items-start">
                         <div className="activity-number">
                           {index + 1}
                         </div>
                         <div>
-                          <h3 className="font-medium text-gray-900">{activity.title}</h3>
+                          <h3 className="font-medium text-gray-900 dark:text-white">{activity.title}</h3>
                           {activity.location && (
-                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                            <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
                               <FiMapPin className="mr-1" size={12} />
                               {activity.base && activity.base !== activity.location ? (
                                 <>
@@ -413,14 +413,14 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
                           )}
                           {/* Price information */}
                           {activity.price && (
-                            <div className="text-sm text-gray-600 flex items-center mt-1">
-                              <FiDollarSign className="mr-2 text-gray-600" />
+                            <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
+                              <FiDollarSign className="mr-2 text-gray-600 dark:text-gray-300" />
                               <span>CHF {activity.price}</span>
                             </div>
                           )}
                           {/* Transportation information */}
                           {activity.transportation && (
-                            <div className="text-sm text-gray-600 flex items-center mt-1">
+                            <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
                               <TransportIcon type={activity.transportation} />
                               {activity.transportation}
                             </div>
@@ -428,7 +428,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
                         </div>
                       </div>
                       <div className="flex items-start">
-                        <div className="text-gray-500 text-sm whitespace-nowrap mr-3">
+                        <div className="text-gray-500 dark:text-gray-400 text-sm whitespace-nowrap mr-3">
                           {activity.duration}
                         </div>
                         {/* Delete button */}
@@ -442,17 +442,17 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
                       </div>
                     </div>
 
-                    <div className="mt-2 text-gray-600 text-sm pl-20">
+                    <div className="mt-2 text-gray-600 dark:text-gray-300 text-sm pl-20">
                       {activity.description}
                     </div>
                   </div>
                 ))}
                 
                 {/* Add activity button */}
-                <div className="p-4 bg-white">
+                <div className="p-4 bg-white dark:bg-gray-900">
                   <button 
                     onClick={handleAddActivity}
-                    className="w-full py-3 flex items-center justify-center text-blue-600 border border-dashed border-blue-300 rounded-lg hover:bg-blue-50 transition-colors"
+                    className="w-full py-3 flex items-center justify-center text-blue-600 dark:text-yellow-300 border border-dashed border-blue-300 dark:border-yellow-300 rounded-lg hover:bg-blue-50 transition-colors"
                   >
                     <FiPlus className="mr-2" />
                     일정 추가하기
@@ -478,13 +478,13 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
             {/* Travel tips for the day */}
             {day.recommendations && (
               <div className="mt-4 mb-6">
-                <div className="rounded-lg overflow-hidden border border-amber-200">
-                  <div className="w-full flex items-center bg-amber-50 p-4 text-amber-800 font-medium border-b border-amber-200">
+                <div className="rounded-lg overflow-hidden border border-amber-200 dark:border-amber-700">
+                  <div className="w-full flex items-center bg-amber-50 dark:bg-amber-950 dark:bg-am p-4 text-amber-800 dark:text-amber-100 font-medium border-b border-amber-200 dark:border-amber-700">
                     <FiInfo className="mr-2" />
                     여행 팁 및 추천
                   </div>
                   
-                  <div className="p-4 bg-amber-50 text-gray-700">
+                  <div className="p-4 bg-amber-50 dark:bg-amber-950 text-gray-700 dark:text-gray-200">
                     {day.recommendations.split('\n').map((paragraph, index) => (
                       <p key={index} className="mb-2">
                         {paragraph}

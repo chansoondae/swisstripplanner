@@ -97,7 +97,7 @@ const components = {
         className="rounded-lg w-full" 
         priority={false}
       />
-      {alt && <p className="text-sm text-center text-gray-600 mt-2">{alt}</p>}
+      {alt && <p className="text-sm text-center text-gray-600 dark:text-gray-300 mt-2">{alt}</p>}
     </div>
   ),
 };

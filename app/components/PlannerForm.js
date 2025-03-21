@@ -82,33 +82,33 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
   };
   
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
+    <div className="bg-white dark:bg-gray-900 shadow-md rounded-lg p-6">
       <form onSubmit={handleSubmit}>
         {/* 로그인 정보 표시 (선택적) */}
-        {user ? (
-          <div className="mb-4 bg-blue-50 p-3 rounded-md text-blue-700 text-sm">
+        {/* {user ? (
+          <div className="mb-4 bg-blue-50 dark:bg-gray-800 p-3 rounded-md text-blue-700 dark:text-yellow-400 text-sm">
             <p>
               {user.displayName || user.email}님으로 로그인됨. 여행 계획이 귀하의 계정과 연결됩니다.
             </p>
           </div>
         ) : (
-          <div className="mb-4 bg-gray-50 p-3 rounded-md text-gray-600 text-sm">
+          <div className="mb-4 bg-gray-50 dark:bg-gray-800 p-3 rounded-md text-gray-600 dark:text-gray-300 text-sm">
             <p>
               로그인하지 않은 상태입니다. 로그인하면 여행 계획을 저장하고 나중에 접근할 수 있습니다.
             </p>
           </div>
-        )}
+        )} */}
         
         {/* Textarea for detailed prompt */}
         <div className="mb-6">
-          <label htmlFor="prompt" className="text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="prompt" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
             Describe your ideal Swiss trip
           </label>
           <textarea
             id="prompt"
             name="prompt"
             rows="4"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Tell us what you'd like to experience in Switzerland. For example: I want to visit the Swiss Alps, experience local cheese making, and visit historical sites in Lucerne..."
             value={formData.prompt}
             onChange={handleChange}
@@ -119,13 +119,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/* Trip Duration */}
           <div>
-            <label htmlFor="duration" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="duration" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiClock className="mr-1" /> Trip Duration (days)
             </label>
             <select
               id="duration"
               name="duration"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.duration}
               onChange={handleChange}
             >
@@ -144,13 +144,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
           
           {/* Travel Style */}
           <div>
-            <label htmlFor="travelStyle" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="travelStyle" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiHeart className="mr-1" /> Travel Style
             </label>
             <select
               id="travelStyle"
               name="travelStyle"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.travelStyle}
               onChange={handleChange}
             >
@@ -162,13 +162,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
           
           {/* Starting City */}
           <div>
-            <label htmlFor="startingCity" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="startingCity" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiMapPin className="mr-1" /> Starting City
             </label>
             <select
               id="startingCity"
               name="startingCity"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.startingCity}
               onChange={handleChange}
             >
@@ -180,13 +180,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
 
           {/* Ending City */}
           <div>
-            <label htmlFor="endingCity" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="endingCity" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiMapPin className="mr-1" /> Ending City
             </label>
             <select
               id="endingCity"
               name="endingCity"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.endingCity}
               onChange={handleChange}
             >
@@ -198,14 +198,14 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
           
           {/* Travel Date */}
           <div>
-            <label htmlFor="travelDate" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="travelDate" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiCalendar className="mr-1" /> Travel Date (optional)
             </label>
             <input
               type="date"
               id="travelDate"
               name="travelDate"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.travelDate}
               onChange={handleChange}
             />
@@ -213,13 +213,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
           
           {/* Group Type */}
           <div>
-            <label htmlFor="groupType" className="text-sm font-medium text-gray-700 mb-1 flex items-center">
+            <label htmlFor="groupType" className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-1 flex items-center">
               <FiUsers className="mr-1" /> Who's Traveling?
             </label>
             <select
               id="groupType"
               name="groupType"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={formData.groupType}
               onChange={handleChange}
             >
@@ -260,12 +260,12 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
         <div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center"
+            className="w-full bg-blue-600 dark:bg-yellow-400 hover:bg-blue-700 text-white dark:text-gray-900 font-medium py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 flex items-center justify-center"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
-                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white dark:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>

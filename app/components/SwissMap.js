@@ -244,7 +244,7 @@ const SwissMap = ({ locations = [] }) => {
                   <div className="p-2 max-w-xs">
                     <h3 className="font-bold text-lg">{selectedPlace.name}</h3>
                     <p className="text-sm mb-2">{selectedPlace.address}</p>
-                    <div className="flex items-center text-sm text-gray-600 mb-2">
+                    <div className="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
                       <FiClock className="mr-1" />
                       <span>Duration: {selectedPlace.duration ? `${selectedPlace.duration} min` : 'N/A'}</span>
                     </div>
@@ -284,7 +284,7 @@ const SwissMap = ({ locations = [] }) => {
         </GoogleMap>
         
         {/* Map legend */}
-        <div className="bg-white p-3 rounded-lg shadow mt-2 flex flex-wrap items-center justify-center gap-4">
+        <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow mt-2 flex flex-wrap items-center justify-center gap-4">
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-blue-500 mr-1"></div>
             <span className={`${isMobile ? 'text-xs' : 'text-sm'}`}>Cities</span>

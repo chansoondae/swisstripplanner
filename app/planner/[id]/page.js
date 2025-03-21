@@ -398,9 +398,9 @@ export default function TravelPlanPage() {
   return (
     <div className={`max-w-5xl mx-auto ${isMobile ? 'p-0' : 'px-4 py-2'}`}>
       {/* 소유권 정보 및 저장 버튼 */}
-      <div className="bg-white p-4 mb-4 rounded-lg shadow-md flex justify-between items-center">
+      <div className="bg-white dark:bg-gray-900 p-4 mb-4 rounded-lg shadow-md flex justify-between items-center">
         <div>
-          <h1 className="text-xl font-bold text-gray-800">{plan.title || '여행 계획'}</h1>
+          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">{plan.title || '여행 계획'}</h1>
           <p className="text-sm text-gray-500">
             {plan.createdAt && `작성일: ${formatRelativeTime(plan.createdAt)}`}
           </p>
@@ -447,7 +447,7 @@ export default function TravelPlanPage() {
             ) : (
               // 다른 사람의 여행인 경우: 내 여행으로 저장 버튼 표시
               <button
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center"
+                className="px-4 py-2 bg-blue-600 dark:bg-yellow-400 text-white dark:text-gray-900 rounded-md hover:bg-blue-700 transition-colors flex items-center"
                 onClick={saveAsMine}
                 disabled={isSaving || !user}
               >
@@ -470,7 +470,7 @@ export default function TravelPlanPage() {
 
       {/* Itinerary section */}
       <section className={isMobile ? "mb-4" : "mb-8"}>
-        <div className={isMobile ? "" : "bg-white rounded-lg shadow-lg"}>
+        <div className={isMobile ? "" : "bg-white dark:bg-gray-900 rounded-lg shadow-lg"}>
           <TravelItinerary 
             travelPlan={plan} 
             travelPlanId={planId} 

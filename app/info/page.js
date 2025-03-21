@@ -47,7 +47,7 @@ export default function AboutPage() {
             key={post.id}
             className="block group"
           >
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-48">
                 <Image 
                   src={post.coverImage} 
@@ -60,17 +60,17 @@ export default function AboutPage() {
               </div>
               
               <div className="p-5">
-                <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-200">
+                <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors duration-200">
                   {post.title}
                 </h2>
                 
-                <div className="text-sm text-gray-500 mb-3 flex items-center">
+                <div className="text-sm text-gray-500 dark:text-gray-400 mb-3 flex items-center">
                   <span>{new Date(post.date).toLocaleDateString('ko-KR')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.readingTime}</span>
                 </div>
                 
-                <p className="text-gray-600 line-clamp-3">
+                <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
                   {post.excerpt}
                 </p>
               </div>

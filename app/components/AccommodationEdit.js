@@ -72,16 +72,16 @@ const AccommodationEdit = ({
   }, []);
 
   return (
-    <div className="bg-blue-50 p-4 border-t relative">
+    <div className="bg-blue-50 dark:bg-amber-800 p-4 border-t relative">
       {isEditingAccommodation && day.day === activeDay ? (
         <div className="flex items-center">
-          <FiHome className="mr-2 text-blue-700" />
-          <span className="font-medium text-blue-800">숙박:</span>
+          <FiHome className="mr-2 text-blue-700 dark:text-amber-100" />
+          <span className="font-medium text-blue-800 dark:text-amber-100 ">숙박:</span>
           <div className="ml-2 flex-1">
             <select
               value={selectedAccommodation}
               onChange={(e) => setSelectedAccommodation(e.target.value)}
-              className="p-2 border border-blue-300 rounded-md w-full max-w-xs"
+              className="p-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-blue-300 rounded-md w-full max-w-xs"
             >
               <option value="">선택하세요</option>
               {availableCities.map((city) => (
@@ -93,13 +93,13 @@ const AccommodationEdit = ({
             <div className="mt-2 flex gap-2">
               <button
                 onClick={() => handleAccommodationChange(selectedAccommodation)}
-                className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+                className="px-3 py-1 bg-blue-600 dark:bg-amber-600 text-white dark:text-gray-800 text-sm rounded-md hover:bg-blue-700 dark:hover:bg-amber-700 transition-colors"
               >
                 적용
               </button>
               <button
                 onClick={handleCancelAccommodationEdit}
-                className="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-md hover:bg-gray-300 transition-colors"
+                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 text-sm rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
               >
                 취소
               </button>
@@ -108,11 +108,11 @@ const AccommodationEdit = ({
         </div>
       ) : (
         <div className="flex items-center">
-          <FiHome className="mr-2 text-blue-700" />
-          <span className="font-medium text-blue-800">숙박:</span>
+          <FiHome className="mr-2 text-blue-700 dark:text-amber-100" />
+          <span className="font-medium text-blue-800 dark:text-amber-100">숙박:</span>
           <button 
             onClick={handleEditAccommodation}
-            className="ml-2 text-blue-700 hover:text-blue-900 hover:underline flex items-center transition-colors"
+            className="ml-2 text-blue-700 dark:text-amber-100 hover:text-blue-900 dark:hover:text-amber-300 hover:underline flex items-center transition-colors"
           >
             {day.accommodation}
             {/* <span className="ml-2 text-xs text-blue-500">(클릭하여 수정)</span> */}

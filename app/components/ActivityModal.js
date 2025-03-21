@@ -10,13 +10,13 @@ import { formatDuration } from './../../utils/durationFormat';
 const TransportIcon = ({ type }) => {
   switch (type) {
     case 'Train':
-      return <FaTrain className="mr-1 text-blue-600" />;
+      return <FaTrain className="mr-1 text-blue-600 dark:text-yellow-300" />;
     case 'CableCar':
-      return <FaTram className="mr-1 text-blue-600" />;
+      return <FaTram className="mr-1 text-blue-600 dark:text-yellow-300" />;
     case 'Funicular':
-      return <FaMountain className="mr-1 text-blue-600" />;
+      return <FaMountain className="mr-1 text-blue-600 dark:text-yellow-300" />;
     case 'Ferry':
-      return <FaShip className="mr-1 text-blue-600" />;
+      return <FaShip className="mr-1 text-blue-600 dark:text-yellow-300" />;
     default:
       return null;
   }
@@ -174,13 +174,13 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-lg max-h-[80vh] flex flex-col">
+      <div className="bg-white dark:bg-gray-900 rounded-lg w-full max-w-lg max-h-[80vh] flex flex-col">
         {/* 헤더 */}
         <div className="p-4 border-b flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-800">일정 추가 - Day {currentDay}</h2>
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">일정 추가 - Day {currentDay}</h2>
           <button 
             onClick={onClose}
-            className="p-1 rounded-full hover:bg-gray-200"
+            className="p-1 rounded-full hover:bg-gray-200 "
           >
             <FiX size={24} />
           </button>
@@ -194,9 +194,9 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="관광지 검색 (한글 또는 영문)"
-              className="w-full p-2 pl-10 border rounded-lg"
+              className="w-full p-2 pl-10 border rounded-lg text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800"
             />
-            <FiSearch className="absolute left-3 top-3 text-gray-400" />
+            <FiSearch className="absolute left-3 top-3 text-gray-400 dark:text-gray-500" />
           </div>
         </div>
         
@@ -210,17 +210,17 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
                   onClick={() => handleActivitySelect(activity)}
                   className={`w-full text-left p-3 rounded-lg transition-colors ${
                     selectedActivity && selectedActivity.Name_Eng === activity.Name_Eng
-                      ? 'bg-blue-100 border border-blue-300'
+                      ? 'bg-blue-100 dark:bg-yellow-700 border border-blue-300 dark:border-yellow-300'
                       : 'hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
                   <div className="font-medium">{activity.Name_Kor}</div>
-                  <div className="text-sm text-gray-600">{activity.Name_Eng}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">{activity.Name_Eng}</div>
                 </button>
               ))}
             </div>
           ) : (
-            <div className="p-4 text-center text-gray-500">
+            <div className="p-4 text-center text-gray-500 dark:text-gray-400">
               검색 결과가 없습니다
             </div>
           )}
@@ -228,7 +228,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
         
         {/* 선택된 액티비티 정보 */}
         {selectedActivity && (
-          <div className="border-t p-4 bg-gray-50">
+          <div className="border-t p-4 bg-gray-50 dark:bg-gray-950">
             <h3 className="font-medium text-lg mb-2">
               {selectedActivity.Name_Kor} ({selectedActivity.Name_Eng})
             </h3>
@@ -236,23 +236,23 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
             {selectedActivity ? (
               <div className="space-y-2 text-sm">
                 <div className="flex items-center">
-                  <FiMapPin className="mr-2 text-gray-600" />
+                  <FiMapPin className="mr-2 text-gray-600 dark:text-gray-300" />
                   <span>{selectedActivity.Base || "-"}</span>
                 </div>
                 <div className="flex items-center">
-                  <FiClock className="mr-2 text-gray-600" />
+                  <FiClock className="mr-2 text-gray-600 dark:text-gray-300" />
                   <span>{selectedActivity.Duration || "-"}</span>
-                  <FiRefreshCw className="ml-2 text-blue-600" title="왕복 시간" />
+                  <FiRefreshCw className="ml-2 text-blue-600 dark:text-yellow-300" title="왕복 시간" />
                 </div>
                 <div className="flex items-center">
-                  <FiDollarSign className="mr-2 text-gray-600" />
+                  <FiDollarSign className="mr-2 text-gray-600 dark:text-gray-300" />
                   <span>CHF {selectedActivity["2nd Class Price"]}</span>
                 </div>
                 <div className="flex items-center">
                   <TransportIcon type={selectedActivity.Transportation} />
                   <span>{selectedActivity.Transportation || "-"}</span>
                 </div>
-                <div className="mt-2 text-gray-700">
+                <div className="mt-2 text-gray-700 dark:text-gray-200">
                   {selectedActivity.Comment || "정보가 없습니다."}
                 </div>
               </div>
@@ -266,7 +266,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
         <div className="p-4 border-t flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg mr-2"
+            className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg mr-2"
           >
             취소
           </button>
@@ -275,8 +275,8 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
             disabled={!selectedActivity}
             className={`px-4 py-2 rounded-lg ${
               selectedActivity
-                ? 'bg-blue-600 text-white hover:bg-blue-700'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                ? 'bg-blue-600 dark:bg-amber-400 text-white hover:bg-blue-700 dark:hover:bg-amber-300'
+                : 'bg-gray-300 text-gray-500 dark:text-gray-400 cursor-not-allowed'
             }`}
           >
             추가하기

@@ -69,21 +69,21 @@ export default function AuthButton() {
       </button>
 
       {isDropdownOpen && (
-        <div className="absolute right-0 mt-2 w-60 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
-          <div className="px-4 py-3 text-sm text-gray-700 border-b">
+        <div className="absolute right-0 mt-2 w-60 bg-white dark:bg-gray-900 rounded-md shadow-lg py-1 z-10 border border-gray-200">
+          <div className="px-4 py-3 text-sm text-gray-700 dark:text-gray-200 border-b">
             <div className="font-medium text-base">{user.displayName}</div>
-            <div className="text-gray-500 truncate mt-1">{user.email}</div>
+            <div className="text-gray-500 dark:text-gray-400 truncate mt-1">{user.email}</div>
           </div>
           <Link 
             href="/planner"
-            className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="flex w-full items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             <FiMapPin className="mr-2 text-blue-600" />
             <span>내 여행 계획</span>
           </Link>
           <button
             onClick={handleLogout}
-            className="flex w-full items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t"
+            className="flex w-full items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 border-t"
           >
             <FiLogOut className="mr-2 text-red-500" />
             <span>로그아웃</span>

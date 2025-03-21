@@ -135,15 +135,15 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
     <div className="mt-6 border rounded-lg overflow-hidden shadow-sm">
       {/* 헤더 섹션 */}
       <div 
-        className="bg-indigo-50 p-4 flex justify-between items-center cursor-pointer"
+        className="bg-indigo-50 dark:bg-indigo-950 p-4 flex justify-between items-center cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
-          <FaTrain className="text-indigo-600 mr-2" size={20} />
-          <h2 className="text-lg font-semibold text-indigo-800">교통비</h2>
+          <FaTrain className="text-indigo-600 dark:text-indigo-300 mr-2" size={20} />
+          <h2 className="text-lg font-semibold text-indigo-800 dark:text-indigo-100">교통비</h2>
         </div>
         <div className="flex items-center">
-          <span className="text-indigo-700 font-medium mr-3">
+          <span className="text-indigo-700 dark:text-indigo-300 font-medium mr-3">
             추천 교통권 : {bestTransportOption.recommendation}
             {bestTransportOption.type === 'swisspass' && bestTransportOption.savings > 0 && (
               <span className="text-green-600 ml-2">(CHF {parseFloat(bestTransportOption.savings).toFixed(2)} 절약)</span>
@@ -159,25 +159,25 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
       
       {/* 상세 정보 섹션 */}
       {isExpanded && (
-        <div className="bg-white p-4">
+        <div className="bg-white dark:bg-gray-800 p-4">
           {/* 요약 정보 */}
-          <div className="mb-4 p-3 bg-indigo-50 rounded-lg">
-            <div className="text-sm text-indigo-800 mb-2 flex justify-between items-center">
+          <div className="mb-4 p-3 bg-indigo-50 dark:bg-indigo-950 rounded-lg">
+            <div className="text-sm text-indigo-800 dark:text-indigo-100 mb-2 flex justify-between items-center">
               구간권: 총 CHF {passTotals.regular} (2등석 기준)
               {/* Swiss Travel Pass 추천 뱃지 */}
               {bestTransportOption.savings > 0 && (
-                <div className="flex items-center bg-green-200 text-green-800 px-2 py-1 rounded text-xs font-medium">
+                <div className="flex items-center bg-green-200 dark:bg-gray-800 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs font-medium">
                   <FaStar className="mr-1 text-green-600" size={12} />
                   Swiss Travel Pass 추천!
                 </div>
               )}
             </div>
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center text-sm text-green-700">
+              <div className="flex items-center text-sm text-green-700 dark:text-green-200">
                 <FaIdCard className="mr-2" />
                 Swiss Travel Pass: CHF {passTotals.swissTravelPass}
               </div>
-              <div className="flex items-center text-sm text-amber-700">
+              <div className="flex items-center text-sm text-amber-700 dark:text-amber-200">
                 <FaRegIdCard className="mr-2" />
                 Saver Day Pass: CHF {passTotals.saverDayPass}
               </div>
@@ -186,47 +186,47 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
 
             {/* Swiss Travel Pass 추천 정보 요약 */}
             {swissTravelPassRecommendations && swissTravelPassRecommendations.bestOption && (
-              <div className="mt-3 p-2 bg-green-100 rounded border border-green-200">
-                <p className="text-sm font-medium text-green-800 mb-1">
+              <div className="mt-3 p-2 bg-green-100 dark:bg-green-800 rounded border border-green-200">
+                <p className="text-sm font-medium text-green-800 dark:text-green-100 mb-1">
                   <span className="flex items-center">
-                    <FaIdCard className="mr-2 text-green-700" />
+                    <FaIdCard className="mr-2 text-green-700 dark:text-green-200" />
                     Swiss Travel Pass 계산: {swissTravelPassRecommendations.bestOption.option}
                   </span>
                 </p>
-                <p className="text-xs text-green-700 mb-1">
+                <p className="text-xs text-green-700 dark:text-green-200 mb-1">
                   {swissTravelPassRecommendations.bestOption.description}
                 </p>
                 <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs">
-                  <div className="text-gray-700">
+                  <div className="text-gray-700  dark:text-gray-200">
                     패스 비용: {formatCurrency(swissTravelPassRecommendations.bestOption.passCost)}
                   </div>
-                  <div className="text-gray-700">
+                  <div className="text-gray-700 dark:text-gray-200">
                     총 비용: {formatCurrency(swissTravelPassRecommendations.bestOption.totalCost)}
                   </div>
-                  <div className="text-gray-700">
+                  <div className="text-gray-700 dark:text-gray-200">
                     일반 요금: {formatCurrency(swissTravelPassRecommendations.bestOption.regularCost)}
                   </div>
-                  <div className="text-green-800 font-medium">
+                  <div className="text-green-800 dark:text-gray-100 font-medium">
                     절약액: {formatCurrency(swissTravelPassRecommendations.bestOption.savings)}
                   </div>
                 </div>
                 
-                <div className="mt-3 pt-2 border-t border-green-200">
-                  <p className="text-xs font-medium text-green-800 mb-1">총 비용 상세 내역:</p>
+                <div className="mt-3 pt-2 border-t border-green-200 dark:border-green-700">
+                  <p className="text-xs font-medium text-green-800 dark:text-green-100 mb-1">총 비용 상세 내역:</p>
                   <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-xs">
-                    <div className="text-gray-700">Swiss Travel Pass 비용:</div>
-                    <div className="text-gray-800 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.passCost)}</div>
+                    <div className="text-gray-700 dark:text-gray-200">Swiss Travel Pass 비용:</div>
+                    <div className="text-gray-800 dark:text-gray-100 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.passCost)}</div>
                     
-                    <div className="text-gray-700 col-span-2 mt-1 font-medium">교통 비용 (패스 적용시):</div>
+                    <div className="text-gray-700 dark:text-gray-200 col-span-2 mt-1 font-medium">교통 비용 (패스 적용시):</div>
                     
                     {/* 교통 항목별 비용 */}
                     {categorizeExpenses(fareDetails, swissTravelPassRecommendations.bestOption).transportation.map((item, idx) => (
                       <React.Fragment key={`trans-item-${idx}`}>
-                        <div className="text-gray-600 pl-2 text-xs">- {item.description}:</div>
-                        <div className="text-gray-600 text-xs">
+                        <div className="text-gray-600 dark:text-gray-300 pl-2 text-xs">- {item.description}:</div>
+                        <div className="text-gray-600 dark:text-gray-300 text-xs">
                           {formatCurrency(item.swissTravelPrice)}
                           {item.regularPrice > item.swissTravelPrice && 
-                            <span className="text-green-600 text-xs ml-1">
+                            <span className="text-green-600 dark:text-green-300 text-xs ml-1">
                               ({Math.round((1 - item.swissTravelPrice/item.regularPrice) * 100)}% 할인)
                             </span>
                           }
@@ -235,16 +235,16 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     ))}
                     
                     {/* 액티비티 헤더 */}
-                    <div className="text-gray-700 col-span-2 mt-1 font-medium">액티비티 비용 (패스 적용시):</div>
+                    <div className="text-gray-700 dark:text-gray-200 col-span-2 mt-1 font-medium">액티비티 비용 (패스 적용시):</div>
                     
                     {/* 액티비티 항목별 비용 */}
                     {categorizeExpenses(fareDetails, swissTravelPassRecommendations.bestOption).activities.map((item, idx) => (
                       <React.Fragment key={`act-item-${idx}`}>
-                        <div className="text-gray-600 pl-2 text-xs">- {item.description}:</div>
-                        <div className="text-gray-600 text-xs">
+                        <div className="text-gray-600 dark:text-gray-300 pl-2 text-xs">- {item.description}:</div>
+                        <div className="text-gray-600 dark:text-gray-300 text-xs">
                           {formatCurrency(item.swissTravelPrice)}
                           {item.regularPrice > item.swissTravelPrice && 
-                            <span className="text-green-600 text-xs ml-1">
+                            <span className="text-green-600 dark:text-green-300 text-xs ml-1">
                               ({Math.round((1 - item.swissTravelPrice/item.regularPrice) * 100)}% 할인)
                             </span>
                           }
@@ -253,14 +253,14 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     ))}
                     
                     {/* 합계 정보 */}
-                    <div className="text-gray-700 font-medium border-t border-gray-200 mt-1 pt-1">총 비용:</div>
-                    <div className="text-gray-800 font-medium border-t border-gray-200 mt-1 pt-1">{formatCurrency(swissTravelPassRecommendations.bestOption.totalCost)}</div>
+                    <div className="text-gray-700 dark:text-gray-200 font-medium border-t border-gray-200 dark:border-gray-700 mt-1 pt-1">총 비용:</div>
+                    <div className="text-gray-800 dark:text-gray-100 font-medium border-t border-gray-200 dark:border-gray-700 mt-1 pt-1">{formatCurrency(swissTravelPassRecommendations.bestOption.totalCost)}</div>
                     
-                    <div className="text-gray-700">패스 없을 때 총 비용:</div>
-                    <div className="text-gray-800 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.regularCost)}</div>
+                    <div className="text-gray-700 dark:text-gray-200">패스 없을 때 총 비용:</div>
+                    <div className="text-gray-800 dark:text-gray-100 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.regularCost)}</div>
                     
-                    <div className="text-green-700">절약액:</div>
-                    <div className="text-green-800 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.savings)}</div>
+                    <div className="text-green-700 dark:text-green-200">절약액:</div>
+                    <div className="text-green-800 dark:text-green-100 font-medium">{formatCurrency(swissTravelPassRecommendations.bestOption.savings)}</div>
                   </div>
                 </div>
               </div>
@@ -268,14 +268,14 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
             
             {/* Saver Day Pass 추천 정보 요약 */}
             {saverDayRecommendations && saverDayRecommendations.length > 0 && (
-              <div className="mt-3 p-2 bg-amber-100 rounded border border-amber-200">
-                <p className="text-sm font-medium text-amber-800 mb-1">
+              <div className="mt-3 p-2 bg-amber-100 dark:bg-amber-900 rounded border border-amber-200">
+                <p className="text-sm font-medium text-amber-800 dark:text-amber-100 mb-1">
                   <span className="flex items-center">
                     <FaRegIdCard className="mr-2" />
                     Saver Day Pass가 유리한 날짜: {saverDayRecommendations.map(rec => `Day ${rec.day}`).join(', ')}
                   </span>
                 </p>
-                <p className="text-xs text-amber-700">
+                <p className="text-xs text-amber-700 dark:text-amber-200">
                   이 날짜들에 Saver Day Pass를 사용하면 구간권보다 총 CHF {saverDayRecommendations.reduce((total, rec) => total + parseFloat(rec.savings), 0).toFixed(2)}를 절약할 수 있습니다.
                 </p>
               </div>
@@ -289,13 +289,13 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
               
               return (
                 <div key={day} className="border rounded-lg overflow-hidden">
-                  <div className={`px-4 py-2 border-b flex justify-between items-center ${saverDayRec ? 'bg-amber-50' : 'bg-gray-50'}`}>
+                  <div className={`px-4 py-2 border-b flex justify-between items-center ${saverDayRec ? 'bg-amber-50 dark:bg-amber-950' : 'bg-gray-50 dark:bg-gray-950'}`}>
                     <span className="font-medium">Day {day}</span>
                     
                     {/* Saver Day Pass 추천 뱃지 */}
                     {saverDayRec && (
                       <div className="flex items-center bg-amber-200 text-amber-800 px-2 py-1 rounded text-xs font-medium">
-                        <FaStar className="mr-1 text-amber-600" size={12} />
+                        <FaStar className="mr-1 text-amber-600 dark:text-amber-300" size={12} />
                         Saver Day Pass 추천!
                       </div>
                     )}
@@ -303,19 +303,19 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                   
                   {/* Saver Day Pass 추천 정보 상세 */}
                   {saverDayRec && (
-                    <div className="p-3 bg-amber-50 border-b text-sm">
+                    <div className="p-3 bg-amber-50 dark:bg-amber-950 border-b text-sm">
                       <div className="flex flex-wrap gap-x-6 gap-y-1">
                         <div className="flex items-center">
-                          <span className="text-gray-700 font-medium mr-1">일반 요금:</span>
-                          <span className="text-amber-800">CHF {saverDayRec.sum_price}</span>
+                          <span className="text-gray-700 dark:text-gray-200 font-medium mr-1">일반 요금:</span>
+                          <span className="text-amber-800 dark:text-amber-100">CHF {saverDayRec.sum_price}</span>
                         </div>
                         <div className="flex items-center">
-                          <span className="text-gray-700 font-medium mr-1">Saver Day Pass 사용 시:</span>
-                          <span className="text-amber-800">CHF {saverDayRec.sum_price_saverday} + 패스 비용 CHF 52</span>
+                          <span className="text-gray-700 dark:text-gray-200 font-medium mr-1">Saver Day Pass 사용 시:</span>
+                          <span className="text-amber-800 dark:text-amber-100">CHF {saverDayRec.sum_price_saverday} + 패스 비용 CHF 52</span>
                         </div>
                         <div className="flex items-center">
-                          <span className="text-gray-700 font-medium mr-1">절약액:</span>
-                          <span className="text-green-700 font-medium">CHF {saverDayRec.savings}</span>
+                          <span className="text-gray-700 dark:text-gray-200 font-medium mr-1">절약액:</span>
+                          <span className="text-green-700 dark:text-green-200 font-medium">CHF {saverDayRec.savings}</span>
                         </div>
                       </div>
                     </div>
@@ -325,25 +325,25 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     {groupedFares[day].map((fare, index) => (
                       <div 
                         key={index} 
-                        className={`p-3 ${index > 0 ? 'border-t pt-3' : ''} ${fare.isActivity ? 'bg-green-50' : 'bg-white'}`}
+                        className={`p-3 ${index > 0 ? 'border-t pt-3' : ''} ${fare.isActivity ? 'bg-green-50 dark:bg-green-950' : 'bg-white dark:bg-gray-900'}`}
                       >
                         <div className="flex justify-between items-center">
                           <div className="flex items-center">
                             {fare.isActivity ? (
                               <>
-                                <FaTicketAlt className="mr-2 text-green-600" size={16} />
-                                <div className="text-gray-700 font-medium">{fare.to || '명소 방문'}</div>
+                                <FaTicketAlt className="mr-2 text-green-600 dark:text-green-300" size={16} />
+                                <div className="text-gray-700 dark:text-gray-200 font-medium">{fare.to || '명소 방문'}</div>
                               </>
                             ) : (
                               <>
-                                <FaTrain className="mr-2 text-indigo-500" size={16} />
-                                <div className="text-gray-700">{fare.from}</div>
-                                <FiChevronsRight className="mx-2 text-gray-400" />
-                                <div className="text-gray-700">{fare.to}</div>
+                                <FaTrain className="mr-2 text-indigo-500 dark:text-indigo-400" size={16} />
+                                <div className="text-gray-700 dark:text-gray-200">{fare.from}</div>
+                                <FiChevronsRight className="mx-2 text-gray-400 dark:text-gray-500" />
+                                <div className="text-gray-700 dark:text-gray-200">{fare.to}</div>
                               </>
                             )}
                           </div>
-                          <div className={`font-medium ${fare.isActivity ? 'text-green-600' : 'text-indigo-600'}`}>
+                          <div className={`font-medium ${fare.isActivity ? 'text-green-600 dark:text-green-300' : 'text-indigo-600 dark:text-indigo-300'}`}>
                             CHF {fare.price.toFixed(2)}
                           </div>
                         </div>
@@ -351,13 +351,13 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                         {/* 패스 정보 추가 */}
                         <div className="mt-2 flex flex-wrap gap-4 text-sm">
                           {(fare.price_swisstravel !== undefined && fare.price_swisstravel !== null) && (
-                            <div className="flex items-center text-green-700">
+                            <div className="flex items-center text-green-700 dark:text-green-200">
                               <FaIdCard className="mr-1" size={14} />
                               <span>Swiss Travel Pass: CHF {Number(fare.price_swisstravel).toFixed(2)}</span>
                             </div>
                           )}
                           {(fare.price_saverday !== undefined && fare.price_saverday !== null) && (
-                            <div className="flex items-center text-amber-700">
+                            <div className="flex items-center text-amber-700 dark:text-amber-200">
                               <FaRegIdCard className="mr-1" size={14} />
                               <span>Saver Day Pass: CHF {Number(fare.price_saverday).toFixed(2)}</span>
                             </div>
@@ -365,13 +365,13 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                         </div>
                         
                         {fare.isActivity ? (
-                          <div className="mt-1 text-sm text-gray-500 flex items-center">
+                          <div className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex items-center">
                             <FiMapPin className="mr-1" />
                             <span>출발지: {fare.from}</span>
                           </div>
                         ) : (
                           fare.duration && (
-                            <div className="mt-1 text-sm text-gray-500 flex items-center">
+                            <div className="mt-1 text-sm text-gray-500 dark:text-gray-400 flex items-center">
                               <FiClock className="mr-1" />
                               <span>소요 시간: {formatDuration(fare.duration)}</span>
                             </div>

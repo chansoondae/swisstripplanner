@@ -14,10 +14,10 @@ import { BiRestaurant } from "react-icons/bi";
 // 내부 로딩 컴포넌트 생성
 const LoadingState = ({ message }) => (
   <div className="flex flex-col items-center justify-center py-12">
-    <div className="animate-spin text-blue-500 mb-4">
+    <div className="animate-spin text-blue-500 dark:text-yellow-400 mb-4">
       <FiLoader size={40} />
     </div>
-    <p className="text-gray-600 text-lg">{message}</p>
+    <p className="text-gray-600 dark:text-gray-300 text-lg">{message}</p>
   </div>
 );
 
@@ -271,10 +271,10 @@ export default function PlannerPage() {
   return (
     <div className={`${isMobile ? 'w-full p-0' : 'container max-w-5xl px-4 py-4'} mx-auto`}>
       <div className={`flex justify-between items-center ${isMobile ? 'mb-2 px-4 py-4' : 'mb-6'}`}>
-        <h1 className={`${isMobile ? 'text-xl' : 'text-3xl'} text-gray-800 font-bold`}>스위스 여행 계획</h1>
+        <h1 className={`${isMobile ? 'text-xl' : 'text-3xl'} text-gray-800 dark:text-gray-100 font-bold`}>스위스 여행 계획</h1>
         <a 
           href="/" 
-          className={`flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium ${isMobile ? 'px-2 py-1 text-sm' : 'px-4 py-2'} rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200`}
+          className={`flex items-center justify-center bg-blue-600 dark:bg-yellow-300 hover:bg-blue-700 dark:hover:bg-yellow-700 text-white dark:text-gray-900 font-medium ${isMobile ? 'px-2 py-1 text-sm' : 'px-4 py-2'} rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-200`}
         >
           <FiPlus className="mr-1" /> 새 계획 만들기
         </a>
@@ -282,7 +282,7 @@ export default function PlannerPage() {
 
       {/* 필터 라디오 버튼 */}
       <div className={`mb-4 ${isMobile ? 'px-4' : ''}`}>
-        <div className="bg-gray-100 p-3 rounded-lg flex items-center justify-start">
+        <div className="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg flex items-center justify-start">
           {/* <span className="mr-4 text-gray-700 font-medium">필터:</span> */}
           <div className="flex space-x-4">
             <label className="inline-flex items-center">
@@ -294,7 +294,7 @@ export default function PlannerPage() {
                 checked={filter === 'all'}
                 onChange={() => handleFilterChange('all')}
               />
-              <span className="ml-2 text-gray-700">전체 여행</span>
+              <span className="ml-2 text-gray-700 dark:text-gray-200">전체</span>
             </label>
             <label className="inline-flex items-center">
               <input
@@ -306,25 +306,25 @@ export default function PlannerPage() {
                 onChange={() => handleFilterChange('mine')}
                 disabled={!user}
               />
-              <span className={`ml-2 ${user ? 'text-gray-700' : 'text-gray-400'}`}>내 여행</span>
+              <span className={`ml-2 ${user ? 'text-gray-700 dark:text-gray-200' : 'text-gray-400 dark:text-gray-500'}`}>내 여행</span>
             </label>
           </div>
-          {!user && filter === 'all' && (
+          {/* {!user && filter === 'all' && (
             <span className="ml-2 text-xs text-gray-500">
               (로그인하면 내 여행만 볼 수 있어요)
             </span>
-          )}
+          )} */}
         </div>
       </div>
 
       {loading ? (
         // 초기 로딩 상태를 스피너로 표시
-        <div className={`bg-white rounded-lg shadow-lg ${isMobile ? 'p-4' : 'p-6'}`}>
+        <div className={`bg-white dark:bg-gray-900 rounded-lg shadow-lg ${isMobile ? 'p-4' : 'p-6'}`}>
           <LoadingState message="여행 계획 목록을 불러오는 중입니다..." />
         </div>
       ) : (
         // 여행 계획 목록
-        <div className={`bg-white rounded-lg shadow-lg ${isMobile ? 'p-4' : 'p-6'}`}>
+        <div className={`bg-white dark:bg-gray-900 rounded-lg shadow-lg ${isMobile ? 'p-4' : 'p-6'}`}>
           {itineraries.length === 0 ? (
             // 여행 계획이 없을 때
             <div className="text-center p-8 border border-dashed rounded-lg">

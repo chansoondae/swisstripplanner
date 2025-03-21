@@ -34,7 +34,7 @@ export default function WebcamPage() {
             key={webcam.id}
             className="block group"
           >
-            <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative h-48">
                 <Image 
                   src={webcam.img} 
@@ -47,7 +47,7 @@ export default function WebcamPage() {
               </div>
               
               <div className="p-5">
-                <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-200">
+                <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-yellow-400 transition-colors duration-200">
                   {webcam.nameKo}
                 </h2>
                 
