@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { FiClock, FiUsers, FiMapPin, FiCalendar, FiHeart, FiSend } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
+import DOMPurify from 'dompurify'; // Add this import
 
 const PlannerForm = ({ onSubmit, isSubmitting }) => {
   const { user } = useAuth(); // 인증 정보 사용
