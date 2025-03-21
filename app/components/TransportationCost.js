@@ -1,13 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiChevronDown, FiChevronUp, FiClock, FiChevronsRight, FiInfo, FiMapPin } from 'react-icons/fi';
 import { FaTrain, FaTicketAlt, FaRegIdCard, FaIdCard, FaStar, FaShoppingCart } from 'react-icons/fa';
 import SwissPassVendorModal from './SwissPassVendorModal';
+import { useAnalytics } from './../hooks/useAnalytics'; // 경로가 맞는지 확인 필요
 
 export default function TransportationCost({ transportationDetails, budgetBreakdown }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const { trackEvent } = useAnalytics(); // Analytics 훅 사용
+
+  // 컴포넌트 마운트 시 이벤트 발생
+  useEffect(() => {
+    if (transportationDetails && budgetBreakdown) {
+      // 컴포넌트 로드 이벤트
+      trackEvent(
+        'view_transportation_costs', 
+        'content', 
+        '교통비 정보 조회', 
+        {
+          totalCost: transportationDetails.totalCost,
+          hasSwissPassRecommendation: !!transportationDetails.swissTravelPassRecommendations?.bestOption
+        }
+      );
+    }
+  }, [transportationDetails, budgetBreakdown, trackEvent]);
 
   if (!transportationDetails || !budgetBreakdown) return null;
 
@@ -133,7 +151,43 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
     return `CHF ${parseFloat(amount).toFixed(2)}`;
   };
 
+  // 컴포넌트 확장/축소 이벤트 핸들러
+  const handleToggleExpand = () => {
+    const newExpandedState = !isExpanded;
+    setIsExpanded(newExpandedState);
+    
+    // 확장/축소 이벤트 추적
+    trackEvent(
+      newExpandedState ? 'expand_section' : 'collapse_section',
+      'engagement',
+      '교통비 섹션 ' + (newExpandedState ? '확장' : '축소')
+    );
+  };
 
+  // 모달 열기 이벤트 핸들러
+  const handleOpenModal = (e) => {
+    e.stopPropagation();
+    setShowModal(true);
+    
+    // 모달 열기 이벤트 추적
+    trackEvent(
+      'open_modal',
+      'engagement',
+      '스위스트래블패스 구매 정보 모달 열기',
+      {
+        bestOption: swissTravelPassRecommendations?.bestOption?.option || '',
+        savings: swissTravelPassRecommendations?.bestOption?.savings || 0
+      }
+    );
+  };
+
+  // 모달 닫기 이벤트 핸들러
+  const handleCloseModal = () => {
+    setShowModal(false);
+    
+    // 모달 닫기 이벤트 추적
+    trackEvent('close_modal', 'engagement', '스위스트래블패스 구매 정보 모달 닫기');
+  };
 
   return (
     <>
@@ -141,7 +195,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
         {/* 헤더 섹션 */}
         <div 
           className="bg-indigo-50 dark:bg-indigo-950 p-4 flex justify-between items-center cursor-pointer"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={handleToggleExpand}
         >
           <div className="flex items-center">
             <FaTrain className="text-indigo-600 dark:text-indigo-300 mr-2" size={20} />
@@ -204,10 +258,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                     {bestTransportOption.type === 'swisspass' && bestTransportOption.savings > 0 && (
                       <button 
                         className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm flex items-center transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowModal(true);
-                        }}
+                        onClick={handleOpenModal}
                       >
                         <FaShoppingCart className="mr-1" size={14} />
                         스위스트래블패스 싸게 사는법
@@ -348,6 +399,19 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
                         <div 
                           key={index} 
                           className={`p-3 ${index > 0 ? 'border-t pt-3' : ''} ${fare.isActivity ? 'bg-green-50 dark:bg-green-950' : 'bg-white dark:bg-gray-900'}`}
+                          onClick={() => {
+                            // 특정 교통/활동 항목 클릭 이벤트 추적
+                            trackEvent(
+                              'view_fare_detail',
+                              'engagement',
+                              `${fare.isActivity ? '활동' : '교통'} 항목 조회: ${fare.from} - ${fare.to}`,
+                              {
+                                day: fare.day,
+                                price: fare.price,
+                                isActivity: fare.isActivity
+                              }
+                            );
+                          }}
                         >
                           <div className="flex justify-between items-center">
                             <div className="flex items-center">
@@ -428,7 +492,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
       </div>
 
       {/* 스위스 트래블 패스 판매처 모달 */}
-      <SwissPassVendorModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      <SwissPassVendorModal isOpen={showModal} onClose={handleCloseModal} />
     </>
   );
 }

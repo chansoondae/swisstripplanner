@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
@@ -7,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { collection, getDocs, query, orderBy, limit, startAfter, where } from 'firebase/firestore';
 import { db } from './../../lib/firebase';
 import { useAuth } from '../../context/AuthContext';
+import { useAnalytics } from './../hooks/useAnalytics'; // 추가된 Analytics 훅
 import { FiMapPin, FiClock, FiCalendar, FiPlus, FiLoader, FiAlertCircle, FiHeart, FiUsers } from 'react-icons/fi';
 import { GiMountainRoad, GiCastle } from "react-icons/gi";
 import { TbTrain, TbMountain } from "react-icons/tb";
@@ -36,8 +35,14 @@ export default function PlannerPage() {
   const observerRef = useRef();
   const router = useRouter();
   const { user } = useAuth(); // 인증 정보 사용
+  const { trackPageView, trackEvent } = useAnalytics(); // Analytics 훅 사용
   
   const ITEMS_PER_PAGE = 5; // 한 번에 가져올 여행 계획 수
+
+  // 페이지 로드 시 분석 이벤트 발생
+  useEffect(() => {
+    trackPageView('여행 계획 목록');
+  }, [trackPageView]);
 
   // 모바일 감지
   useEffect(() => {
@@ -62,7 +67,10 @@ export default function PlannerPage() {
     setLastDoc(null);
     setHasMore(true);
     fetchInitialItineraries();
-  }, [filter, user]);
+    
+    // 필터 변경 이벤트 추적
+    trackEvent('filter_change', 'engagement', `여행 계획 필터: ${filter}`);
+  }, [filter, user, trackEvent]);
 
   // 초기 데이터 로드
   const fetchInitialItineraries = async () => {
@@ -110,8 +118,18 @@ export default function PlannerPage() {
       
       setItineraries(itinerariesData);
       setHasMore(querySnapshot.docs.length === ITEMS_PER_PAGE);
+      
+      // 데이터 로드 완료 이벤트 추적
+      trackEvent(
+        'view_item_list', 
+        'content', 
+        `여행 계획 목록 (${filter})`, 
+        itinerariesData.length
+      );
     } catch (error) {
       console.error('Error fetching initial travel plans:', error);
+      // 오류 이벤트 추적
+      trackEvent('error', 'system', `여행 계획 목록 조회 오류: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -165,8 +183,18 @@ export default function PlannerPage() {
       
       setItineraries(prev => [...prev, ...newItinerariesData]);
       setHasMore(querySnapshot.docs.length === ITEMS_PER_PAGE);
+      
+      // 추가 데이터 로드 이벤트 추적
+      trackEvent(
+        'load_more', 
+        'engagement', 
+        '여행 계획 더 불러오기', 
+        newItinerariesData.length
+      );
     } catch (error) {
       console.error('Error fetching more travel plans:', error);
+      // 오류 이벤트 추적
+      trackEvent('error', 'system', `여행 계획 추가 로드 오류: ${error.message}`);
     } finally {
       setLoadingMore(false);
     }
@@ -188,12 +216,19 @@ export default function PlannerPage() {
   }, [loading, loadingMore, hasMore]);
 
   const handleItineraryClick = (id) => {
+    // 여행 계획 클릭 이벤트 추적
+    trackEvent('select_content', 'engagement', `여행 계획 선택: ${id}`);
     router.push(`/planner/${id}`);
   };
 
   // 필터 변경 핸들러
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
+  };
+
+  // 새 계획 만들기 클릭 핸들러
+  const handleCreateNewPlan = () => {
+    trackEvent('button_click', 'conversion', '새 여행 계획 만들기');
   };
 
   // 날짜와 시간 포맷 함수
@@ -277,6 +312,7 @@ export default function PlannerPage() {
         <a 
           href="/" 
           className={`flex items-center justify-center bg-blue-600 dark:bg-yellow-300 hover:bg-blue-700 dark:hover:bg-yellow-700 text-white dark:text-gray-900 font-medium ${isMobile ? 'px-2 py-1 text-sm' : 'px-4 py-2'} rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-yellow-500 transition-colors duration-200`}
+          onClick={handleCreateNewPlan}
         >
           <FiPlus className="mr-1" /> 새 계획 만들기
         </a>
@@ -338,6 +374,7 @@ export default function PlannerPage() {
               <a 
                 href="/" 
                 className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                onClick={handleCreateNewPlan}
               >
                 <FiPlus className="mr-2" /> 새 여행 계획 만들기
               </a>

@@ -1,14 +1,21 @@
 // app/page.js
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PlannerForm from './components/PlannerForm';
+import { useAnalytics } from './hooks/useAnalytics';
 
 export default function Home() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { trackPageView, trackPlanCreation, trackError } = useAnalytics();
   
+  // Track page view when component mounts
+  useEffect(() => {
+    trackPageView('Home Page');
+  }, [trackPageView]);
+
   // Handle form submission
   const handleSubmit = async (formData) => {
     try {
@@ -28,6 +35,14 @@ export default function Home() {
       }
       
       const data = await response.json();
+
+      // Track successful plan creation
+      trackPlanCreation({
+        duration: formData.duration,
+        travelStyle: formData.travelStyle,
+        startingCity: formData.startingCity,
+        groupType: formData.groupType
+      });
       
       // Redirect to the planner detail page
       router.push(`/planner/${data.planId}`);

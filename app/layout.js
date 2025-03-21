@@ -6,6 +6,7 @@ import { AuthProvider } from '../context/AuthContext';
 import AuthButton from './components/AuthButton';
 import BottomNav from './components/BottomNav';
 import ChatButtonWrapper from './components/ChatButtonWrapper';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 // 전역 스타일 추가
 const globalStyles = `
@@ -43,6 +44,9 @@ export default function RootLayout({ children }) {
         <style>{globalStyles}</style>
       </head>
       <body className="pb-16">
+        {/* Google Analytics */}
+        <GoogleAnalytics />
+        
         <AuthProvider>
           <header className="bg-white dark:bg-gray-900 shadow-sm">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

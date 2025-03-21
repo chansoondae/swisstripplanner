@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle, FiSave } from 'react-icons/fi';
+import { FiClock, FiMapPin, FiSun, FiDollarSign, FiInfo, FiHome, FiUsers, FiPlus, FiRefreshCw, FiTrash2, FiAlertCircle, FiSave, FiExternalLink } from 'react-icons/fi';
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import SwissMap from './SwissMap';
 import TransportationCost from './TransportationCost';
@@ -11,6 +11,8 @@ import locationData from '../../utils/locationData';
 import './../../styles/travelItinerary.css';
 import { calculateTravelPlan } from './../../utils/calculateTravelPlan';
 import AccommodationEdit from './AccommodationEdit';
+import { useAnalytics } from './../hooks/useAnalytics'; // Analytics 훅 추가
+
 
 // Firebase related imports
 import { doc, updateDoc } from 'firebase/firestore';
@@ -133,6 +135,26 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
   const [activityToDelete, setActivityToDelete] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false); 
 
+  // Analytics 훅 사용
+  const { trackEvent } = useAnalytics();
+
+  // 컴포넌트 마운트 시 또는 여행 계획이 변경되었을 때 이벤트 추적
+  useEffect(() => {
+    if (travelPlan && travelPlan.title) {
+      // 여행 일정 조회 이벤트 추적
+      trackEvent(
+        'view_itinerary', 
+        'content', 
+        `여행 일정 조회: ${travelPlan.title}`,
+        {
+          id: travelPlanId,
+          days: travelPlan.days?.length || 0,
+          activities: travelPlan.days?.reduce((total, day) => total + (day.activities?.length || 0), 0) || 0
+        }
+      );
+    }
+  }, [travelPlan, travelPlanId, trackEvent]);
+
   // Props에서 travelPlan이 변경되면 localTravelPlan 업데이트
   useEffect(() => {
     setLocalTravelPlan(travelPlan);
@@ -156,6 +178,18 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
   // Handle adding new activity
   const handleAddActivity = () => {
     setIsModalOpen(true);
+
+    // 활동 추가 모달 열기 이벤트 추적
+    trackEvent('open_modal', 'engagement', `활동 추가 모달 열기 (Day ${activeDay})`);
+ 
+  };
+
+  // 모달 닫기 핸들러
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    
+    // 모달 닫기 이벤트 추적
+    trackEvent('close_modal', 'engagement', '활동 추가 모달 닫기');
   };
   
   // Get current locations for modal (memoized)
@@ -168,15 +202,35 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
   // Delete icon click handler
   const handleDeleteClick = useCallback((dayIndex, activityIndex) => {
+    // 활동이 있는지 확인
+    const activityToRemove = localTravelPlan.days[dayIndex]?.activities[activityIndex];
+    
     setActivityToDelete({ dayIndex, activityIndex });
     setDeleteConfirmOpen(true);
-  }, []);
+
+     // 삭제 확인 모달 열기 이벤트 추적
+     if (activityToRemove) {
+      trackEvent(
+        'open_delete_modal', 
+        'engagement', 
+        `활동 삭제 모달 열기: ${activityToRemove.title}`,
+        {
+          day: localTravelPlan.days[dayIndex].day,
+          activity_title: activityToRemove.title,
+          activity_location: activityToRemove.location
+        }
+      );
+    }
+  }, [localTravelPlan.days, trackEvent]);
 
   // Delete cancel handler
   const handleCancelDelete = useCallback(() => {
     setDeleteConfirmOpen(false);
     setActivityToDelete(null);
-  }, []);
+
+    // 삭제 취소 이벤트 추적
+    trackEvent('cancel_delete', 'engagement', '활동 삭제 취소');
+  }, [trackEvent]);
 
   // Add new activity to the travel plan (로컬 상태만 업데이트)
   const addActivityToDay = useCallback((newActivity) => {
@@ -206,13 +260,26 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       const locations = generateLocationsFromActivities(updatedDay);
       setMapLocations(locations);
 
+      // 활동 추가 이벤트 추적
+      trackEvent(
+        'add_activity', 
+        'content_update',
+        `활동 추가: ${newActivity.title}`,
+        {
+          day: activeDay,
+          activity_title: newActivity.title,
+          activity_location: newActivity.location,
+          activity_price: newActivity.price || 0
+        }
+      );
+
       // 상위 컴포넌트에 변경 사항 알림
       if (onUpdatePlan) {
         onUpdatePlan(recalculatedPlan, true);
       }
 
     }
-  }, [localTravelPlan, activeDay, onUpdatePlan]);
+  }, [localTravelPlan, activeDay, onUpdatePlan, trackEvent]);
 
   // Delete confirmation handler (로컬 상태만 업데이트)
   const handleConfirmDelete = useCallback(() => {
@@ -241,6 +308,21 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       const locations = generateLocationsFromActivities(updatedDay);
       setMapLocations(locations);
 
+      // 활동 삭제 이벤트 추적
+      if (activityBeingDeleted) {
+        trackEvent(
+          'delete_activity', 
+          'content_update',
+          `활동 삭제: ${activityBeingDeleted.title}`,
+          {
+            day: updatedPlan.days[dayIndex].day,
+            activity_title: activityBeingDeleted.title,
+            activity_location: activityBeingDeleted.location
+          }
+        );
+      }
+
+
       // 상위 컴포넌트에 변경 사항 알림
       if (onUpdatePlan) {
         onUpdatePlan(recalculatedPlan, true);
@@ -248,13 +330,15 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
 
     } catch (error) {
       console.error('Error deleting activity:', error);
+      // 오류 이벤트 추적
+      trackEvent('error', 'system', `활동 삭제 오류: ${error.message}`);
     } finally {
       // Close modal and reset state
       setDeleteConfirmOpen(false);
       setActivityToDelete(null);
       setIsDeleting(false);
     }
-  }, [activityToDelete, localTravelPlan, activeDay, onUpdatePlan]);
+  }, [activityToDelete, localTravelPlan, activeDay, onUpdatePlan, trackEvent]);
 
   // 변경 사항 저장 핸들러
   const handleSaveChanges = async () => {
@@ -273,6 +357,14 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
           budgetBreakdown: localTravelPlan.budgetBreakdown,
           updatedAt: new Date()
         });
+
+        // 저장 성공 이벤트 추적
+        trackEvent(
+          'save_itinerary', 
+          'conversion',
+          `여행 일정 저장: ${localTravelPlan.title}`,
+          { id: travelPlanId }
+        );
       }
       
       // 부모 컴포넌트 업데이트
@@ -284,6 +376,9 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       setHasUnsavedChanges(false);
     } catch (error) {
       console.error('Error saving changes:', error);
+      // 오류 이벤트 추적
+      trackEvent('error', 'system', `여행 일정 저장 오류: ${error.message}`);
+    
       // 에러 처리 (필요시 알림 표시)
     } finally {
       setIsSaving(false);
@@ -301,12 +396,56 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
     const locations = generateLocationsFromActivities(updatedDay);
     setMapLocations(locations);
 
+    // 숙소 변경 이벤트 추적
+    if (previousAccommodation !== newAccommodation) {
+      trackEvent(
+        'update_accommodation', 
+        'content_update',
+        `숙소 정보 업데이트 (Day ${activeDay})`,
+        {
+          day: activeDay,
+          previous: previousAccommodation || 'none',
+          new: newAccommodation || 'none'
+        }
+      );
+    }
+
     // 상위 컴포넌트에 변경 사항 알림
     if (onUpdatePlan) {
       onUpdatePlan(updatedPlan, true);
     }
 
-  }, [activeDay, onUpdatePlan]);
+  }, [activeDay, onUpdatePlan, trackEvent]);
+
+  // 일자 변경 핸들러
+  const handleDayChange = (day) => {
+    setActiveDay(day);
+    
+    // 일자 변경 이벤트 추적
+    trackEvent(
+      'switch_day', 
+      'navigation',
+      `Day ${day} 조회`,
+      { previous_day: activeDay, selected_day: day }
+    );
+  };
+
+  // 외부 링크 클릭 추적
+  const handleExternalLinkClick = (e, activity) => {
+    e.stopPropagation(); // 이벤트 전파 방지
+    
+    // 외부 링크 클릭 이벤트 추적
+    trackEvent(
+      'click_external_link',
+      'engagement',
+      `외부 링크 클릭: ${activity.title}`,
+      {
+        url: activity.url,
+        location: activity.location,
+        day: activeDay
+      }
+    );
+  };
 
   const { baseLocation, endLocation } = getCurrentLocations();
 
@@ -360,7 +499,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
           {localTravelPlan.days.map((day) => (
             <button
               key={day.day}
-              onClick={() => setActiveDay(day.day)}
+              onClick={() => handleDayChange(day.day)}
               className={`px-3 py-2 text-sm md:text-base rounded-t-lg transition-colors ${
                 activeDay === day.day
                   ? 'bg-blue-600 dark:bg-yellow-600 text-white dark:text-gray-900 font-medium'
@@ -397,6 +536,23 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
                         </div>
                         <div>
                           <h3 className="font-medium text-gray-900 dark:text-white">{activity.title}</h3>
+                          
+                          {/* URL Link Badge - Only show if URL exists */}
+                          {activity.url && (
+                            <div className="mt-1 mb-1">
+                              <a 
+                                href={activity.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded-md text-xs font-medium inline-flex items-center hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                                onClick={(e) => handleExternalLinkClick(e, activity)}
+                              >
+                                <span>{activity.location} 자세히 보기</span>
+                                <FiExternalLink className="ml-1" size={12} />
+                              </a>
+                            </div>
+                          )}
+                          
                           {activity.location && (
                             <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
                               <FiMapPin className="mr-1" size={12} />
@@ -501,7 +657,7 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
       {/* Activity add modal */}
       <ActivityModal 
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={handleCloseModal}
         onAddActivity={addActivityToDay}
         currentDay={activeDay}
         baseLocation={baseLocation}
@@ -547,6 +703,22 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
           transportationDetails={localTravelPlan.transportationDetails} 
           budgetBreakdown={localTravelPlan.budgetBreakdown} 
         />
+      )}
+      
+      {/* Save changes button (only show if unsaved changes exist) */}
+      {hasUnsavedChanges && (
+        <div className="fixed bottom-4 right-4 z-10">
+          <button
+            onClick={handleSaveChanges}
+            disabled={isSaving}
+            className={`flex items-center px-4 py-2 bg-blue-600 dark:bg-yellow-600 text-white dark:text-gray-900 rounded-md shadow-lg hover:bg-blue-700 dark:hover:bg-yellow-700 transition-colors ${
+              isSaving ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+          >
+            <FiSave className="mr-2" />
+            {isSaving ? '저장 중...' : '변경사항 저장'}
+          </button>
+        </div>
       )}
     </div>
   );

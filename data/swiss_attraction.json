@@ -17,7 +17,8 @@
             "Eigergletscher"
         ],
         "Comment": "그린델발트 터미널로 가서 아이거 익스프레스를 타고 아이거 글레처로 가는걸 추천해요. 내려올땐 37번 하이킹도 하세요.",
-        "id": "JungGrin"
+        "id": "JungGrin",
+        "url": "https://cafe.naver.com/swissfriends/61815"
     },
     {
         "Name_Eng": "Jungfraujoch",
@@ -38,7 +39,8 @@
             "Eigergletscher"
         ],
         "Comment": "2B 플랫폼에서 그린델발트 가는 기차로 가서 터미널로 가서 아이거 익스프레스를 타고, 내려올 땐 클라이네샤이덱에서 라우터브루넨 방향으로 오세요.",
-        "id": "JungInte"
+        "id": "JungInte",
+        "url": "https://cafe.naver.com/swissfriends/57880"
     },
     {
         "Name_Eng": "First",
@@ -56,7 +58,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "피르스트는 하이킹이나 액티비티에 따라 시간이 많이 다릅니다.",
-        "id": "FirsGrin"
+        "id": "FirsGrin",
+        "url": "https://cafe.naver.com/swissfriends/66221"
     },
     {
         "Name_Eng": "Mannlichen",
@@ -74,7 +77,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "멘리헨 37번 하이킹을 하면 클라이네샤이덱에서 내려갑니다.",
-        "id": "MannGrin"
+        "id": "MannGrin",
+        "url": "https://cafe.naver.com/swissfriends/55622"
     },
     {
         "Name_Eng": "Mannlichen",
@@ -92,7 +96,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "멘리헨 37번 하이킹을 하면 클라이네샤이덱에서 내려갑니다.",
-        "id": "MannInte"
+        "id": "MannInte",
+        "url": "https://cafe.naver.com/swissfriends/55622"
     },
     {
         "Name_Eng": "Schynige Platte",
@@ -110,7 +115,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "옛날 증기기차를 타고서 천천히 올라갑니다",
-        "id": "SchyInte"
+        "id": "SchyInte",
+        "url": "https://cafe.naver.com/swissfriends/55816"
     },
     {
         "Name_Eng": "Harder Kulm",
@@ -128,7 +134,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "생각보다 인기가 많아 대기 줄이 길 수 있습니다.",
-        "id": "HardInte"
+        "id": "HardInte",
+        "url": "https://cafe.naver.com/swissfriends/59997"
     },
     {
         "Name_Eng": "Schilthorn",
@@ -150,7 +157,8 @@
             "Murren"
         ],
         "Comment": "2025년부터 새로운 케이블카로 운행합니다.",
-        "id": "SchiGrin"
+        "id": "SchiGrin",
+        "url": "https://cafe.naver.com/swissfriends/60147"
     },
     {
         "Name_Eng": "Schilthorn",
@@ -171,7 +179,8 @@
             "Murren"
         ],
         "Comment": "2025년부터 새로운 케이블카로 운행합니다.",
-        "id": "SchiInte"
+        "id": "SchiInte",
+        "url": "https://cafe.naver.com/swissfriends/60147"
     },
     {
         "Name_Eng": "Allmendhubel",
@@ -193,7 +202,8 @@
             "Murren"
         ],
         "Comment": "아이랑 여행 하는 가족이 의외로 놀이터를 좋아합니다.",
-        "id": "AllmGrin"
+        "id": "AllmGrin",
+        "url": "https://cafe.naver.com/swissfriends/55466"
     },
     {
         "Name_Eng": "Allmendhubel",
@@ -214,7 +224,8 @@
             "Murren"
         ],
         "Comment": "아이랑 여행 하는 가족이 의외로 놀이터를 좋아합니다.",
-        "id": "AllmInte"
+        "id": "AllmInte",
+        "url": "https://cafe.naver.com/swissfriends/55466"
     },
     {
         "Name_Eng": "Rigi",
@@ -234,7 +245,8 @@
             "Vitznau"
         ],
         "Comment": "비츠나우에서 기차 진행 방향 기준 왼쪽에 앉으세요.",
-        "id": "RigiLuze"
+        "id": "RigiLuze",
+        "url": "https://cafe.naver.com/swissfriends/52888"
     },
     {
         "Name_Eng": "Stanserhorn",
@@ -254,7 +266,8 @@
             "Stans"
         ],
         "Comment": "오픈형 케이블카는 꽤 독특한 경험 입니다.",
-        "id": "StanLuze"
+        "id": "StanLuze",
+        "url": "https://cafe.naver.com/swissfriends/61349"
     },
     {
         "Name_Eng": "Pilatus",
@@ -274,7 +287,8 @@
             "Alpnachstad"
         ],
         "Comment": "푸니쿨라 타는 알프타흐슈타트, 케이블카 타는 크리엔스 2가지 방법이 있어요.",
-        "id": "PilaLuze"
+        "id": "PilaLuze",
+        "url": "https://cafe.naver.com/swissfriends/61653"
     },
     {
         "Name_Eng": "Titlis",
@@ -294,7 +308,8 @@
             "Engelberg"
         ],
         "Comment": "360도 회전식 케이블카를 탈 수 있습니다.",
-        "id": "TitlLuze"
+        "id": "TitlLuze",
+        "url": "https://cafe.naver.com/swissfriends/61592"
     },
     {
         "Name_Eng": "Stoos",
@@ -314,7 +329,8 @@
             "Schwyz"
         ],
         "Comment": "슈토스에 와서 프론알프슈톡이나 클링엔슈톡으로 올라가야 해요.",
-        "id": "StooLuze"
+        "id": "StooLuze",
+        "url": "https://cafe.naver.com/swissfriends/61619"
     },
     {
         "Name_Eng": "Transportation Museum",
@@ -332,7 +348,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "버스나 기차로 갈 수 있지만, 유람선 타고 올 수도 있어요",
-        "id": "TranLuze"
+        "id": "TranLuze",
+        "url": "https://cafe.naver.com/swissfriends/390"
     },
     {
         "Name_Eng": "Gornergrat",
@@ -350,7 +367,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "마테호른의 장엄한 전경을 감상할 수 있는 고르너그라트는 3,089m 고지에서 알프스의 웅장한 빙하와 산봉우리들이 파노라마처럼 펼쳐지는 스위스 최고의 전망대로, 세계에서 가장 인상적인 산악 철도를 타고 도달하는 잊을 수 없는 경험을 선사합니다.",
-        "id": "GornZerm"
+        "id": "GornZerm",
+        "url": "https://cafe.naver.com/swissfriends/66204"
     },
     {
         "Name_Eng": "Sunnegga",
@@ -368,7 +386,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "수네가 역에선 라이 호수가 가깝습니다.",
-        "id": "SunnZerm"
+        "id": "SunnZerm",
+        "url": "https://cafe.naver.com/swissfriends/44734"
     },
     {
         "Name_Eng": "Blauherd",
@@ -386,7 +405,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "수네가 5대 호수 가려면 블라우헤르트까지 가야 합니다.",
-        "id": "BlauZerm"
+        "id": "BlauZerm",
+        "url": "https://cafe.naver.com/swissfriends/44734"
     },
     {
         "Name_Eng": "Matterhorn Glaicer Paradise",
@@ -404,7 +424,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "스키 타는 분들만 간혹 가는 곳 입니다.",
-        "id": "MattZerm"
+        "id": "MattZerm",
+        "url": "https://cafe.naver.com/swissfriends/28650"
     },
     {
         "Name_Eng": "Oeschinen",
@@ -424,7 +445,8 @@
             "Kandersteg"
         ],
         "Comment": "알프스의 웅장한 설산들에 둘러싸인 외시넨 호수는 에메랄드빛 맑은 물과 주변의 숨막히는 산악 풍경이 완벽한 조화를 이루어 스위스에서 가장 아름다운 고산 호수 중 하나로 꼽히는 천상의 절경입니다.",
-        "id": "OescSpie"
+        "id": "OescSpie",
+        "url": "https://cafe.naver.com/swissfriends/44827"
     },
     {
         "Name_Eng": "Lavaux",
@@ -444,7 +466,8 @@
             "Puidoux"
         ],
         "Comment": "레만 호수를 배경으로 계단식 포도밭이 끝없이 펼쳐진 라보는 유네스코 세계문화유산으로 지정된 아름다운 와인 산지로, 호수의 푸른 물결과 빛나는 포도원이 만들어내는 환상적인 풍경입니다.",
-        "id": "LavaLaus"
+        "id": "LavaLaus",
+        "url": "https://cafe.naver.com/swissfriends/59653"
     },
     {
         "Name_Eng": "Ebenalp",
@@ -465,7 +488,8 @@
             "Wasserauen"
         ],
         "Comment": "아름다운 산악 풍경과 절벽에 지어진 독특한 에셔 산장은 스위스의 숨겨진 보석입니다.",
-        "id": "EbenZuri"
+        "id": "EbenZuri",
+        "url": "https://cafe.naver.com/swissfriends/60199"
     },
     {
         "Name_Eng": "Rhine Fall",
@@ -483,7 +507,8 @@
         "Transfer Counts": 1,
         "Via": [],
         "Comment": "웅장한 물줄기가 쏟아지는 압도적인 광경과 자연의 위대함을 온몸으로 느낄 수 있는 스위스의 필수 방문지입니다.",
-        "id": "RhinZuri"
+        "id": "RhinZuri",
+        "url": "https://cafe.naver.com/swissfriends/46943"
     },
     {
         "Name_Eng": "Zurich City",
@@ -501,7 +526,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "리마트 강변을 따라 산책하며 그로스 뮌스터 프라우 뮌스터를 감상하세요.",
-        "id": "ZuriZuri"
+        "id": "ZuriZuri",
+        "url": "https://cafe.naver.com/swissfriends/52570"
     },
     {
         "Name_Eng": "Bern City",
@@ -519,7 +545,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "현대적인 도시의 세련미가 조화를 이루는 취리히는 리마트 강변을 따라 펼쳐진 중세 건축물과 예술적 분위기가 가득한 매혹적인 도시입니다.",
-        "id": "BernBern"
+        "id": "BernBern",
+        "url": "https://cafe.naver.com/swissfriends/45914"
     },
     {
         "Name_Eng": "Luzern City",
@@ -537,7 +564,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "아름다운 루체른 호수를 따라 산책하며 카펠교와 수탑을 구경하고, 사자상을 방문한 후, 중세 성벽과 무제크성벽을 따라 올라가 도시 전경을 감상해보세요.",
-        "id": "LuzeLuze"
+        "id": "LuzeLuze",
+        "url": "https://cafe.naver.com/swissfriends/45996"
     },
     {
         "Name_Eng": "St. Moritz",
@@ -609,7 +637,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "레만 호수가 내려다보이는 언덕에 자리한 로잔에서 노트르담 성당과 우시를 꼭 가보세요.",
-        "id": "LausLaus"
+        "id": "LausLaus",
+        "url": "https://cafe.naver.com/swissfriends/59653"
     },
     {
         "Name_Eng": "Montreux",
@@ -627,7 +656,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "퀸의 보컬 머큐리가 여생을 보낸 곳으로 시옹성을 꼭 가보세요.",
-        "id": "MontMont"
+        "id": "MontMont",
+        "url": "https://cafe.naver.com/swissfriends/59653"
     },
     {
         "Name_Eng": "Vevey",
@@ -645,7 +675,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "레만 호수의 진주라 불리는 브베에서 찰리 채플린과 포크를 찾아보세요.",
-        "id": "VeveVeve"
+        "id": "VeveVeve",
+        "url": "https://cafe.naver.com/swissfriends/59653"
     },
     {
         "Name_Eng": "Thun Lake",
@@ -663,7 +694,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "노이하우스, 슈피츠, 오버호펜, 툰 등 가볼만한 곳이 많아요",
-        "id": "InteThun"
+        "id": "InteThun",
+        "url": "https://cafe.naver.com/swissfriends/59557"
     },
     {
         "Name_Eng": "Spiez",
@@ -681,7 +713,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "툰 호수를 볼 수 있는 예쁜 마을이에요",
-        "id": "SpieSpie"
+        "id": "SpieSpie",
+        "url": "https://cafe.naver.com/swissfriends/59557"
     },
     {
         "Name_Eng": "Grindelwald",
@@ -699,7 +732,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "그린델발트 마을만 와도 아이거 북벽 보고 정말 좋아요",
-        "id": "GrinGrin"
+        "id": "GrinGrin",
+        "url": "https://cafe.naver.com/swissfriends/59687"
     },
     {
         "Name_Eng": "Interlaken",
@@ -717,7 +751,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "융프라우 지역의 베이스가 되는 곳이죠!",
-        "id": "InteInte"
+        "id": "InteInte",
+        "url": "https://cafe.naver.com/swissfriends/59840"
     },
     {
         "Name_Eng": "Interlaken Paragliding",
@@ -735,7 +770,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "스위스여행 필수 액티비티죠! 하늘을 날아서 알프스를 느껴보세요",
-        "id": "IntePara"
+        "id": "IntePara",
+        "url": "https://cafe.naver.com/swissfriends/61175"
     },
     {
         "Name_Eng": "Iseltwald",
@@ -753,7 +789,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "사랑의 불시착에서 현빈이 피아노 치던 곳으로 요즘 인기가 엄청 많죠",
-        "id": "InteIsel"
+        "id": "InteIsel",
+        "url": "https://cafe.naver.com/swissfriends/59500"
     },
     {
         "Name_Eng": "Lauterbrunnen",
@@ -789,7 +826,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "뮈렌에 갔다면 뮈렌 김멜발트 하이킹을 고려해보세요.",
-        "id": "MurrMurr"
+        "id": "MurrMurr",
+        "url": "https://cafe.naver.com/swissfriends/56518"
     },
     {
         "Name_Eng": "Basel",
@@ -825,7 +863,8 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "스위스에서 가장 인기 많은 마테호른 보러 체르마트 가야죠",
-        "id": "ZermZerm"
+        "id": "ZermZerm",
+        "url": "https://cafe.naver.com/swissfriends/50186"
     },
     {
         "Name_Eng": "Geneva",
@@ -843,6 +882,7 @@
         "Transfer Counts": 0,
         "Via": [],
         "Comment": "UN기구도 있고, 제또 분수도 볼 수 있어요.",
-        "id": "GeneGene"
+        "id": "GeneGene",
+        "url": "https://cafe.naver.com/swissfriends/45187"
     }
 ]

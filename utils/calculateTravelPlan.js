@@ -467,6 +467,12 @@ export function addAttractionPrices(travelPlan) {
             if ((bestAttraction.base || bestAttraction.Base) && !activity.base) {
               activity.base = bestAttraction.base || bestAttraction.Base;
             }
+
+            // url 추가
+            if (bestAttraction.url && !activity.url) {
+              activity.url = bestAttraction.url;
+            }
+
           }
         });
       }

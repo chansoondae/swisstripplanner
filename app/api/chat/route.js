@@ -24,8 +24,8 @@ export async function POST(request) {
       );
     }
 
-    console.log('요청 보내는 중:', message);
-    console.log('스레드 ID:', threadId || '신규 대화');
+    // console.log('요청 보내는 중:', message);
+    // console.log('스레드 ID:', threadId || '신규 대화');
     
     // Storm AI API 요청 데이터 준비
     const requestBody = {
@@ -36,11 +36,11 @@ export async function POST(request) {
     // 이전 대화의 threadId가 있으면 추가
     if (threadId) {
       requestBody.threadId = threadId;
-      console.log('기존 대화에 연결:', threadId);
+      // console.log('기존 대화에 연결:', threadId);
     }
     
     // 요청 데이터 로깅
-    console.log('Storm API 요청 데이터:', JSON.stringify(requestBody));
+    // console.log('Storm API 요청 데이터:', JSON.stringify(requestBody));
     
     // Storm AI API 호출
     try {
@@ -56,7 +56,7 @@ export async function POST(request) {
         }
       );
       
-      console.log('응답 상태:', response.status);
+      // console.log('응답 상태:', response.status);
       
       // 응답 구조 확인
       if (response.data && response.data.status === 'success' && 
@@ -78,8 +78,8 @@ export async function POST(request) {
           context: context.context
         }));
         
-        console.log(`AI 응답 (${aiResponse.length}자)가 성공적으로 생성되었습니다.`);
-        console.log(`응답 스레드 ID: ${responseThreadId}`);
+        // console.log(`AI 응답 (${aiResponse.length}자)가 성공적으로 생성되었습니다.`);
+        // console.log(`응답 스레드 ID: ${responseThreadId}`);
         
         return Response.json({ 
           response: aiResponse,

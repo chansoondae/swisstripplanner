@@ -6,6 +6,8 @@ import { createPortal } from 'react-dom';
 import { FiMessageCircle, FiX, FiSend, FiTrash2 } from 'react-icons/fi';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import { useAnalytics } from './../hooks/useAnalytics'; // 추가된 Analytics 훅
+
 
 // 로컬스토리지 키 상수
 const STORAGE_KEYS = {
@@ -97,6 +99,9 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
   // 메시지 영역 스크롤 관리
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
+
+  // Analytics 훅 사용
+  const { trackEvent } = useAnalytics();
 
   // 클라이언트 사이드에서만 렌더링되도록
   useEffect(() => {
@@ -321,11 +326,23 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
     if (mounted && isChatOpen) {
       setError(null);
       setTimeout(scrollToBottom, 200);
+
+      // 채팅창 열기 이벤트 추적
+      trackEvent('open_chat', 'engagement', '채팅창 열기');
     }
-  }, [isChatOpen, mounted]);
+  }, [isChatOpen, mounted, trackEvent]);
 
   const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+    const newChatState = !isChatOpen;
+    setIsChatOpen(newChatState);
+    
+    // 채팅창 열기/닫기 이벤트 추적
+    if (!newChatState) {
+      trackEvent('close_chat', 'engagement', '채팅창 닫기', {
+        message_count: messages.length,
+        conversation_length: messages.length - 1 // 첫 인사말 제외
+      });
+    }
   };
   
   // 마크다운 변환 함수 - DOMPurify로 보안 강화
@@ -381,6 +398,12 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
     // 입력값 최대 길이 제한 (3000자)
     if (trimmedInput.length > 3000) {
       setError("메시지가 너무 깁니다. 3000자 이내로 작성해주세요.");
+
+      // 오류 이벤트 추적
+      trackEvent('error', 'user_input', '메시지 길이 제한 초과', {
+        input_length: trimmedInput.length,
+        max_length: 3000
+      });
       return;
     }
 
@@ -398,6 +421,17 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
     setInputValue('');
     setIsLoading(true);
 
+    // 메시지 전송 이벤트 추적
+    trackEvent(
+      'send_message', 
+      'engagement', 
+      '사용자 메시지 전송', 
+      {
+        message_length: userInput.length,
+        is_new_conversation: messages.length <= 1 // 첫 인사말만 있으면 새 대화로 간주
+      }
+    );
+
     try {
       // 개발 모드에서 임시 응답 사용 (API 연결 전 테스트용)
       const isDevelopment = false; // process.env.NODE_ENV === 'development';
@@ -410,6 +444,11 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
           content: `[개발 모드] "${userInput}"에 대한 답변입니다. 실제 API 연결 시 이 메시지는 AI가 생성한 응답으로 대체됩니다.` 
         };
         setMessages((prev) => [...prev, aiResponse]);
+
+        // 개발 모드 응답 이벤트 추적
+        trackEvent('receive_message', 'engagement', '개발 모드 응답 수신', {
+          response_type: 'development'
+        });
       } else {
         // 프로덕션 환경에서는 실제 API 호출
         const requestBody = { 
@@ -461,6 +500,17 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
         );
         
         setMessages((prev) => [...prev, { role: 'assistant', content: cleanedResponse }]);
+
+        // 응답 수신 이벤트 추적
+        trackEvent(
+          'receive_message', 
+          'engagement', 
+          '응답 수신', 
+          {
+            response_length: cleanedResponse.length,
+            has_thread_id: !!data.threadId
+          }
+        );
       }
     } catch (error) {
       console.error('채팅 메시지 전송 오류:', error);
@@ -469,6 +519,14 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
         role: 'assistant', 
         content: `죄송합니다. 오류가 발생했습니다: ${error.message || '알 수 없는 오류'}` 
       }]);
+
+      
+      // 오류 이벤트 추적
+      trackEvent(
+        'error', 
+        'system', 
+        `채팅 응답 오류: ${error.message || '알 수 없는 오류'}`
+      );
     } finally {
       setIsLoading(false);
       // 메시지 처리 완료 후 스크롤
@@ -494,8 +552,20 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
         // 로컬스토리지 업데이트
         safelyStoreData(STORAGE_KEYS.MESSAGES, [initialMessage]);
         safelyStoreData(STORAGE_KEYS.LAST_UPDATED, new Date().toISOString());
+
+        // 대화 초기화 이벤트 추적
+        trackEvent(
+          'clear_conversation', 
+          'engagement', 
+          '대화 내용 초기화', 
+          { previous_message_count: messages.length }
+        );
       } catch (err) {
         console.error('대화 초기화 중 오류:', err);
+
+        // 초기화 오류 이벤트 추적
+        trackEvent('error', 'system', `대화 초기화 오류: ${err.message}`);
+
       }
     }
   };
@@ -505,6 +575,9 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
+
+      // Enter 키 메시지 전송 이벤트 추적
+      trackEvent('keyboard_shortcut', 'engagement', 'Enter 키로 메시지 전송');
     }
   };
 

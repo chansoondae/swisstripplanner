@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { FiSearch, FiMapPin, FiInfo } from 'react-icons/fi';
+import { FiSearch, FiMapPin, FiInfo, FiExternalLink } from 'react-icons/fi';
 import swissAttractions from './../../data/swiss_attraction.json';
 import { FaTrain, FaTram, FaMountain, FaShip } from 'react-icons/fa';
 
@@ -216,6 +216,23 @@ export default function AttractionPage() {
                     <div className="text-gray-700 dark:text-gray-300">
                       <span className="font-semibold">Saver Day Pass:</span> {selectedAttraction.main.SaverDayPass || "-"}
                     </div>
+                    
+                    {/* URL 링크 추가 - URL이 있는 경우에만 표시 */}
+                    {selectedAttraction.main.url && (
+                      <div className="text-gray-700 dark:text-gray-300 col-span-2">
+                        <span className="font-semibold">웹사이트:</span>{' '}
+                        <a 
+                          href={selectedAttraction.main.url} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center"
+                          onClick={(e) => e.stopPropagation()} // 모달이 닫히지 않도록 클릭 이벤트 전파 방지
+                        >
+                          {selectedAttraction.main.url}
+                          <FiExternalLink className="ml-1" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

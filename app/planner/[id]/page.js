@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation';
 import TravelItinerary from './../../components/TravelItinerary';
 import { doc, getDoc, addDoc, collection, updateDoc } from 'firebase/firestore';
 import { db } from './../../../lib/firebase';
+import { useAnalytics } from './../../hooks/useAnalytics'; // 추가된 Analytics 훅
 import { FiLoader, FiArrowLeft, FiClock, FiMapPin, FiUsers, FiCalendar, FiDollarSign, FiCopy, FiSave, FiEdit } from 'react-icons/fi';
 import ChatButtonPortal from './../../components/ChatButtonPortal';
 import { useAuth } from '../../../context/AuthContext';
@@ -43,7 +44,7 @@ const NotFoundState = () => (
 );
 
 // Processing state component
-const ProcessingState = ({ plan, isMobile, router, formatRelativeTime }) => (
+const ProcessingState = ({ plan, isMobile, router, formatRelativeTime, trackEvent }) => (
   <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
     <div className="flex flex-col items-center justify-center py-8">
       <div className="animate-spin text-blue-600 dark:text-yellow-300 mb-4">
@@ -103,7 +104,10 @@ const ProcessingState = ({ plan, isMobile, router, formatRelativeTime }) => (
           
           <div className="mt-4 flex justify-center">
             <button 
-              onClick={() => router.push('/planner')}
+              onClick={() => {
+                trackEvent('button_click', 'navigation', '계획 목록으로 돌아가기');
+                router.push('/planner');
+              }}
               className={`btn btn-primary mb-4 flex items-center ${isMobile ? 'text-sm' : ''} bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg`}
             >
               <FiArrowLeft className="mr-1" /> 계획 목록으로 돌아가기
@@ -164,6 +168,7 @@ export default function TravelPlanPage() {
   const router = useRouter();
   const planId = params.id;
   const { user } = useAuth();
+  const { trackPageView, trackEvent } = useAnalytics(); // Analytics 훅 사용
   
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -174,6 +179,13 @@ export default function TravelPlanPage() {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [localTravelPlan, setLocalTravelPlan] = useState(null);
+  
+  // 페이지 로드 시 분석 이벤트 발생
+  useEffect(() => {
+    if (planId) {
+      trackPageView(`여행 계획 상세: ${planId}`);
+    }
+  }, [trackPageView, planId]);
   
   // Mobile detection
   useEffect(() => {
@@ -242,12 +254,16 @@ export default function TravelPlanPage() {
       // 저장 완료 후 상태 초기화
       setHasUnsavedChanges(false);
       
+      // 이벤트 추적: 여행 계획 저장
+      trackEvent('save_content', 'engagement', `여행 계획 저장: ${planId}`);
+      
       // 성공 메시지 3초 후 사라짐
       setTimeout(() => {
         setSaveSuccess(false);
       }, 3000);
     } catch (error) {
       console.error('Error saving changes:', error);
+      trackEvent('error', 'system', `여행 계획 저장 오류: ${error.message}`);
       alert("변경사항 저장 중 오류가 발생했습니다. 다시 시도해주세요.");
     } finally {
       setIsSaving(false);
@@ -279,18 +295,35 @@ export default function TravelPlanPage() {
         // 계획의 소유자 확인
         setIsOwner(user && planData.userId === user.uid);
         
-        // If plan is processing, check again in 5 seconds
+        // 계획 상태 확인
         const status = checkPlanStatus(planData);
         
+        // 이벤트 추적: 여행 계획 조회 완료
+        trackEvent(
+          'view_content', 
+          'content', 
+          `여행 계획 조회: ${planId}`, 
+          {
+            owner: (user && planData.userId === user.uid),
+            status: status,
+            title: planData.title || '제목 없음'
+          }
+        );
+        
+        // If plan is processing, check again in 5 seconds
         if (status === 'processing') {
+          // 이벤트 추적: 생성 중인 여행 계획 조회
+          trackEvent('view_processing_content', 'content', `생성 중인 여행 계획 조회: ${planId}`);
           setTimeout(() => fetchTravelPlan(true), 5000);
         }
       } else {
         setError('여행 계획을 찾을 수 없습니다.');
+        trackEvent('error', 'content', `존재하지 않는 여행 계획: ${planId}`);
       }
     } catch (err) {
       console.error('여행 계획 불러오기 오류:', err);
       setError('여행 계획을 불러오는 중 오류가 발생했습니다. 다시 시도해주세요.');
+      trackEvent('error', 'system', `여행 계획 불러오기 오류: ${err.message}`);
     } finally {
       // Only update loading state when first loading (not refreshing)
       if (!isRefreshing) {
@@ -322,6 +355,9 @@ export default function TravelPlanPage() {
       // 새 문서 추가
       const docRef = await addDoc(collection(db, 'travelPlans'), newPlanData);
       
+      // 이벤트 추적: 내 여행으로 저장
+      trackEvent('copy_to_own', 'conversion', `내 여행으로 저장: ${planId} -> ${docRef.id}`);
+      
       // 저장 성공 표시
       setSaveSuccess(true);
       
@@ -332,6 +368,7 @@ export default function TravelPlanPage() {
       
     } catch (error) {
       console.error("저장 중 오류 발생:", error);
+      trackEvent('error', 'system', `내 여행으로 저장 오류: ${error.message}`);
       alert("저장 중 오류가 발생했습니다. 다시 시도해주세요.");
     } finally {
       setIsSaving(false);
@@ -342,6 +379,11 @@ export default function TravelPlanPage() {
   const handleTravelPlanUpdate = (updatedPlan, hasChanges) => {
     setLocalTravelPlan(updatedPlan);
     setHasUnsavedChanges(hasChanges);
+    
+    // 변경사항 발생 이벤트 추적
+    if (hasChanges && !hasUnsavedChanges) {
+      trackEvent('edit_content', 'engagement', `여행 계획 편집: ${planId}`);
+    }
   };
   
   // Fetch data when component mounts or planId or user changes
@@ -389,6 +431,7 @@ export default function TravelPlanPage() {
           isMobile={isMobile} 
           router={router}
           formatRelativeTime={formatRelativeTime}
+          trackEvent={trackEvent}
         />
       </div>
     );
@@ -450,6 +493,11 @@ export default function TravelPlanPage() {
                 className="px-4 py-2 bg-blue-600 dark:bg-yellow-400 text-white dark:text-gray-900 rounded-md hover:bg-blue-700 transition-colors flex items-center"
                 onClick={saveAsMine}
                 disabled={isSaving || !user}
+                onMouseOver={() => {
+                  if (!user) {
+                    trackEvent('login_prompt', 'engagement', '내 여행으로 저장 로그인 필요');
+                  }
+                }}
               >
                 {isSaving ? (
                   <>
