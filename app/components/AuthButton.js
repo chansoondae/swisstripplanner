@@ -87,7 +87,7 @@ export default function AuthButton() {
         onClick={handleLogin}
         data-testid="auth-button"
         disabled={loginInProgress}
-        className={`flex items-center px-4 py-2 rounded-md text-white font-medium transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+        className={`flex items-center px-4 py-2 rounded-md text-white dark:text-gray-900 font-medium transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
           loginInProgress 
             ? 'bg-blue-400 dark:bg-yellow-300 cursor-not-allowed' 
             : 'bg-blue-600 hover:bg-blue-700 dark:bg-yellow-400 dark:hover:bg-yellow-500'

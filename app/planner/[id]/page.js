@@ -13,10 +13,10 @@ import { useAuth } from '../../../context/AuthContext';
 // Loading component
 const LoadingState = ({ message }) => (
   <div className="flex flex-col items-center justify-center py-12">
-    <div className="animate-spin text-blue-600 mb-4">
+    <div className="animate-spin text-blue-600 dark:text-yellow-400 mb-4">
       <FiLoader size={40} />
     </div>
-    <p className="text-gray-600 text-lg">{message}</p>
+    <p className="text-gray-600 dark:text-gray-300 text-lg">{message}</p>
   </div>
 );
 
@@ -24,7 +24,7 @@ const LoadingState = ({ message }) => (
 const ErrorState = ({ error }) => (
   <div className="text-center py-12">
     <h1 className="text-2xl font-bold text-red-600 mb-4">오류가 발생했습니다</h1>
-    <p className="text-gray-600">{error}</p>
+    <p className="text-gray-600 dark:text-gray-300">{error}</p>
     <a href="/planner" className="btn btn-primary mt-6 inline-block py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700">
       여행 계획 페이지로 돌아가기
     </a>
@@ -35,7 +35,7 @@ const ErrorState = ({ error }) => (
 const NotFoundState = () => (
   <div className="text-center py-12">
     <h1 className="text-2xl font-bold mb-4">여행 계획을 찾을 수 없습니다</h1>
-    <p className="text-gray-600">요청하신 여행 계획이 존재하지 않거나 만료되었습니다.</p>
+    <p className="text-gray-600 dark:text-gray-300">요청하신 여행 계획이 존재하지 않거나 만료되었습니다.</p>
     <a href="/" className="btn btn-primary mt-6 inline-block py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700">
       새 여행 계획 만들기
     </a>
@@ -44,49 +44,49 @@ const NotFoundState = () => (
 
 // Processing state component
 const ProcessingState = ({ plan, isMobile, router, formatRelativeTime }) => (
-  <div className="bg-white rounded-lg shadow-lg p-6">
+  <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-6">
     <div className="flex flex-col items-center justify-center py-8">
-      <div className="animate-spin text-blue-600 mb-4">
+      <div className="animate-spin text-blue-600 dark:text-yellow-300 mb-4">
         <FiLoader size={40} />
       </div>
-      <h2 className="text-xl font-bold text-gray-800 mb-2">여행 계획 생성 중...</h2>
-      <p className="text-gray-600 text-center mb-6">
+      <h2 className="text-xl font-bold text-gray-800 dark_text-gray-100 mb-2">여행 계획 생성 중...</h2>
+      <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
         AI가 맞춤형 스위스 여행 일정을 작성하고 있습니다.<br />
         최대 2분 정도 소요될 수 있습니다.
       </p>
       
       {/* Plan request preview */}
       {plan?.options && (
-        <div className="w-full max-w-md bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
-          <h3 className="font-semibold text-blue-800 mb-2">요청하신 여행 정보</h3>
+        <div className="w-full max-w-md bg-blue-50 dark:bg-amber-900 p-4 rounded-lg border border-blue-200 mt-4">
+          <h3 className="font-semibold text-blue-800 dark:text-yellow-200 mb-2">요청하신 여행 정보</h3>
           <div className="grid grid-cols-2 gap-2">
             {plan.options.startingCity && (
               <div className="flex items-center">
-                <FiMapPin className="mr-1 text-blue-600" /> 
+                <FiMapPin className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                 <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>출발: {plan.options.startingCity}</span>
               </div>
             )} 
             {plan.options.duration && (
               <div className="flex items-center">
-                <FiClock className="mr-1 text-blue-600" /> 
+                <FiClock className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                 <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>기간: {plan.options.duration}일</span>
               </div>
             )}
             {plan.options.groupType && (    
               <div className="flex items-center">
-                <FiUsers className="mr-1 text-blue-600" /> 
+                <FiUsers className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                 <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>여행자: {plan.options.groupType}</span>
               </div>
             )}
             {plan.options.budget && (    
               <div className="flex items-center">
-                <FiDollarSign className="mr-1 text-blue-600" /> 
+                <FiDollarSign className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                 <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>예산: {plan.options.budget}</span>
               </div>
             )}
             {plan.createdAt && (
               <div className="flex items-center">
-                <FiCalendar className="mr-1 text-blue-600" /> 
+                <FiCalendar className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                 <span className={`${isMobile ? 'text-sm' : 'text-base'}`}> 
                   생성: {formatRelativeTime(plan.createdAt)}
                 </span>
@@ -95,9 +95,9 @@ const ProcessingState = ({ plan, isMobile, router, formatRelativeTime }) => (
           </div>
           
           {plan.options.prompt && (
-            <div className="mt-3 pt-3 border-t border-blue-200">
-              <p className="text-sm text-blue-800 font-medium mb-1">여행 요청:</p>
-              <p className="text-sm text-gray-700 italic">"{plan.options.prompt}"</p>
+            <div className="mt-3 pt-3 border-t border-blue-200 dark:border-yellow-700">
+              <p className="text-sm text-blue-800 dark:text-yellow-400 font-medium mb-1">여행 요청:</p>
+              <p className="text-sm text-gray-700 dark:text-gray-200 italic">"{plan.options.prompt}"</p>
             </div>
           )}
           
