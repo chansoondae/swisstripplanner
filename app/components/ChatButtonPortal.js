@@ -78,7 +78,7 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
   // 버튼 위치 고정
   const buttonStyle = {
     position: 'fixed',
-    bottom: '1.5rem',
+    bottom: '3.5rem',
     right: '1.5rem',
     zIndex: 50,
     width: '3.5rem', // 크기 고정
@@ -527,7 +527,7 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
       {/* 채팅 버튼 */}
       <button
         onClick={toggleChat}
-        className={`${className || 'bg-blue-600 dark:bg-yellow-400'}`}
+        className={`transition-colors duration-200 hover:bg-blue-700 dark:hover:bg-yellow-500 ${className || 'bg-blue-600 dark:bg-yellow-400'}`}
         style={buttonStyle}
         aria-label="Swiss Travel Chat"
       >
