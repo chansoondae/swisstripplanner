@@ -44,7 +44,19 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  
+    // 특히 prompt 필드에 대한 검증 강화
+    if (name === 'prompt') {
+      // HTML 태그 및 악성 패턴 제거
+      const sanitizedValue = value
+        .replace(/<[^>]*>?/gm, '') // HTML 태그 제거
+        .replace(/javascript:/gi, '') // 악성 URL 프로토콜 제거
+        .replace(/on\w+=/gi, ''); // 이벤트 핸들러 제거
+      
+      setFormData({ ...formData, [name]: sanitizedValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
   
   // Handle checkbox changes for interests
@@ -72,9 +84,13 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // userId를 폼 데이터에 추가 (사용자가 로그인한 경우)
+    // 폼 데이터 검증
+    const sanitizedPrompt = DOMPurify.sanitize(formData.prompt);
+    
+    // 서버에 전송할 안전한 데이터 준비
     const dataWithUserId = {
       ...formData,
+      prompt: sanitizedPrompt,
       userId: user ? user.uid : null
     };
     
@@ -113,6 +129,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
             value={formData.prompt}
             onChange={handleChange}
             required
+            maxLength={1000} // 최대 입력 길이 제한
           ></textarea>
         </div>
         

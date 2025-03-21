@@ -12,6 +12,7 @@
     "@aws-sdk/client-sqs": "^3.772.0",
     "@react-google-maps/api": "^2.20.6",
     "axios": "^1.8.4",
+    "dompurify": "^3.2.4",
     "dotenv": "^16.4.7",
     "firebase": "^11.4.0",
     "firebase-admin": "^13.2.0",
