@@ -17,6 +17,8 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  margin-bottom: 5rem !important; /* 하단 여백 추가 - !important로 다른 스타일보다 우선 적용 */
+  position: relative; /* 위치 참조 설정 */
 }
 
 /* Custom utility classes */
@@ -34,6 +36,24 @@ body {
 
 .btn-outline {
   @apply border border-gray-300 bg-transparent hover:bg-gray-50;
+}
+
+/* 이미 position:fixed로 설정된 요소는 영향받지 않음 */
+.fixed-chat-button {
+  /* 채팅 버튼 스타일 */
+  position: fixed !important; 
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  z-index: 100 !important;
+  /* 다른 변환이나 애니메이션에 영향 받지 않도록 설정 */
+  transform: none !important;
+  transition: background-color 0.2s, color 0.2s !important;
+}
+
+/* 페이지 전환 시 레이아웃 시프트 방지 */
+.page-container {
+  min-height: calc(100vh - 5rem); /* 버튼 영역 제외한 최소 높이 */
+  position: relative;
 }
 
 /* Print styles */

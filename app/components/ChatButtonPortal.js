@@ -74,6 +74,22 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
   
   // 다크 모드 감지
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // 버튼 위치 고정
+  const buttonStyle = {
+    position: 'fixed',
+    bottom: '1.5rem',
+    right: '1.5rem',
+    zIndex: 50,
+    width: '3.5rem', // 크기 고정
+    height: '3.5rem', // 크기 고정
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '1rem', 
+    borderRadius: '9999px', 
+    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+  };
   
   useEffect(() => {
     if (mounted) {
@@ -511,19 +527,14 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
       {/* 채팅 버튼 */}
       <button
         onClick={toggleChat}
-        className={`fixed bottom-6 right-6 p-4 rounded-full shadow-lg transition-all hover:scale-110 z-50 ${className || 'bg-blue-600 dark:bg-yellow-400'}`}
-        style={{ 
-          position: 'fixed', 
-          bottom: '1.5rem', 
-          right: '1.5rem', 
-          padding: '1rem', 
-          borderRadius: '9999px', 
-          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-          zIndex: 50
-        }}
+        className={`${className || 'bg-blue-600 dark:bg-yellow-400'}`}
+        style={buttonStyle}
         aria-label="Swiss Travel Chat"
       >
-        <FiMessageCircle className={`text-2xl ${iconClassName || 'text-white dark:text-gray-900'}`} style={{ fontSize: '1.5rem' }} />
+        <FiMessageCircle 
+          className={`text-2xl ${iconClassName || 'text-white dark:text-gray-900'}`} 
+          style={{ fontSize: '1.5rem' }} 
+        />
       </button>
 
       {/* 채팅 모달 */}
@@ -537,7 +548,7 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
             bottom: 0, 
             left: 0, 
             backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-            zIndex: 50,
+            zIndex: 100, // 더 높은 z-index
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -586,7 +597,7 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
                 {messages.length > 1 && (
                   <button
                     onClick={clearConversation}
-                    className="text-primary hover:text-gray-200"
+                    className="text-white dark:text-gray-900 hover:text-gray-200"
                     title="대화 내용 초기화"
                     style={{ cursor: 'pointer' }}
                   >
@@ -597,7 +608,7 @@ const ChatButtonPortal = ({ className, iconClassName }) => {
                 {/* 닫기 버튼 */}
                 <button 
                   onClick={toggleChat} 
-                  className="text-primary hover:text-gray-200"
+                  className="text-white dark:text-gray-900 hover:text-gray-200"
                   style={{ cursor: 'pointer' }}
                 >
                   <FiX size={24} strokeWidth={2.5} />

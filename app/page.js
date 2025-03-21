@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PlannerForm from './components/PlannerForm';
-import ChatButtonPortal from './components/ChatButtonPortal';
 
 export default function Home() {
   const router = useRouter();
@@ -50,10 +49,7 @@ export default function Home() {
         </p>
       </div>
       
-      <PlannerForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
-
-      <ChatButtonPortal />
-    
+      <PlannerForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />    
     </div>
   );
 }
