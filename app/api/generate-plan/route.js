@@ -20,10 +20,20 @@ export async function POST(request) {
       );
     }
 
+    // userId가 제공되었는지 확인 (옵셔널 - 익명 사용도 허용)
+    const userId = options.userId || null;
+    console.log('사용자 ID:', userId);
+
     // 1. Firestore에 초기 문서 생성 (processing 상태)
     console.log('Firestore 초기 문서 생성 중...');
     let planId;
     try {
+        // userId를 포함한 옵션 전달
+      const planOptions = {
+        ...options,
+        userId: userId
+      };
+
       planId = await createInitialPlanEntry(options);
       console.log('Firestore 문서 생성 완료:', planId);
     } catch (dbError) {
@@ -39,6 +49,7 @@ export async function POST(request) {
     const messageData = {
       type: 'GENERATE_TRAVEL_PLAN',
       planId, // 생성된 문서 ID를 함께 전송
+      userId, // 사용자 ID 추가
       options: {
         prompt: options.prompt,
         duration: options.duration,

@@ -1,11 +1,10 @@
-//app/planner/page.js
-
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { collection, getDocs, query, orderBy, limit, startAfter } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit, startAfter, where } from 'firebase/firestore';
 import { db } from './../../lib/firebase';
+import { useAuth } from '../../context/AuthContext';
 import { FiMapPin, FiClock, FiCalendar, FiPlus, FiLoader, FiAlertCircle, FiHeart, FiUsers } from 'react-icons/fi';
 import { GiMountainRoad, GiCastle } from "react-icons/gi";
 import { TbTrain, TbMountain } from "react-icons/tb";
@@ -29,8 +28,12 @@ export default function PlannerPage() {
   const [hasMore, setHasMore] = useState(true);
   const [lastDoc, setLastDoc] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  // 필터 상태 추가
+  const [filter, setFilter] = useState('all'); // 'all' 또는 'mine'
+  
   const observerRef = useRef();
   const router = useRouter();
+  const { user } = useAuth(); // 인증 정보 사용
   
   const ITEMS_PER_PAGE = 5; // 한 번에 가져올 여행 계획 수
 
@@ -51,15 +54,38 @@ export default function PlannerPage() {
     };
   }, []);
 
+  // 필터 변경시 데이터 다시 로드
+  useEffect(() => {
+    setItineraries([]);
+    setLastDoc(null);
+    setHasMore(true);
+    fetchInitialItineraries();
+  }, [filter, user]);
+
   // 초기 데이터 로드
   const fetchInitialItineraries = async () => {
     try {
       setLoading(true);
-      const q = query(
-        collection(db, 'travelPlans'), 
-        orderBy('createdAt', 'desc'),
-        limit(ITEMS_PER_PAGE)
-      );
+      
+      let q;
+      
+      // 필터에 따른 쿼리 생성
+      if (filter === 'mine' && user) {
+        // 내 여행 필터링 (로그인한 경우만)
+        q = query(
+          collection(db, 'travelPlans'),
+          where('userId', '==', user.uid),
+          orderBy('createdAt', 'desc'),
+          limit(ITEMS_PER_PAGE)
+        );
+      } else {
+        // 전체 여행 표시
+        q = query(
+          collection(db, 'travelPlans'), 
+          orderBy('createdAt', 'desc'),
+          limit(ITEMS_PER_PAGE)
+        );
+      }
       
       const querySnapshot = await getDocs(q);
       
@@ -75,9 +101,6 @@ export default function PlannerPage() {
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate() || new Date(),
       }));
-      
-      // Log retrieved data for debugging
-      // console.log("Retrieved travel plans data:", itinerariesData);
       
       // 마지막 문서 저장
       const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
@@ -99,12 +122,27 @@ export default function PlannerPage() {
     try {
       setLoadingMore(true);
       
-      const q = query(
-        collection(db, 'travelPlans'),
-        orderBy('createdAt', 'desc'),
-        startAfter(lastDoc),
-        limit(ITEMS_PER_PAGE)
-      );
+      let q;
+      
+      // 필터에 따른 쿼리 생성
+      if (filter === 'mine' && user) {
+        // 내 여행 필터링 (로그인한 경우만)
+        q = query(
+          collection(db, 'travelPlans'),
+          where('userId', '==', user.uid),
+          orderBy('createdAt', 'desc'),
+          startAfter(lastDoc),
+          limit(ITEMS_PER_PAGE)
+        );
+      } else {
+        // 전체 여행 표시
+        q = query(
+          collection(db, 'travelPlans'),
+          orderBy('createdAt', 'desc'),
+          startAfter(lastDoc),
+          limit(ITEMS_PER_PAGE)
+        );
+      }
       
       const querySnapshot = await getDocs(q);
       
@@ -147,19 +185,13 @@ export default function PlannerPage() {
     if (node) observerRef.current.observe(node);
   }, [loading, loadingMore, hasMore]);
 
-  useEffect(() => {
-    fetchInitialItineraries();
-    
-    // 컴포넌트 언마운트 시 Observer 해제
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
-
   const handleItineraryClick = (id) => {
     router.push(`/planner/${id}`);
+  };
+
+  // 필터 변경 핸들러
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
   };
 
   // 날짜와 시간 포맷 함수
@@ -248,6 +280,43 @@ export default function PlannerPage() {
         </a>
       </div>
 
+      {/* 필터 라디오 버튼 */}
+      <div className={`mb-4 ${isMobile ? 'px-4' : ''}`}>
+        <div className="bg-gray-100 p-3 rounded-lg flex items-center justify-start">
+          {/* <span className="mr-4 text-gray-700 font-medium">필터:</span> */}
+          <div className="flex space-x-4">
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                className="form-radio text-blue-600"
+                name="filter"
+                value="all"
+                checked={filter === 'all'}
+                onChange={() => handleFilterChange('all')}
+              />
+              <span className="ml-2 text-gray-700">전체 여행</span>
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                className="form-radio text-blue-600"
+                name="filter"
+                value="mine"
+                checked={filter === 'mine'}
+                onChange={() => handleFilterChange('mine')}
+                disabled={!user}
+              />
+              <span className={`ml-2 ${user ? 'text-gray-700' : 'text-gray-400'}`}>내 여행</span>
+            </label>
+          </div>
+          {!user && filter === 'all' && (
+            <span className="ml-2 text-xs text-gray-500">
+              (로그인하면 내 여행만 볼 수 있어요)
+            </span>
+          )}
+        </div>
+      </div>
+
       {loading ? (
         // 초기 로딩 상태를 스피너로 표시
         <div className={`bg-white rounded-lg shadow-lg ${isMobile ? 'p-4' : 'p-6'}`}>
@@ -259,7 +328,11 @@ export default function PlannerPage() {
           {itineraries.length === 0 ? (
             // 여행 계획이 없을 때
             <div className="text-center p-8 border border-dashed rounded-lg">
-              <p className="text-gray-500">저장된 여행 계획이 없습니다.</p>
+              {filter === 'mine' ? (
+                <p className="text-gray-500">저장된 내 여행 계획이 없습니다.</p>
+              ) : (
+                <p className="text-gray-500">저장된 여행 계획이 없습니다.</p>
+              )}
               <a 
                 href="/" 
                 className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -294,6 +367,17 @@ export default function PlannerPage() {
                   font-weight: 500;
                   margin-left: 0.5rem;
                   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                }
+                .owner-badge {
+                  display: inline-flex;
+                  align-items: center;
+                  background-color: #E0F2FE;
+                  color: #0369A1;
+                  padding: 0.25rem 0.75rem;
+                  border-radius: 9999px;
+                  font-weight: 500;
+                  margin-left: 0.5rem;
+                  font-size: 0.75rem;
                 }
                 .trip-info-badge {
                   display: inline-flex;
@@ -338,6 +422,8 @@ export default function PlannerPage() {
                 const placeTypeCounts = countPlaceTypes(itinerary.destinations);
                 const itineraryStatus = getItineraryStatus(itinerary);
                 const isProcessing = itineraryStatus === 'processing';
+                // 내 여행인지 확인
+                const isMyItinerary = user && itinerary.userId === user.uid;
                 
                 // Get travel options from the itinerary or its options property
                 const options = itinerary.options || {};
@@ -366,6 +452,13 @@ export default function PlannerPage() {
                       {isProcessing && (
                         <span className="processing-badge">
                           <FiLoader className="mr-1 animate-spin" /> 생성 중...
+                        </span>
+                      )}
+                      
+                      {/* 내 여행 배지 표시 */}
+                      {filter === 'all' && isMyItinerary && (
+                        <span className="owner-badge">
+                          내 여행
                         </span>
                       )}
                     </div>

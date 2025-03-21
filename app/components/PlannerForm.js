@@ -3,8 +3,11 @@
 
 import { useState } from 'react';
 import { FiClock, FiUsers, FiMapPin, FiCalendar, FiHeart, FiSend } from 'react-icons/fi';
+import { useAuth } from '../../context/AuthContext';
 
 const PlannerForm = ({ onSubmit, isSubmitting }) => {
+  const { user } = useAuth(); // 인증 정보 사용
+  
   const [formData, setFormData] = useState({
     prompt: '',
     duration: '4',
@@ -68,12 +71,34 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    
+    // userId를 폼 데이터에 추가 (사용자가 로그인한 경우)
+    const dataWithUserId = {
+      ...formData,
+      userId: user ? user.uid : null
+    };
+    
+    onSubmit(dataWithUserId);
   };
   
   return (
     <div className="bg-white shadow-md rounded-lg p-6">
       <form onSubmit={handleSubmit}>
+        {/* 로그인 정보 표시 (선택적) */}
+        {user ? (
+          <div className="mb-4 bg-blue-50 p-3 rounded-md text-blue-700 text-sm">
+            <p>
+              {user.displayName || user.email}님으로 로그인됨. 여행 계획이 귀하의 계정과 연결됩니다.
+            </p>
+          </div>
+        ) : (
+          <div className="mb-4 bg-gray-50 p-3 rounded-md text-gray-600 text-sm">
+            <p>
+              로그인하지 않은 상태입니다. 로그인하면 여행 계획을 저장하고 나중에 접근할 수 있습니다.
+            </p>
+          </div>
+        )}
+        
         {/* Textarea for detailed prompt */}
         <div className="mb-6">
           <label htmlFor="prompt" className="text-sm font-medium text-gray-700 mb-1">
