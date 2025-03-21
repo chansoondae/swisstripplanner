@@ -4,7 +4,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect, Suspense } from 'react';
-import { pageview, GA_TRACKING_ID } from '../lib/gtag';
+import { pageview, GA_TRACKING_ID } from '../../lib/gtag';
 
 // 실제 분석 로직을 처리하는 컴포넌트
 function AnalyticsTracking() {
