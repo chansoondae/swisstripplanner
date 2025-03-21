@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import { FiHome } from 'react-icons/fi';
 import { calculateTravelPlan } from './../../utils/calculateTravelPlan';
+import { useAnalytics } from './../hooks/useAnalytics'; // Analytics 훅 추가
 
 const AccommodationEdit = ({ 
   day, 
@@ -16,6 +17,9 @@ const AccommodationEdit = ({
 }) => {
   const [isEditingAccommodation, setIsEditingAccommodation] = useState(false);
   const [selectedAccommodation, setSelectedAccommodation] = useState("");
+  
+  // Analytics 훅 사용
+  const { trackEvent } = useAnalytics();
 
   // Get available cities from locationData
   const availableCities = useMemo(() => 
@@ -28,11 +32,24 @@ const AccommodationEdit = ({
     const currentAccommodation = day.accommodation || "";
     setSelectedAccommodation(currentAccommodation);
     setIsEditingAccommodation(true);
-  }, [day]);
+    
+    // 숙소 편집 시작 이벤트 추적
+    trackEvent(
+      'start_accommodation_edit', 
+      'engagement',
+      `숙소 편집 시작 (Day ${activeDay})`,
+      {
+        day: activeDay,
+        current_accommodation: currentAccommodation
+      }
+    );
+  }, [day, activeDay, trackEvent]);
 
   // Handle accommodation change
   const handleAccommodationChange = useCallback((newAccommodation) => {
     try {
+      const previousAccommodation = day.accommodation || "";
+      
       // Create a copy of current data
       const updatedPlan = { ...travelPlan };
       
@@ -57,19 +74,57 @@ const AccommodationEdit = ({
         const updatedDay = recalculatedPlan.days.filter(d => d.day === activeDay);
         const locations = generateLocationsFromActivities(updatedDay);
         setMapLocations(locations);
+        
+        // 숙소 변경 이벤트 추적 (변경 사항이 있는 경우에만)
+        if (previousAccommodation !== newAccommodation) {
+          trackEvent(
+            'update_accommodation', 
+            'content_update',
+            `숙소 정보 업데이트 (Day ${activeDay})`,
+            {
+              day: activeDay,
+              previous: previousAccommodation || 'none',
+              new: newAccommodation || 'none'
+            }
+          );
+        }
       }
     } catch (error) {
       console.error('Error updating accommodation:', error);
+      
+      // 숙소 업데이트 오류 이벤트 추적
+      trackEvent(
+        'error', 
+        'system',
+        `숙소 업데이트 오류: ${error.message}`
+      );
     } finally {
       // Exit edit mode
       setIsEditingAccommodation(false);
+      
+      // 숙소 편집 종료 이벤트 추적
+      trackEvent(
+        'end_accommodation_edit', 
+        'engagement',
+        `숙소 편집 완료 (Day ${activeDay})`
+      );
     }
-  }, [travelPlan, activeDay, onUpdatePlan, generateLocationsFromActivities, setMapLocations]);
+  }, [travelPlan, day, activeDay, onUpdatePlan, generateLocationsFromActivities, setMapLocations, trackEvent]);
 
   // Cancel edit without saving
   const handleCancelAccommodationEdit = useCallback(() => {
     setIsEditingAccommodation(false);
-  }, []);
+    
+    // 숙소 편집 취소 이벤트 추적
+    trackEvent(
+      'cancel_accommodation_edit', 
+      'engagement',
+      `숙소 편집 취소 (Day ${activeDay})`,
+      {
+        day: activeDay
+      }
+    );
+  }, [activeDay, trackEvent]);
 
   return (
     <div className="bg-blue-50 dark:bg-amber-800 p-4 border-t relative">
@@ -80,7 +135,20 @@ const AccommodationEdit = ({
           <div className="ml-2 flex-1">
             <select
               value={selectedAccommodation}
-              onChange={(e) => setSelectedAccommodation(e.target.value)}
+              onChange={(e) => {
+                setSelectedAccommodation(e.target.value);
+                
+                // 숙소 선택 변경 이벤트 추적
+                trackEvent(
+                  'select_accommodation', 
+                  'engagement',
+                  `숙소 선택 변경 (Day ${activeDay})`,
+                  {
+                    day: activeDay,
+                    selected: e.target.value
+                  }
+                );
+              }}
               className="p-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-blue-300 rounded-md w-full max-w-xs"
             >
               <option value="">선택하세요</option>

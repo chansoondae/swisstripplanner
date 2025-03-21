@@ -392,6 +392,15 @@ export default function TravelItinerary({ travelPlan, onUpdatePlan, travelPlanId
   // 숙소 정보 업데이트 핸들러 (로컬 상태만 업데이트)
   const updateAccommodation = useCallback((updatedPlan) => {
 
+    // 현재 액티브 데이의 기존 숙소 정보 찾기
+    const currentDayIndex = localTravelPlan.days.findIndex(day => day.day === activeDay);
+    const previousAccommodation = currentDayIndex !== -1 ? localTravelPlan.days[currentDayIndex].accommodation : null;
+    
+    // 업데이트된 계획에서 새 숙소 정보 찾기
+    const updatedDayIndex = updatedPlan.days.findIndex(day => day.day === activeDay);
+    const newAccommodation = updatedDayIndex !== -1 ? updatedPlan.days[updatedDayIndex].accommodation : null;
+
+
     setLocalTravelPlan(updatedPlan);
     setHasUnsavedChanges(true);
     

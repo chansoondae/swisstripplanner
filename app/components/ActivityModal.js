@@ -5,6 +5,7 @@ import { FiX, FiSearch, FiMapPin, FiClock, FiDollarSign, FiTrain, FiRefreshCw } 
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import swissAttractions from './../../data/swiss_attraction.json'; // JSON 파일 직접 import
 import { formatDuration } from './../../utils/durationFormat';
+import { useAnalytics } from './../hooks/useAnalytics'; // Analytics 훅 추가
 
 // 교통 수단에 따른 아이콘 선택
 const TransportIcon = ({ type }) => {
@@ -27,6 +28,9 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [attractions, setAttractions] = useState([]);
   const [filteredAttractions, setFilteredAttractions] = useState([]);
+  
+  // Analytics 훅 사용
+  const { trackEvent } = useAnalytics();
 
   // 각 관광지명에 대해 가장 적합한 옵션 찾기
   const findBestOption = (attractions, nameEng, base, end) => {
@@ -61,58 +65,88 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
   // JSON 데이터 로드 및 중복 제거
   useEffect(() => {
     if (isOpen) {
-      // console.log('Modal opened, loading and optimizing attractions');
+      // 모달 열림 이벤트 추적
+      trackEvent(
+        'activity_modal_opened', 
+        'engagement',
+        `액티비티 모달 열림 (Day ${currentDay})`,
+        {
+          day: currentDay,
+          baseLocation,
+          endLocation
+        }
+      );
       
       if (!swissAttractions || swissAttractions.length === 0) {
         console.log('No attractions data found');
         setAttractions([]);
+        
+        // 데이터 로드 실패 이벤트 추적
+        trackEvent(
+          'error', 
+          'system',
+          '액티비티 데이터 로드 실패'
+        );
         return;
       }
       
       // 1. 중복 없는 관광지 이름 목록 생성
       const uniqueNames = [...new Set(swissAttractions.map(item => item.Name_Eng))];
-      // console.log(`Found ${uniqueNames.length} unique attraction names`);
       
       // 2. 각 이름에 대해 최적의 항목 찾기
       const optimizedAttractions = uniqueNames.map(name => 
         findBestOption(swissAttractions, name, baseLocation, endLocation)
       ).filter(Boolean); // null 항목 제거
       
-      // console.log(`Optimized to ${optimizedAttractions.length} attractions`);
       setAttractions(optimizedAttractions);
+      
+      // 데이터 로드 성공 이벤트 추적
+      trackEvent(
+        'activity_data_loaded', 
+        'system',
+        `액티비티 데이터 로드 완료 (${optimizedAttractions.length}개)`
+      );
     }
-  }, [isOpen, baseLocation, endLocation]);
+  }, [isOpen, baseLocation, endLocation, currentDay, trackEvent]);
 
   // 검색어에 따라 필터링
   useEffect(() => {
-    
     if (!attractions) return;
+    
     const filtered = attractions.filter(attraction => 
       (attraction.Name_Eng?.toLowerCase() || '').includes(searchTerm.toLowerCase()) || 
       (attraction.Name_Kor || '').includes(searchTerm)
     );
     
     setFilteredAttractions(filtered);
-  }, [searchTerm, attractions]);
+    
+    // 검색어 입력 이벤트 추적 (입력이 있는 경우에만)
+    if (searchTerm && searchTerm.length >= 2) {
+      trackEvent(
+        'activity_search', 
+        'engagement',
+        `액티비티 검색: "${searchTerm}"`,
+        {
+          search_term: searchTerm,
+          results_count: filtered.length
+        }
+      );
+    }
+  }, [searchTerm, attractions, trackEvent]);
 
   // 가장 적합한 액티비티 정보 찾기
   const findBestActivity = (engName) => {
-
     // 1. Name_Eng값과 Eng 같은 것 필터링
     const matchedAttractions = attractions.filter(attr => 
       attr.Name_Eng.toLowerCase() === engName.toLowerCase()
     );
     
     if (matchedAttractions.length === 0) return null;
-
-    // console.log('1. Name_Eng값과 Eng 같은 것 필터링: ', matchedAttractions);
     
     // 2. Base값이 시작 위치와 같은 것 찾기
     const startLocationMatch = matchedAttractions.find(attr => 
       attr.Base === baseLocation
     );
-
-    // console.log('2. Base값이 시작 위치와 같은 것 찾기: ', startLocationMatch);
     
     if (startLocationMatch) return startLocationMatch;
     
@@ -120,8 +154,6 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
     const endLocationMatch = matchedAttractions.find(attr => 
       attr.Base === endLocation
     );
-
-    // console.log('3. Base값이 종료 위치와 같은 것 찾기: ', endLocationMatch);
     
     if (endLocationMatch) return endLocationMatch;
     
@@ -138,9 +170,21 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
   };
 
   const handleActivitySelect = (activity) => {
-    // console.log('Selected activity:', activity);
-    // ID가 있으므로 그대로 사용
     setSelectedActivity(activity);
+    
+    // 액티비티 선택 이벤트 추적
+    trackEvent(
+      'select_activity', 
+      'engagement',
+      `액티비티 선택: ${activity.Name_Eng}`,
+      {
+        name_eng: activity.Name_Eng,
+        name_kor: activity.Name_Kor,
+        base: activity.Base,
+        transportation: activity.Transportation,
+        price: activity["2nd Class Price"] || activity.Price
+      }
+    );
   };
 
   const handleAddActivity = () => {
@@ -165,9 +209,44 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
       lng: selectedActivity.lng
     };
     
+    // 액티비티 추가 이벤트 추적
+    trackEvent(
+      'add_activity_from_modal', 
+      'content_update',
+      `액티비티 추가: ${newActivity.title}`,
+      {
+        day: currentDay,
+        activity_title: newActivity.title,
+        activity_location: newActivity.location,
+        activity_base: newActivity.base,
+        activity_price: newActivity.price,
+        transportation: newActivity.transportation
+      }
+    );
+    
     // Pass to parent component
     onAddActivity(newActivity);
     onClose();
+  };
+
+  const handleCloseModal = () => {
+    // 모달 닫기 이벤트 추적
+    trackEvent(
+      'close_activity_modal', 
+      'engagement',
+      `액티비티 모달 닫기 (Day ${currentDay})`,
+      {
+        day: currentDay,
+        was_activity_selected: selectedActivity !== null
+      }
+    );
+    onClose();
+  };
+
+  // 검색어 입력 핸들러 - 디바운스 적용
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
   };
 
   if (!isOpen) return null;
@@ -179,7 +258,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
         <div className="p-4 border-b flex justify-between items-center">
           <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">일정 추가 - Day {currentDay}</h2>
           <button 
-            onClick={onClose}
+            onClick={handleCloseModal}
             className="p-1 rounded-full hover:bg-gray-200 "
           >
             <FiX size={24} />
@@ -192,7 +271,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
             <input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleSearchChange}
               placeholder="관광지 검색 (한글 또는 영문)"
               className="w-full p-2 pl-10 border rounded-lg text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800"
             />
@@ -265,7 +344,7 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
         {/* 하단 버튼 */}
         <div className="p-4 border-t flex justify-end">
           <button
-            onClick={onClose}
+            onClick={handleCloseModal}
             className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg mr-2"
           >
             취소
