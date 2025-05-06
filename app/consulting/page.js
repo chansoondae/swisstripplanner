@@ -22,7 +22,7 @@ const LoadingState = ({ message }) => (
   </div>
 );
 
-export default function PlannerPage() {
+export default function ConsultingPage() {
   const [itineraries, setItineraries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -218,7 +218,7 @@ export default function PlannerPage() {
   const handleItineraryClick = (id) => {
     // 여행 계획 클릭 이벤트 추적
     trackEvent('select_content', 'engagement', `여행 계획 선택: ${id}`);
-    router.push(`/planner/${id}`);
+    router.push(`/consulting/${id}`);
   };
 
   // 필터 변경 핸들러

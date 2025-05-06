@@ -49,7 +49,8 @@ const groupTypeMap = {
   'couple': '커플',
   'family': '가족',
   'friends': '친구',
-  'seniors': '시니어'
+  'seniors': '시니어',
+  'MomDaughter': '엄마딸'
 };
 
 // Generate locations from activities

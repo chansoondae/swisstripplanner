@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom'; // Added missing import
 import { FiX, FiSearch, FiMapPin, FiClock, FiDollarSign, FiTrain, FiRefreshCw } from 'react-icons/fi';
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import swissAttractions from './../../data/swiss_attraction.json'; // JSON 파일 직접 import
@@ -251,7 +252,10 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
 
   if (!isOpen) return null;
 
-  return (
+  // Client-side only code
+if (typeof window === 'undefined') return null;
+
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-gray-900 rounded-lg w-full max-w-lg max-h-[80vh] flex flex-col">
         {/* 헤더 */}
@@ -362,7 +366,8 @@ const ActivityModal = ({ isOpen, onClose, onAddActivity, currentDay, baseLocatio
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

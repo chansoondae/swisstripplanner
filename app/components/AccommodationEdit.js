@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback } from 'react';
-import { FiHome } from 'react-icons/fi';
+import { FiHome, FiEdit } from 'react-icons/fi';
 import { calculateTravelPlan } from './../../utils/calculateTravelPlan';
 import { useAnalytics } from './../hooks/useAnalytics'; // Analytics 훅 추가
 
@@ -127,7 +127,7 @@ const AccommodationEdit = ({
   }, [activeDay, trackEvent]);
 
   return (
-    <div className="bg-blue-50 dark:bg-amber-800 p-4 border-t relative">
+    <div className="bg-blue-50 dark:bg-amber-800 p-4 relative">
       {isEditingAccommodation && day.day === activeDay ? (
         <div className="flex items-center">
           <FiHome className="mr-2 text-blue-700 dark:text-amber-100" />
@@ -177,14 +177,14 @@ const AccommodationEdit = ({
       ) : (
         <div className="flex items-center">
           <FiHome className="mr-2 text-blue-700 dark:text-amber-100" />
-          <span className="font-medium text-blue-800 dark:text-amber-100">숙박:</span>
-          <button 
-            onClick={handleEditAccommodation}
-            className="ml-2 text-blue-700 dark:text-amber-100 hover:text-blue-900 dark:hover:text-amber-300 hover:underline flex items-center transition-colors"
-          >
-            {day.accommodation}
-            {/* <span className="ml-2 text-xs text-blue-500">(클릭하여 수정)</span> */}
-          </button>
+          <span className="font-medium text-blue-800 dark:text-amber-100">숙박: {day.accommodation}</span>
+          
+          <button
+                onClick={handleEditAccommodation}
+                className="ml-2 text-blue-700 dark:text-amber-100 hover:text-blue-900 dark:hover:text-amber-300 hover:underline flex items-center transition-colors"
+              >
+                <FiEdit size={14} />
+              </button>
         </div>
       )}
     </div>

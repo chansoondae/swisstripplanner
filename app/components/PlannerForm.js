@@ -246,6 +246,7 @@ const PlannerForm = ({ onSubmit, isSubmitting }) => {
               <option value="family">Family with Kids</option>
               <option value="friends">Group of Friends</option>
               <option value="seniors">Senior Travelers</option>
+              <option value="MomDaughter">Mom and Daughter</option>
             </select>
           </div>
         </div>

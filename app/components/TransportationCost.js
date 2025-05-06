@@ -97,7 +97,7 @@ export default function TransportationCost({ transportationDetails, budgetBreakd
     if (bestOption.savings && parseFloat(bestOption.savings) > 0) {
       bestTransportOption = {
         type: 'swisspass',
-        recommendation: `스위스트래블패스 ${bestOption.type} : 총 CHF ${bestOption.totalCost}`,
+        recommendation: `스위스트래블패스 ${bestOption.option} : 총 CHF ${bestOption.totalCost}`,
         savings: bestOption.savings
       };
     }
