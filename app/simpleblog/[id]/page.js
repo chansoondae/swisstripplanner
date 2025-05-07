@@ -621,6 +621,51 @@ export default function ConsultingPage() {
       
       {/* Optional chat button for follow-up questions */}
       {process.env.NEXT_PUBLIC_ENABLE_CHAT === 'true' && <ChatButtonPortal />}
+
+
+      
+      <div className="mt-2 pl-11 ">
+      <br ></br>
+        <div style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>
+          ✅ 스위스트래블패스 총정리
+        </div>
+        <a 
+          href="https://cafe.naver.com/swissfriends/65952"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black text-sm hover:underline flex items-center w-fit"
+          style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}
+        >
+          https://cafe.naver.com/swissfriends/65952
+        </a>
+        <br ></br>
+        <div style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>
+          ✅ 융프라우 VIP패스 뽕뽑기
+        </div>
+        <a 
+          href="https://cafe.naver.com/swissfriends/60724"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black text-sm hover:underline flex items-center w-fit"
+          style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}
+        >
+          https://cafe.naver.com/swissfriends/60724
+        </a>
+        <br ></br>
+        <div style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>
+          ✅ 세이버데이패스 총정리
+        </div>
+        <a 
+          href="https://cafe.naver.com/swissfriends/63527"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black text-sm hover:underline flex items-center w-fit"
+          style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}
+        >
+          https://cafe.naver.com/swissfriends/63527
+        </a>
+      </div>
+                  
       
       {/* Back to list button */}
       <div className="my-8 flex justify-center space-x-4">

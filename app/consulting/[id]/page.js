@@ -948,6 +948,8 @@ export default function ConsultingPage() {
           transportationDetails: localTravelPlan.transportationDetails,
           budgetBreakdown: localTravelPlan.budgetBreakdown,
           options: localTravelPlan.options, // Add this line to update options
+          startingCity: localTravelPlan.options.startingCity, // Add this line to update options
+          endingCity: localTravelPlan.options.endingCity, // Add this line to update options
           updatedAt: new Date()
         });
         setSaveSuccess(true);

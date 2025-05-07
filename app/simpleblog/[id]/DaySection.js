@@ -247,7 +247,7 @@ const DaySection = ({
                 <br></br>
               <h2 className="text-xl font-semibold text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px', fontWeight: 'bold' }}>
                 <span className="text-blue-500 font-bold mr-2" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px' }}>
-                  {day.day} 일차 &gt;
+                  {day.day} 일차 &gt; &nbsp;
                 </span>
                 {day.title}
               </h2>
@@ -261,7 +261,7 @@ const DaySection = ({
                 </button>
               )}
             </div>
-            <p className="text-black mt-1 pl-10" style={{ fontFamily: 'Nanum Gothic', fontSize: '16px', fontWeight: 'normal' }}>{day.description}</p>
+            <p className="text-black mt-1 pl-10" style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>{day.description}</p>
             <br></br>
           </div>
         )}
@@ -390,7 +390,7 @@ const DaySection = ({
                     <div className="flex items-start">
                       <div>
                         <div className="flex items-center">
-                          <h3 className="font-medium text-lg text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '22px', fontWeight: 'bold' }}>
+                          <h3 className="font-medium text-lg text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px', fontWeight: 'bold' }}>
                           <span className="text-red-500 font-bold mr-3 flex-shrink-0" style={{ fontFamily: 'Nanum Gothic' }}>
                             {index + 1}.
                         </span>
@@ -453,19 +453,19 @@ const DaySection = ({
                     </div>
                   </div>
 
-                  <div className="mt-3 text-black pl-11" style={{ fontFamily: 'Nanum Gothic', fontSize: '16px', fontWeight: 'normal' }}>
+                  <div className="mt-3 text-black pl-11" style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>
                     {activity.description}
                   </div>
                   
                   {/* Optional URL link */}
                   {activity.url && (
-                    <div className="mt-2 pl-11">
+                    <div className="mt-2 pl-11" >
                       <a 
                         href={activity.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-black text-sm hover:underline flex items-center w-fit"
-                        style={{ fontFamily: 'Nanum Gothic' }}
+                        style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}
                       >
                         {activity.url}
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -492,7 +492,7 @@ const DaySection = ({
                 </svg>
                 <div className="w-full">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '22px', fontWeight: 'bold' }}>여행 팁 및 추천</h3>
+                    <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px', fontWeight: 'bold' }}>여행 팁 및 추천</h3>
                   </div>
                   <textarea
                     value={editActivityData.recommendations}
@@ -527,7 +527,7 @@ const DaySection = ({
               <div className="flex items-start">
                 <div>
                   <div className="flex items-center">
-                    <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '22px', fontWeight: 'bold' }}>⭐️ 여행 팁 및 추천</h3>
+                    <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px', fontWeight: 'bold' }}>⭐️ 여행 팁 및 추천</h3>
                     {isOwner && (
                       <button
                         onClick={handleStartEditRecommendations}
@@ -539,7 +539,7 @@ const DaySection = ({
                     )}
                   </div>
                   {day.recommendations.split('\n').map((paragraph, index) => (
-                    <p key={index} className="text-black mt-1" style={{ fontFamily: 'Nanum Gothic', fontSize: '16px', fontWeight: 'normal' }}>
+                    <p key={index} className="text-black mt-1" style={{ fontFamily: 'Nanum Gothic', fontSize: '19px', fontWeight: 'normal' }}>
                       {paragraph}
                     </p>
                   ))}
@@ -552,13 +552,13 @@ const DaySection = ({
         
         {/* Accommodation information */}
         {day.accommodation && (
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4">
             <div className="flex items-start">
               <svg className="h-5 w-5 text-black mr-2 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
               <div>
-                <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '22px', fontWeight: 'bold' }}>숙소 정보</h3>
+                <h3 className="font-medium text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '24px', fontWeight: 'bold' }}>숙소 정보</h3>
                 <p className="text-black" style={{ fontFamily: 'Nanum Gothic', fontSize: '19px' }}>{day.accommodation}</p>
                 {day.accommodationDetail && (
                   <p className="text-sm text-black mt-1" style={{ fontFamily: 'Nanum Gothic', fontSize: '19px' }}>{day.accommodationDetail}</p>
