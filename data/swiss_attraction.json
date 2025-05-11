@@ -446,7 +446,7 @@
         ],
         "Comment": "알프스의 웅장한 설산들에 둘러싸인 외시넨 호수는 에메랄드빛 맑은 물과 주변의 숨막히는 산악 풍경이 완벽한 조화를 이루어 스위스에서 가장 아름다운 고산 호수 중 하나로 꼽히는 천상의 절경입니다.",
         "id": "OescSpie",
-        "url": "https://cafe.naver.com/swissfriends/44827"
+        "url": "https://cafe.naver.com/swissfriends/66668"
     },
     {
         "Name_Eng": "Lavaux",
@@ -884,5 +884,24 @@
         "Comment": "UN기구도 있고, 제또 분수도 볼 수 있어요.",
         "id": "GeneGene",
         "url": "https://cafe.naver.com/swissfriends/45187"
+    },
+    {
+        "Name_Eng": "Milano",
+        "Name_Kor": "밀라노",
+        "Base": "Milano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "SwissTravelPass": 0.0,
+        "SaverDayPass": 0.0,
+        "JungfrauVIP": null,
+        "lat": 45.4840,
+        "lng": 9.2061,
+        "Duration": "2:00",
+        "Transportation": "Train",
+        "Transfer Counts": 0,
+        "Via": [],
+        "Comment": "밀라노 두오모 잠깐 보고 가세요. 기회가 된다면 최후의 만찬도 보고 가시구요.",
+        "id": "MilaMila",
+        "url": "https://cafe.naver.com/swissfriends/60079"
     }
 ]

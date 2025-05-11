@@ -1,4 +1,5 @@
 /**
+  utils/locationData.js
  * 스위스 주요 도시 및 기차역의 좌표 정보
  * 지도 표시 및 위치 기반 기능에 사용
  */
@@ -25,6 +26,7 @@ const cityCoordinates = {
     'Vevey': { lat: 46.4628, lng: 6.8419 },
     'Chur': { lat: 46.8508, lng: 9.5320 },
     'Adelboden': { lat: 46.4950, lng: 7.5567 },
+    'Milano': { lat: 45.4840, lng: 9.2061 },
     
     // 기차역 좌표
     'Zurich HB': { lat: 47.3783, lng: 8.5402 },

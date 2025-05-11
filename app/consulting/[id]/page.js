@@ -945,11 +945,11 @@ export default function ConsultingPage() {
           title: localTravelPlan.title,
           description: localTravelPlan.description,
           days: localTravelPlan.days,
-          transportationDetails: localTravelPlan.transportationDetails,
-          budgetBreakdown: localTravelPlan.budgetBreakdown,
-          options: localTravelPlan.options, // Add this line to update options
-          startingCity: localTravelPlan.options.startingCity, // Add this line to update options
-          endingCity: localTravelPlan.options.endingCity, // Add this line to update options
+          transportationDetails: localTravelPlan.transportationDetails || null,
+          budgetBreakdown: localTravelPlan.budgetBreakdown || null,
+          options: localTravelPlan.options || {}, // Add this line to update options
+          startingCity: localTravelPlan.options.startingCity || null, // Add this line to update options
+          endingCity: localTravelPlan.options.endingCity || null, // Add this line to update options
           updatedAt: new Date()
         });
         setSaveSuccess(true);

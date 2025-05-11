@@ -101,13 +101,12 @@ const TravelOptionEdit = ({
 
   const cityOptions = [
     { value: '', label: '도시 선택' },
-    { value: '취리히', label: '취리히 (Zurich)' },
-    { value: '제네바', label: '제네바 (Geneva)' },
-    { value: '루체른', label: '루체른 (Lucerne)' },
-    { value: '인터라켄', label: '인터라켄 (Interlaken)' },
-    { value: '로잔', label: '로잔 (Lausanne)' },
-    { value: '베른', label: '베른 (Bern)' },
-    { value: '바젤', label: '바젤 (Basel)' }
+    { value: 'Zurich', label: '🇨🇭 취리히 (Zurich)' },
+    { value: 'Geneva', label: '🇨🇭 제네바 (Geneva)' },
+    { value: 'Basel', label: '🇨🇭 바젤 (Basel)' },
+    { value: 'Paris', label: '🇫🇷 파리' },
+    { value: 'Milano', label: '🇮🇹 밀라노' },
+    { value: 'Frankfurt', label: '🇩🇪 프랑크푸르트' }
   ];
 
   if (!isEditing) {
