@@ -4,11 +4,21 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import swissAttractions from './../../data/swiss_attraction2.json';
 
+const passPricing = {
+  3: { adult: 232, youth: 164 },
+  4: { adult: 281, youth: 198 },
+  6: { adult: 359, youth: 253 },
+  8: { adult: 389, youth: 275 },
+  15: { adult: 429, youth: 296 },
+};
+
 export default function CalculatePage() {
   const [selectedAttractions, setSelectedAttractions] = useState([]);
   const [swissTravelPassTotal, setSwissTravelPassTotal] = useState(0);
   const [saverDayPassTotal, setSaverDayPassTotal] = useState(0);
   const [attractionsList, setAttractionsList] = useState([]);
+  const [travelDays, setTravelDays] = useState(null);
+  const [travelPassPrices, setTravelPassPrices] = useState(null);
 
   // Initialize attractions list on load
   useEffect(() => {
@@ -32,6 +42,12 @@ export default function CalculatePage() {
     setSwissTravelPassTotal(swissTotal);
     setSaverDayPassTotal(saverTotal);
   }, [selectedAttractions, attractionsList]);
+
+  useEffect(() => {
+    if (travelDays && passPricing[travelDays]) {
+      setTravelPassPrices(passPricing[travelDays]);
+    }
+  }, [travelDays]);
 
   // Toggle attraction selection
   const toggleAttraction = (id) => {
@@ -175,6 +191,24 @@ export default function CalculatePage() {
                       <p className="text-xs text-gray-600">{attraction.Base}</p>
                     </div>
                   </div>
+
+                   {/* 가운데: 자세히 보기 링크 */}
+                    {attraction.url && (
+                      <div className="sm:flex-1 text-center">
+                        <a
+                          href={attraction.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 text-sm hover:underline inline-flex items-center"
+                        >
+                          자세히 보기
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      </div>
+                    )}
+
                   <div className="text-right">
                     <div className="flex gap-2 text-sm">
                       <span className="text-red-600">S:{(attraction.SwissTravelPass || 0).toFixed(1)}</span>
