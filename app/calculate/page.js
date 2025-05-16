@@ -72,7 +72,9 @@ export default function CalculatePage() {
 
   return (
     <div className="container mx-auto px-4 pb-8">
-      <h1 className="text-3xl font-bold my-6 text-center">스위스 여행 추가 비용 계산기</h1>
+      <h1 className="text-3xl font-bold my-6 text-center">
+        스위스 여행 <span className="text-red-600">추가 비용</span> 계산기
+      </h1>
       
       {/* Sticky Total Cost Display */}
       <div className="sticky top-0 z-50 py-2 bg-white border-b border-gray-200 shadow-md mb-8">
@@ -82,6 +84,7 @@ export default function CalculatePage() {
               <div>
                 <h2 className="text-xl font-semibold">선택된 명소:</h2>
                 <p className="text-gray-600">{selectedAttractions.length}개 선택됨</p>
+                <p className="text-gray-600">추가되는 비용만 계산 합니다. </p>
               </div>
             </div>
             
@@ -123,7 +126,7 @@ export default function CalculatePage() {
                   <img
                     src={`/images/${attraction.id}.jpg`}
                     alt={attraction.Name_Eng || ''}
-                    className="object-cover w-full h-full absolute inset-0 z-10"
+                    className="object-cover w-full h-full absolute inset-0 z-0"
                     onError={(e) => {
                       e.target.style.display = 'none';
                     }}
