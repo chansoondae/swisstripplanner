@@ -77,9 +77,9 @@ export default function CalculatePage() {
       </h1>
       
       {/* Sticky Total Cost Display */}
-      <div className="sticky top-0 z-50 py-2 bg-white border-b border-gray-200 shadow-md mb-8">
+      <div className="sticky top-0 z-50 py-2 bg-white dark:bg-gray-900 border-b border-gray-200 shadow-md mb-8">
         <div className="container mx-auto px-4">
-          <div className="p-2 bg-gray-100 rounded-lg">
+          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
             <div className="flex justify-between items-center mb-2">
               <div>
                 <h2 className="text-xl font-semibold">선택된 명소:</h2>
@@ -89,12 +89,12 @@ export default function CalculatePage() {
             </div>
             
             <div className="flex flex-col sm:flex-row justify-between gap-4 mt-2">
-              <div className="bg-white p-3 rounded-lg shadow-sm flex-1">
+              <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow-sm flex-1">
                 <h3 className="text-lg font-medium text-red-600">스위스트래블패스</h3>
                 <p className="text-2xl font-bold">CHF {swissTravelPassTotal.toFixed(2)}</p>
               </div>
               
-              <div className="bg-white p-3 rounded-lg shadow-sm flex-1">
+              <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow-sm flex-1">
                 <h3 className="text-lg font-medium text-blue-600">세이버데이패스</h3>
                 <p className="text-2xl font-bold">CHF {saverDayPassTotal.toFixed(2)}</p>
               </div>
@@ -120,7 +120,7 @@ export default function CalculatePage() {
             >
               {attraction.id ? (
                 <>
-                  <div className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-700 absolute">
+                  <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 absolute">
                     <span className="text-sm font-medium">{attraction.Name_Eng?.substring(0, 2) || '?'}</span>
                   </div>
                   <img
@@ -133,7 +133,7 @@ export default function CalculatePage() {
                   />
                 </>
               ) : (
-                <div className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-700">
+                <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200">
                   <span className="text-sm font-medium">{attraction.Name_Eng?.substring(0, 2) || '?'}</span>
                 </div>
               )}
@@ -166,7 +166,7 @@ export default function CalculatePage() {
       
       {/* Selected Attractions Summary */}
       {selectedAttractions.length > 0 && (
-        <div className="mt-8 p-4 bg-gray-100 rounded-lg">
+        <div className="mt-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">선택한 명소</h2>
           <div className="space-y-2">
             {selectedAttractions.map(id => {
@@ -174,10 +174,10 @@ export default function CalculatePage() {
               if (!attraction) return null;
               
               return (
-                <div key={id} className="flex justify-between items-center p-2 bg-white rounded">
+                <div key={id} className="flex justify-between items-center p-2 bg-white dark:bg-gray-900 rounded">
                   <div className="flex items-center">
                     <div className="w-8 h-8 rounded-full overflow-hidden mr-2 relative">
-                      <div className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-700 absolute">
+                      <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 absolute">
                         <span className="text-xs">{attraction.Name_Eng?.substring(0, 1) || '?'}</span>
                       </div>
                       <img
@@ -232,7 +232,7 @@ export default function CalculatePage() {
             })}
           </div>
           
-          <div className="mt-4 flex justify-between items-center p-2 bg-white rounded font-bold">
+          <div className="mt-4 flex justify-between items-center p-2 bg-white dark:bg-gray-900 rounded font-bold">
             <span>총 비용</span>
             <div className="flex gap-4">
               <span className="text-red-600">S:CHF {swissTravelPassTotal.toFixed(2)}</span>
