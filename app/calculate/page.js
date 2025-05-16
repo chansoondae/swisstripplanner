@@ -183,7 +183,7 @@ export default function CalculatePage() {
                       <img
                         src={`/images/${attraction.id}.jpg`}
                         alt={attraction.Name_Eng || ''}
-                        className="object-cover w-full h-full absolute inset-0 z-10"
+                        className="object-cover w-full h-full absolute inset-0 z-0"
                         onError={(e) => {
                           e.target.style.display = 'none';
                         }}
