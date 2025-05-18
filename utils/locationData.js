@@ -27,6 +27,12 @@ const cityCoordinates = {
     'Chur': { lat: 46.8508, lng: 9.5320 },
     'Adelboden': { lat: 46.4950, lng: 7.5567 },
     'Milano': { lat: 45.4840, lng: 9.2061 },
+    'Venezia': { lat: 45.4404, lng: 12.3160 },
+    'Firenze': { lat: 43.7700, lng: 11.2577 },
+    'Roma': { lat: 41.8967, lng: 12.4822 },
+    'Positano': { lat: 40.6295, lng: 14.4823 },
+    'Dolomiti': { lat: 46.5754, lng: 11.6702 },
+    'Paris': { lat: 48.8575, lng: 2.3514 },
     
     // 기차역 좌표
     'Zurich HB': { lat: 47.3783, lng: 8.5402 },

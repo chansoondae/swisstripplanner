@@ -4640,5 +4640,245 @@
             "Interlaken Ost",
             "Spiez"
         ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Firenze",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Firenze",
+        "Arrival": "Milano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Venezia",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Venezia",
+        "Arrival": "Milano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Roma",
+        "Arrival": "Firenze",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Firenze",
+        "Arrival": "Roma",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Roma",
+        "Arrival": "Venezia",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Venezia",
+        "Arrival": "Roma",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Dolomiti",
+        "Arrival": "Milano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Dolomiti",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Dolomiti",
+        "Arrival": "Venezia",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Venezia",
+        "Arrival": "Dolomiti",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Roma",
+        "Arrival": "Positano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Positano",
+        "Arrival": "Roma",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "02:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Roma",
+        "Arrival": "Venezia",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Venezia",
+        "Arrival": "Roma",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Milano",
+        "Arrival": "Roma",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Roma",
+        "Arrival": "Milano",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Basel SBB",
+        "Arrival": "Paris",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Paris",
+        "Arrival": "Basel SBB",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "03:30",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Lausanne",
+        "Arrival": "Paris",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Paris",
+        "Arrival": "Lausanne",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Geneva Aeroport",
+        "Arrival": "Paris",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
+    },
+    {
+        "Departure": "Paris",
+        "Arrival": "Geneva Aeroport",
+        "2nd Class Price": 0.0,
+        "1st Class Price": 0.0,
+        "Duration": "04:00",
+        "Transfer Counts": 0,
+        "Via": [
+        ]
     }
 ]
