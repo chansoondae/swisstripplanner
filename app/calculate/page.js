@@ -41,9 +41,9 @@ const getJungfrauVIPLevel = (selectedAttractions) => {
 const getVIPPassDuration = (level) => {
   switch(level) {
     case 1:
-      return "(1일권)";
+      return "(1일)";
     case 2:
-      return "(2일권)";
+      return "(2일)";
     default:
       return "";
   }
@@ -139,39 +139,38 @@ export default function CalculatePage() {
       
       {/* Sticky Total Cost Display */}
       <div className="sticky top-0 z-50 py-2 bg-white dark:bg-gray-900 border-b border-gray-200 shadow-md mb-8">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
             <div className="flex justify-between items-center mb-2">
               <div>
-                {/* <h2 className="text-xl font-semibold">추가 비용:</h2> */}
                 <p className="text-gray-600">{selectedAttractions.length}개 선택됨</p>
                 <p className="text-gray-600">추가되는 비용만 계산 합니다. </p>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row justify-between gap-4 mt-2">
-              <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow-sm flex-1">
-                <h3 className="text-lg font-medium text-red-600">스위스트래블패스</h3>
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <div className="bg-white dark:bg-gray-900 p-2 rounded-lg shadow-sm">
+                <h3 className="text-base font-medium text-red-600">스위스트래블패스</h3>
                 <div className="space-y-1">
-                  <p className="text-lg">전체 비용: CHF {(swissTravelPassTotal + jungfrauVIPSwissTotal).toFixed(2)}</p>
+                  <p className="text-sm">전체 비용: CHF {(swissTravelPassTotal + jungfrauVIPSwissTotal).toFixed(2)}</p>
                   {jungfrauVIPSwissTotal > 0 && (
-                    <p className="text-sm text-gray-600">- 기본 비용: CHF {swissTravelPassTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 기본 비용: CHF {swissTravelPassTotal.toFixed(2)}</p>
                   )}
                   {jungfrauVIPSwissTotal > 0 && (
-                    <p className="text-sm text-gray-600">- 융프라우VIP {getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSwissTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 융프라우VIP{getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSwissTotal.toFixed(2)}</p>
                   )}
                 </div>
               </div>
               
-              <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow-sm flex-1">
-                <h3 className="text-lg font-medium text-blue-600">세이버데이패스</h3>
+              <div className="bg-white dark:bg-gray-900 p-2 rounded-lg shadow-sm">
+                <h3 className="text-base font-medium text-blue-600">세이버데이패스</h3>
                 <div className="space-y-1">
-                  <p className="text-lg">전체 비용: CHF {(saverDayPassTotal + jungfrauVIPSaverTotal).toFixed(2)}</p>
+                  <p className="text-sm">전체 비용: CHF {(saverDayPassTotal + jungfrauVIPSaverTotal).toFixed(2)}</p>
                   {jungfrauVIPSaverTotal > 0 && (
-                    <p className="text-sm text-gray-600">- 기본 비용: CHF {saverDayPassTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 기본 비용: CHF {saverDayPassTotal.toFixed(2)}</p>
                   )}
                   {jungfrauVIPSaverTotal > 0 && (
-                    <p className="text-sm text-gray-600">- 융프라우VIP {getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSaverTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 융프라우VIP{getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSaverTotal.toFixed(2)}</p>
                   )}
                 </div>
               </div>
