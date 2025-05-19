@@ -154,10 +154,10 @@ export default function CalculatePage() {
                 <div className="space-y-1">
                   <p className="text-sm">전체 비용: CHF {(swissTravelPassTotal + jungfrauVIPSwissTotal).toFixed(2)}</p>
                   {jungfrauVIPSwissTotal > 0 && (
-                    <p className="text-xs text-gray-600">- 기본 비용: CHF {swissTravelPassTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 추가 비용: CHF {swissTravelPassTotal.toFixed(2)}</p>
                   )}
                   {jungfrauVIPSwissTotal > 0 && (
-                    <p className="text-xs text-gray-600">- 융프라우VIP{getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSwissTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 융프VIP{getVIPPassDuration(currentVIPLevel)}: {jungfrauVIPSwissTotal.toFixed(2)}</p>
                   )}
                 </div>
               </div>
@@ -167,10 +167,10 @@ export default function CalculatePage() {
                 <div className="space-y-1">
                   <p className="text-sm">전체 비용: CHF {(saverDayPassTotal + jungfrauVIPSaverTotal).toFixed(2)}</p>
                   {jungfrauVIPSaverTotal > 0 && (
-                    <p className="text-xs text-gray-600">- 기본 비용: CHF {saverDayPassTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 추가 비용: CHF {saverDayPassTotal.toFixed(2)}</p>
                   )}
                   {jungfrauVIPSaverTotal > 0 && (
-                    <p className="text-xs text-gray-600">- 융프라우VIP{getVIPPassDuration(currentVIPLevel)}: CHF {jungfrauVIPSaverTotal.toFixed(2)}</p>
+                    <p className="text-xs text-gray-600">- 융프VIP{getVIPPassDuration(currentVIPLevel)}: {jungfrauVIPSaverTotal.toFixed(2)}</p>
                   )}
                 </div>
               </div>
