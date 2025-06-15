@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import swissAttractions from './../../data/swiss_attraction2.json';
 
 const passPricing = {
@@ -85,6 +86,7 @@ const loadFromLocalStorage = () => {
 };
 
 export default function CalculatePage() {
+  const searchParams = useSearchParams();
   const [selectedAttractions, setSelectedAttractions] = useState([]);
   const [swissTravelPassTotal, setSwissTravelPassTotal] = useState(0);
   const [saverDayPassTotal, setSaverDayPassTotal] = useState(0);
@@ -99,12 +101,36 @@ export default function CalculatePage() {
   useEffect(() => {
     setAttractionsList(swissAttractions);
     
-    // Load saved selections from localStorage
-    const savedAttractions = loadFromLocalStorage();
-    if (savedAttractions) {
-      setSelectedAttractions(savedAttractions);
+    // Get cities from URL parameter
+    const citiesParam = searchParams.get('city');
+    
+    if (citiesParam) {
+      // Split the cities parameter by comma and trim whitespace
+      const cities = citiesParam.split(',').map(city => city.trim());
+      
+      // Find all attractions in the specified cities
+      const cityAttractions = swissAttractions
+        .filter(attraction => cities.includes(attraction.Name_Eng))
+        .map(attraction => attraction.id)
+        .filter(Boolean); // Remove any undefined/null values
+      
+      if (cityAttractions.length > 0) {
+        setSelectedAttractions(cityAttractions);
+      } else {
+        // If no attractions found for any of the cities, try to load from localStorage
+        const savedAttractions = loadFromLocalStorage();
+        if (savedAttractions) {
+          setSelectedAttractions(savedAttractions);
+        }
+      }
+    } else {
+      // If no city parameter, load from localStorage
+      const savedAttractions = loadFromLocalStorage();
+      if (savedAttractions) {
+        setSelectedAttractions(savedAttractions);
+      }
     }
-  }, []);
+  }, [searchParams]);
 
   // Save to localStorage whenever selections change
   useEffect(() => {
