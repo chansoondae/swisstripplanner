@@ -50,41 +50,6 @@ const getVIPPassDuration = (level) => {
   }
 };
 
-// Helper function to manage localStorage
-const STORAGE_KEY = 'swissTripSelectedAttractions';
-const EXPIRY_DAYS = 3;
-
-const saveToLocalStorage = (selectedAttractions) => {
-  const data = {
-    attractions: selectedAttractions,
-    timestamp: new Date().getTime()
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-};
-
-const loadFromLocalStorage = () => {
-  const storedData = localStorage.getItem(STORAGE_KEY);
-  if (!storedData) return null;
-
-  try {
-    const data = JSON.parse(storedData);
-    const now = new Date().getTime();
-    const expiryTime = data.timestamp + (EXPIRY_DAYS * 24 * 60 * 60 * 1000);
-
-    // 만료되지 않은 경우에만 데이터 반환
-    if (now < expiryTime) {
-      return data.attractions;
-    } else {
-      // 만료된 데이터는 삭제
-      localStorage.removeItem(STORAGE_KEY);
-      return null;
-    }
-  } catch (error) {
-    console.error('Error loading from localStorage:', error);
-    return null;
-  }
-};
-
 export default function CalculatePage() {
   const searchParams = useSearchParams();
   const [selectedAttractions, setSelectedAttractions] = useState([]);
@@ -97,7 +62,7 @@ export default function CalculatePage() {
   const [travelPassPrices, setTravelPassPrices] = useState(null);
   const [currentVIPLevel, setCurrentVIPLevel] = useState(0);
 
-  // Initialize attractions list and load saved selections on load
+  // Initialize attractions list and load selections from URL only
   useEffect(() => {
     setAttractionsList(swissAttractions);
     
@@ -114,33 +79,11 @@ export default function CalculatePage() {
         .map(attraction => attraction.id)
         .filter(Boolean); // Remove any undefined/null values
       
-      if (cityAttractions.length > 0) {
-        setSelectedAttractions(cityAttractions);
-      } else {
-        // If no attractions found for any of the cities, try to load from localStorage
-        const savedAttractions = loadFromLocalStorage();
-        if (savedAttractions) {
-          setSelectedAttractions(savedAttractions);
-        }
-      }
+      setSelectedAttractions(cityAttractions);
     } else {
-      // If no city parameter, load from localStorage
-      const savedAttractions = loadFromLocalStorage();
-      if (savedAttractions) {
-        setSelectedAttractions(savedAttractions);
-      }
+      setSelectedAttractions([]);
     }
   }, [searchParams]);
-
-  // Save to localStorage whenever selections change
-  useEffect(() => {
-    if (selectedAttractions.length > 0) {
-      saveToLocalStorage(selectedAttractions);
-    } else {
-      // 선택된 명소가 없으면 localStorage에서 삭제
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  }, [selectedAttractions]);
 
   // Calculate total costs whenever selected attractions change
   useEffect(() => {
