@@ -14,19 +14,20 @@ export default function BottomNav() {
           <FiHome className="h-6 w-6 mb-1" />
           <span className="text-xs">Home</span>
         </Link>
-        <Link 
-          href="/info" 
-          className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
-        >
-          <FiInfo className="h-6 w-6 mb-1" />
-          <span className="text-xs">Info</span>
-        </Link>
+
         <Link 
           href="/calculate" 
           className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
         >
           <FiDollarSign className="h-6 w-6 mb-1" />
           <span className="text-xs">Cost</span>
+        </Link>
+        <Link 
+          href="/info" 
+          className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
+        >
+          <FiInfo className="h-6 w-6 mb-1" />
+          <span className="text-xs">Info</span>
         </Link>
         <Link 
           href="/webcam" 
