@@ -3,7 +3,7 @@ import { getAllBlogPostsAdmin } from '../../lib/firebase-blog-admin';
 import InfoPageClient from './InfoPageClient';
 
 // 스타일 불러오기
-import '../../styles/travel-post.css';
+import './blog-post.css';
 
 export const metadata = {
   title: '스위스 여행 정보',

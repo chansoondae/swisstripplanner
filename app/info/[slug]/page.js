@@ -3,9 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPostBySlugAdmin, getAllBlogSlugsAdmin } from '../../../lib/firebase-blog-admin';
 import PostDetailClient from './PostDetailClient';
-
-// 스타일 불러오기
-import './../../../styles/travel-post.css';
+import '../blog-post.css';
 
 // 정적 경로 생성
 export async function generateStaticParams() {
