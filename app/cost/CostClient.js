@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import swissAttractions from './../../data/swiss_pass_cost.json';
+import swissAttractions from '../../data/swiss_pass_cost.json';
 
 const passPricing = {
   3: { adult: 232, youth: 164 },
@@ -275,13 +275,11 @@ export default function CalculatePage() {
                   <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 absolute">
                     <span className="text-sm font-medium">{attraction.Name_Eng?.substring(0, 2) || '?'}</span>
                   </div>
-                  <img
+                  <Image
                     src={`/images/${attraction.id}.jpg`}
                     alt={attraction.Name_Eng || ''}
+                    fill
                     className="object-cover w-full h-full absolute inset-0 z-0"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
                   />
                 </>
               ) : (
@@ -331,13 +329,11 @@ export default function CalculatePage() {
                       <div className="flex items-center justify-center h-full w-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 absolute">
                         <span className="text-xs">{attraction.Name_Eng?.substring(0, 1) || '?'}</span>
                       </div>
-                      <img
+                      <Image
                         src={`/images/${attraction.id}.jpg`}
                         alt={attraction.Name_Eng || ''}
+                        fill
                         className="object-cover w-full h-full absolute inset-0 z-0"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
                       />
                     </div>
                     <div>

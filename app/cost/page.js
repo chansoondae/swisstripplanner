@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import CalculatePage from './CalculateClient';
+import CalculatePage from './CostClient';
 
 export default function Page() {
   return (

@@ -1,9 +1,7 @@
 //app/webcam/page.js
 
-import { webcamData } from './../../lib/webcam';
+import { webcamData } from './webcamData';
 import WebcamClient from './WebcamClient';
-
-// 스타일 불러오기
 import './webcam.css';
 
 export const metadata = {

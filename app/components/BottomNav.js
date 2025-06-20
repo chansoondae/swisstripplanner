@@ -16,7 +16,7 @@ export default function BottomNav() {
         </Link>
 
         <Link 
-          href="/calculate" 
+          href="/cost" 
           className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
         >
           <FiDollarSign className="h-6 w-6 mb-1" />
