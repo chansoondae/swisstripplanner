@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { LineChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ComposedChart } from 'recharts';
+import grindelwaldWeather from './grindelwald_weather.json';
 
 export default function CityWeatherScreen() {
     const [selectedCity, setSelectedCity] = useState("Grindelwald");
@@ -122,6 +124,17 @@ export default function CityWeatherScreen() {
         })
         : weatherRecommendations;
 
+    // 이모지 매핑 함수
+    const conditionToEmoji = (condition) => {
+      if (!condition) return '';
+      if (condition.includes('맑')) return '☀️';
+      if (condition.includes('흐림')) return '☁️';
+      if (condition.includes('비')) return '🌧️';
+      if (condition.includes('눈')) return '❄️';
+      if (condition.includes('안개')) return '🌫️';
+      return '🌡️';
+    };
+
     return (
       <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white p-4 space-y-6">
         {/* 도시 선택 */}
@@ -176,24 +189,43 @@ export default function CityWeatherScreen() {
           <div className="text-sm text-gray-500 mt-1">최고 20.8°C / 최저 8.1°C</div>
         </div>
   
-        {/* 시간대별 날씨 */}
+        {/* 시간대별 날씨 그래프 */}
         <div className="bg-white rounded-2xl shadow p-4">
-          <div className="font-semibold mb-2">시간대별 날씨</div>
-          <div className="flex overflow-x-auto gap-4">
-            {[
-              { hour: '06시', icon: '☀️', temp: '8.1°C' },
-              { hour: '09시', icon: '☀️', temp: '12.8°C' },
-              { hour: '12시', icon: '☀️', temp: '17.9°C' },
-              { hour: '15시', icon: '☁️', temp: '20.6°C' },
-              { hour: '18시', icon: '🌫️', temp: '20.2°C' },
-            ].map((t) => (
-              <div key={t.hour} className="flex flex-col items-center min-w-[60px]">
-                <div className="text-lg">{t.icon}</div>
-                <div className="text-sm text-gray-600">{t.temp}</div>
-                <div className="text-sm text-gray-400">{t.hour}</div>
-              </div>
-            ))}
-          </div>
+          <div className="font-semibold mb-2">시간대별 날씨 그래프</div>
+          <ResponsiveContainer width="100%" height={300}>
+            <ComposedChart
+              data={grindelwaldWeather.data.hourlyForecast.slice(0, 24)}
+              margin={{ top: 30, right: 30, left: 0, bottom: 30 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis 
+                dataKey="hour"
+                tickFormatter={h => `${h}시`}
+                interval={2}
+                height={60}
+                tick={({ x, y, payload }) => {
+                  const idx = payload.value;
+                  const item = grindelwaldWeather.data.hourlyForecast.find(d => d.hour === idx);
+                  return (
+                    <g>
+                      <text x={x} y={y + 16} textAnchor="middle" fontSize="12" fill="#888">{idx}시</text>
+                      {idx % 3 === 0 && item && (
+                        <text x={x} y={y + 40} textAnchor="middle" fontSize="20">
+                          {conditionToEmoji(item.condition)}
+                        </text>
+                      )}
+                    </g>
+                  );
+                }}
+              />
+              <YAxis yAxisId="left" domain={['dataMin - 2', 'dataMax + 2']} tickFormatter={v => `${v}°C`} />
+              <YAxis yAxisId="right" orientation="right" domain={[0, 'dataMax + 2']} tickFormatter={v => `${v}mm`} />
+              <Tooltip formatter={(value, name) => name === 'temperature' ? `${value}°C` : `${value}mm`} />
+              <Legend />
+              <Bar yAxisId="right" dataKey="precipitation" name="강우량" fill="#60a5fa" barSize={16} />
+              <Line yAxisId="left" type="monotone" dataKey="temperature" name="기온" stroke="#f59e42" strokeWidth={3} dot={{ r: 3 }} />
+            </ComposedChart>
+          </ResponsiveContainer>
         </div>
   
         {/* 실시간 웹캠 */}
