@@ -50,6 +50,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const slug = searchParams.get('slug');
+    const filter = searchParams.get('filter'); // weather 페이지용 필터
     
     // slug가 있으면 특정 포스트만 가져오기
     if (slug) {
@@ -64,6 +65,17 @@ export async function GET(request) {
     
     // 모든 포스트 가져오기
     const posts = await getAllBlogPostsAdmin();
+    
+    // weather 페이지용 필터링 (filter=weather 파라미터가 있을 때)
+    if (filter === 'weather') {
+      const relevantPosts = posts.filter(post => 
+        post.slug === 'mannlichen' || 
+        post.slug === 'first' || 
+        post.slug === 'jungfraujoch'
+      );
+      return NextResponse.json(relevantPosts);
+    }
+    
     return NextResponse.json(posts);
   } catch (error) {
     return errorResponse(
@@ -169,3 +181,4 @@ export async function DELETE(request) {
     );
   }
 }
+

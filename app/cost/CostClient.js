@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import swissAttractions from '../../data/swiss_pass_cost.json';
+import swissAttractions from './swiss_pass_cost.json';
 
 const passPricing = {
   3: { adult: 232, youth: 164 },

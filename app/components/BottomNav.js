@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FiHome, FiInfo, FiMap, FiVideo, FiDollarSign } from 'react-icons/fi';
+import { FiHome, FiInfo, FiMap, FiVideo, FiDollarSign, FiCloud } from 'react-icons/fi';
 
 export default function BottomNav() {
   return (
@@ -35,6 +35,13 @@ export default function BottomNav() {
         >
           <FiVideo className="h-6 w-6 mb-1" />
           <span className="text-xs">Webcam</span>
+        </Link>
+        <Link 
+          href="/weather" 
+          className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
+        >
+          <FiCloud className="h-6 w-6 mb-1" />
+          <span className="text-xs">Weather</span>
         </Link>
         <Link 
           href="/planner" 
