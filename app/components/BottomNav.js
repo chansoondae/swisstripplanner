@@ -44,7 +44,7 @@ export default function BottomNav() {
           <span className="text-xs">Weather</span>
         </Link>
         <Link 
-          href="/planner" 
+          href="/consulting" 
           className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-yellow-300 transition-colors"
         >
           <FiMap className="h-6 w-6 mb-1" />

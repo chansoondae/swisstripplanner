@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
                       스위스 정보
                     </Link>
                     <Link 
-                      href="/planner" 
+                      href="/consulting" 
                       className="border-transparent text-gray-500 hover:text-blue-500 dark:hover:text-yellow-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                     >
                       여행 일정
