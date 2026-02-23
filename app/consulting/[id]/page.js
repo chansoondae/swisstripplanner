@@ -10,6 +10,7 @@ import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa';
 import ChatButtonPortal from './../../components/ChatButtonPortal';
 import { useAuth } from '../../../context/AuthContext';
 import SwissMap from './../../components/SwissMap';
+import TravelRouteMap from './../../components/TravelRouteMap';
 import TransportationCost from './../../components/TransportationCost';
 import DaySection from './DaySection';
 import ActivityModal from './../../components/ActivityModal';
@@ -81,12 +82,6 @@ const ProcessingState = ({ plan, isMobile, router, formatRelativeTime, trackEven
                 <div className="flex items-center">
                   <FiClock className="mr-1 text-blue-600 dark:text-yellow-400" /> 
                   <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>기간: {plan.options.duration}일</span>
-                </div>
-              )}
-              {plan.options.groupType && (    
-                <div className="flex items-center">
-                  <FiUsers className="mr-1 text-blue-600 dark:text-yellow-400" /> 
-                  <span className={`${isMobile ? 'text-sm' : 'text-base'}`}>여행자: {plan.options.groupType}</span>
                 </div>
               )}
               {plan.options.budget && (    
@@ -653,6 +648,7 @@ export default function ConsultingPage() {
     const [isDeleting, setIsDeleting] = useState(false);
     
     const [isEditingPlan, setIsEditingPlan] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
     const [editTitle, setEditTitle] = useState('');
     const [editDescription, setEditDescription] = useState('');
     
@@ -1145,7 +1141,7 @@ export default function ConsultingPage() {
         <div className="mb-6">
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4">
             <h2 className="text-xl font-semibold text-blue-800 dark:text-yellow-400 mb-4">전체 여행 경로</h2>
-            <SwissMap locations={generateLocationsFromActivities(localTravelPlan.days)} />
+            <TravelRouteMap days={localTravelPlan.days} selectedDay={selectedDay} onMarkerClick={setSelectedDay} />
           </div>
         </div>
         
@@ -1163,8 +1159,8 @@ export default function ConsultingPage() {
             </div>
             <div className="space-y-6">
                 {localTravelPlan.days.sort((a, b) => a.day - b.day).map((day) => (
-                <DaySection 
-                    key={day.day} 
+                <DaySection
+                    key={day.day}
                     day={day}
                     generateLocationsFromActivities={generateLocationsFromActivities}
                     onAddActivity={handleAddActivity}
@@ -1175,10 +1171,12 @@ export default function ConsultingPage() {
                     onUpdateDay={handleUpdateDay}
                     isMobile={isMobile}
                     trackEvent={trackEvent}
-                    onDeleteDay={handleDeleteDay} // prop 전달
+                    onDeleteDay={handleDeleteDay}
                     ActivityModalComponent={ActivityModal}
-                    AccommodationEditComponent={AccommodationEdit} // Add this line
-                    locationDataUtil={locationData} // Add this line
+                    AccommodationEditComponent={AccommodationEdit}
+                    locationDataUtil={locationData}
+                    isHighlighted={selectedDay === day.day}
+                    onDayClick={setSelectedDay}
                 />
                 ))}
             </div>

@@ -1,7 +1,7 @@
 // DaySection.js
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { FiEdit, FiSave, FiChevronUp, FiChevronDown, FiPlus, FiMapPin, FiDollarSign, FiClock, FiInfo, FiTrash2 } from 'react-icons/fi';
 import { FaShip, FaMountain, FaTram, FaTrain } from 'react-icons/fa'; // For TransportationIcon
 
@@ -346,12 +346,12 @@ const RecommendationsEditable = ({ recommendations, isOwner, dayNumber, onUpdate
 
 
 // --- Main DaySection COMPONENT ---
-const DaySection = ({ 
-    day, 
-    generateLocationsFromActivities, 
-    onAddActivity, 
-    onDeleteActivity, 
-    isOwner, 
+const DaySection = ({
+    day,
+    generateLocationsFromActivities,
+    onAddActivity,
+    onDeleteActivity,
+    isOwner,
     localTravelPlan, // For AccommodationEdit context
     onUpdateAccommodation, // For AccommodationEdit
     onUpdateDay, // Callback to ConsultingPage to update the specific day's data
@@ -363,10 +363,20 @@ const DaySection = ({
     AccommodationEditComponent, // e.g. AccommodationEdit
     cityToStationUtil, // e.g. cityToStation
     locationDataUtil, // e.g. locationData
+    isHighlighted = false,
+    onDayClick,
   }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingItemKeys, setEditingItemKeys] = useState(new Set());
+    const dayRef = useRef(null);
+
+    // Auto-scroll into view when highlighted
+    useEffect(() => {
+      if (isHighlighted && dayRef.current) {
+        dayRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, [isHighlighted]);
 
     const handleItemEditingStatusChange = useCallback((itemKey, isEditing) => {
       setEditingItemKeys(prev => {
@@ -425,7 +435,10 @@ const DaySection = ({
     }, [day.day, onUpdateDay]);
 
     return (
-      <div className="mb-8 border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all day-card">
+      <div
+        ref={dayRef}
+        className={`mb-8 border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all day-card ${isHighlighted ? 'ring-2 ring-blue-500 border-blue-400 shadow-blue-200 dark:ring-yellow-400 dark:border-yellow-400 dark:shadow-yellow-900' : ''}`}
+        onClick={() => onDayClick && onDayClick(day.day)}>
         <DayHeaderEditable
           dayNumber={day.day}
           title={day.title}
